@@ -24,7 +24,7 @@ class LoginController extends Controller
         // Implementa la lógica para crear o recuperar el usuario en tu base de datos
         // Luego, genera un token de acceso con Laravel Passport
 
-        $token = $user->createToken('MyAppToken')->accessToken;
+        $token = 'hola mundo';
 
         return response()->json(['token' => $token]);
     }
