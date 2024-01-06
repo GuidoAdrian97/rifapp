@@ -46,19 +46,19 @@ Route::get('/google-auth/callback', function () {
     $cookie = cookie('cookie_token',$token,60*1);
 
 
-    $urlExterna = 'https://www.ejemplo.com';
+   // $urlExterna = 'https://www.ejemplo.com';
 
     // Datos que deseas enviar mediante POST
-    $datosPost = [
-        'parametro1' => $token,
-        'parametro2' => 'valor2',
-    ];
+  //  $datosPost = [
+ //       'parametro1' => $token,
+   //     'parametro2' => 'valor2',
+   // ];
 
     // Guardar los datos en la sesión
-    session(['datosPost' => $datosPost]);
+  //  session(['datosPost' => $datosPost]);
 
     // Redireccionar a la página externa
-    return Redirect::away($urlExterna);
+  //  return Redirect::away($urlExterna);
 
     return response(['token'=>$token, 'usuario'=>$user,'menssage'=>'Login correcto','code'=>'200'])->withoutCookie($cookie);
 //s    $token= $user->createToken('token')->plainTextToken;
