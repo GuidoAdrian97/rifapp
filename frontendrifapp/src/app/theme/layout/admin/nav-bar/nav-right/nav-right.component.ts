@@ -1,10 +1,12 @@
 // Angular Import
-import { Component, DoCheck } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { GradientConfig } from 'src/app/app-config';
 
 // bootstrap
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthGoogleService } from 'src/app/services/auth-google.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-right',
@@ -22,7 +24,7 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
     ])
   ]
 })
-export class NavRightComponent implements DoCheck {
+export class NavRightComponent implements DoCheck, OnInit {
   // public props
   visibleUserList: boolean;
   chatMessage: boolean;
@@ -30,9 +32,37 @@ export class NavRightComponent implements DoCheck {
   gradientConfig = GradientConfig;
 
   // constructor
-  constructor() {
+  constructor(private authGoogleService:AuthGoogleService, private router:Router) {
     this.visibleUserList = false;
     this.chatMessage = false;
+  }
+
+  ngOnInit(){
+    setTimeout(() => {
+    this.validateAcess();
+    }, 2000);
+  }
+
+  validateAcess(){
+    this.authGoogleService.authUser().subscribe({
+      next: res=> {
+        debugger
+        console.log(`OK`,res)
+      },
+      error:error => {
+        this.logout();
+      }
+    })
+  }
+
+  showData(){
+    let data = JSON.stringify(this.authGoogleService.getProfile());
+    console.log(data);
+  }
+
+  logout(){
+    this.authGoogleService.logout();
+    this.router.navigate(['/'])
   }
 
   // public method

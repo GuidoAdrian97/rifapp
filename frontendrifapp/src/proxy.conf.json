@@ -1,0 +1,6 @@
+{
+    "/google-auth": {
+      "target": "http://rifapp.com:8000",
+      "secure": false
+    }
+  }
