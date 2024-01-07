@@ -4,12 +4,9 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { GoogleserviceService } from 'src/app/services/googleservice.service';
 import { Router } from '@angular/router';
-import {
-  SocialAuthService,
-  GoogleLoginProvider,
-  SocialUser,
-} from '@abacritt/angularx-social-login';
+
 import { HttpClient } from '@angular/common/http';
+import { AuthGoogleService } from 'src/app/services/auth-google.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -21,28 +18,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export default class SignInComponent implements OnInit{
 
-  socialUser!: SocialUser;
-  isLoggedin?: boolean;
-
-  user:any;
-  loggedIn:any
-  constructor(private service:GoogleserviceService,private router: Router,
-    private socialAuthService: SocialAuthService, private authService:SocialAuthService,private http: HttpClient){
+  constructor(private authGoogleService:AuthGoogleService,
+    private http: HttpClient){
   }
 
   ngOnInit():void {
-    this.authService.authState.subscribe((user) =>{
-      this.user = user;
-      this.loggedIn = (user != null);
-      console.log(this.user)
-    })
+   
   }
 
-  signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData: SocialUser) => {
-      debugger
-      this.sendTokenToLaravelApi(userData.authToken);
-    });
+  login(): void {
+   this.authGoogleService.login();
   }
 
   sendTokenToLaravelApi(token: string): void {
