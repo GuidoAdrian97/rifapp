@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('ListarPerfiles',[PerfilesController::class, 'ListarPerfiles']);
 Route::get('login/google', [LoginController::class,'redirectToGoogle'])->name('login.google');
 
-Route::get('login/google/callback', [LoginController::class,'handleGoogleCallback']);
+Route::post('login/google/callback', [LoginController::class,'handleGoogleCallback']);
