@@ -4,7 +4,7 @@
     <app-card [hidHeader]="true" cardClass="{{ card.background }} order-card">
       <h6 class="text-white">{{ card.title }}</h6>
       <h2 class="text-end text-white"
-        ><i class="feather {{ card.icon }} float-start"></i><span>{{ card.number }}</span>
+        ><i class=" {{ card.icon }} float-start"></i><span>{{ card.number }}</span>
       </h2>
       <p class="m-b-0"
         >{{ card.text }}<span class="float-end">{{ card.no }}</span></p
@@ -13,9 +13,76 @@
   </div>
   <!-- order-card end -->
 
-  <!-- account-section start -->
+
+  <!--texto de bienvenida-->
+
+  <div class="col-md-12" >
+      <!--mensaje bienvenida-->
+      <div class="row">
+      <div class="col-md-9">
+        <app-card cardTitle="" cardClass="tab-card tab-content" blockClass="nav-fill" [options]="false" >
+     
+          <!--contenido agregado-->
+          <div class="row justify-content-between">
+            <div class="col-sm-6">
+              <h3 class="mat-mdc-card-title" style="vertical-align: inherit;">¡Bienvenido de nuevo Mateo!</h3>
+              <p  class="text-muted m-b-30" style="font-size: medium; margin-top: 2%;">Has ganado un 54 % más que el mes pasado, lo cual es fantástico.</p>
+              <button type="button" class="btn btn-primary" >
+                <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                <span class="mdc-button__label" style="vertical-align: inherit;">Controlar</span>
+                <span class="mat-mdc-focus-indicator"></span>
+                <span class="mat-mdc-button-touch-target"></span></button></div>
+                <div class="col-sm-5"><img src="assets/images/gallery-grid/welcome.png" alt="bienvenido" width="300" class="welcome-img"></div>
+               
+              </div>
+        </app-card>
+      </div>
+      <div class="col-md-3">
+        <app-card [hidHeader]="true">
+          <div class="row">
+            <div class="col-auto">
+              <span>Customers</span>
+            </div>
+            <div class="col text-end">
+              <h2 class="mb-0">826</h2>
+              <span class="text-c-green">8.2%<i class="feather icon-trending-up ms-1"></i></span>
+            </div>
+          </div>
+          <apx-chart
+            [series]="chartOptions_1.series!"
+            [chart]="chartOptions_1.chart!"
+            [stroke]="chartOptions_1.stroke!"
+            [dataLabels]="chartOptions_1.dataLabels!"
+            [labels]="chartOptions_1.labels!"
+            [legend]="chartOptions_1.legend!"
+            [colors]="chartOptions_1.colors!"
+            [fill]="chartOptions_1.fill!"
+            [grid]="chartOptions_1.grid!"
+          >
+            [plotOptions]="chartOptions_1.plotOptions" [tooltip]="chartOptions_1.tooltip"
+          </apx-chart>
+          <div class="row mt-3 text-center">
+            <div class="col">
+              <h3 class="m-0"><i class="fas fa-circle f-10 m-r-5 text-success"></i>674</h3>
+              <span class="ms-3">New</span>
+            </div>
+            <div class="col">
+              <h3 class="m-0"><i class="fas fa-circle text-primary f-10 m-r-5"></i>182</h3>
+              <span class="ms-3">Return</span>
+            </div>
+          </div>
+        </app-card>
+      </div>
+
+      </div>
+     
+    
+  </div>
+
+
+  <!-- account-section start 
   <div class="col-xl-6 col-md-12">
-    <app-card cardTitle="Unique Visitor" [options]="false">
+    <app-card cardTitle="Unique Visitors" [options]="false">
       <apx-chart
         [chart]="chartOptions.chart!"
         [dataLabels]="chartOptions.dataLabels!"
@@ -67,11 +134,14 @@
           </div>
         </app-card>
       </div>
+      
+      
       <div class="col-md-6">
         <app-card [hidHeader]="true" cardClass="bg-primary text-white">
           <div class="row">
             <div class="col-auto">
               <span>Customers</span>
+            
             </div>
             <div class="col text-end">
               <h2 class="mb-0 text-white">826</h2>
@@ -105,6 +175,9 @@
       </div>
     </div>
   </div>
+
+
+   memory,suscribers,followers
 
   <div class="col-md-12 col-lg-4">
     <app-card
@@ -147,9 +220,13 @@
       <button class="btn btn-success btn-sm btn-round">Check Theme Out</button>
     </app-card>
   </div>
-  <!-- account-section end -->
+ account-section end -->
 
-  <!-- conversion-section start -->
+
+
+
+
+  <!-- conversion-section start 
   <div class="col-lg-4 col-md-12">
     <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true">
       <h6>Conversions</h6>
@@ -176,6 +253,8 @@
       <div class="app-card-footer"> </div>
     </app-card>
   </div>
+
+   activity feed
   <div class="col-lg-8 col-md-12">
     <app-card cardTitle="Activity Feed" blockClass="m-t-10" [options]="false">
       <ul class="feed-blog ps-0">
@@ -215,6 +294,7 @@
             ><span class="badge bg-primary">comment</span> abc posted a task: <span class="text-c-green">Design a new Homepage </span>
             <small class="text-muted">6 hours ago</small>
           </h6>
+         
           <p class="m-b-15 m-t-15"
             >hii <b> @everone</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry's standard dummy text ever since the 1500s.</p
@@ -223,7 +303,210 @@
       </ul>
     </app-card>
   </div>
-  <!-- conversion-section end -->
+   conversion-section end -->
+
+
+
+   <!--Images section / code added-->
+   <div class="col-md-12"> 
+
+   </div>
+
+
+   <!--editar esto-->
+   <div class="row">
+    <div class="col-sm-6 col-lg-3 ng-star-inserted">
+    <app-card class="mat-mdc-card mdc-card cardWithShadow productcard overflow-hidden">
+    <a routerlink="/widgets/cards" href="/widgets/cards">
+      <img alt="imgSrc" mat-card-image="" class="mat-mdc-card-image mdc-card__media w-100" src="assets/images/gallery-grid/s4.jpg"></a>
+      <div>
+        <button type="button" class="btn btn-icon btn-primary d-inline-flex">
+          <i class="feather icon-thumbs-up"></i>
+       <!--- </button>-->
+          <span class="mat-mdc-button-persistent-ripple mdc-fab__ripple"></span>
+          <span class="mdc-button__label"><i  class="icon-16">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <path d="M7 10l5 -6l5 6"></path>
+    <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
+    <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+  </svg>
+  </i></span>
+
+  <span class="mat-mdc-focus-indicator"></span>
+  <span class="mat-mdc-button-touch-target"></span>
+  <span class="mat-mdc-button-ripple"></span></button>
+  <p>Boat Headphone</p>
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600">$285</h6>
+      <span class="f-s-14 m-l-4 text-decoration-line-through">$375</span></div>
+      <div class="m-l-auto d-flex gap-4"><span>
+        <i name="star" class="feather-star" _nghost-ng-c2034356942="">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+  </svg> </i></span>
+  <span><i class="feather-star">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+  </svg>
+  
+  
+  </i></span>
+  
+ 
+</div></div></div></app-card>
+</div>
+
+
+
+<div class="col-sm-6 col-lg-3 ng-star-inserted">
+  <app-card class="mat-mdc-card mdc-card cardWithShadow productcard overflow-hidden">
+    <a routerlink="/widgets/cards" href="/widgets/cards">
+      <img alt="imgSrc" mat-card-image="" class="mat-mdc-card-image mdc-card__media w-100" src="assets/images/gallery-grid/s5.jpg"></a>
+      <div>
+        <button type="button" class="btn btn-icon btn-primary d-inline-flex">
+          <i class="feather icon-thumbs-up"></i>
+       <!--- </button>-->
+          <span class="mat-mdc-button-persistent-ripple mdc-fab__ripple"></span>
+          <span class="mdc-button__label"><i  class="icon-16">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <path d="M7 10l5 -6l5 6"></path>
+    <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
+    <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+  </svg>
+  </i></span>
+
+  <span class="mat-mdc-focus-indicator"></span>
+  <span class="mat-mdc-button-touch-target"></span>
+  <span class="mat-mdc-button-ripple"></span></button>
+  <p>Boat Headphone</p>
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600">$285</h6>
+      <span class="f-s-14 m-l-4 text-decoration-line-through">$375</span></div>
+      <div class="m-l-auto d-flex gap-4"><span>
+        <i name="star" class="feather-star" _nghost-ng-c2034356942="">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+  </svg> </i></span>
+  <span><i class="feather-star">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+  </svg>
+  
+  
+  </i></span>
+  
+ 
+</div></div></div></app-card>
+ </div>
+  
+  
+  
+  
+  <div class="col-sm-6 col-lg-3 ng-star-inserted">
+    <app-card class="mat-mdc-card mdc-card cardWithShadow productcard overflow-hidden">
+      <a routerlink="/widgets/cards" href="/widgets/cards">
+        <img alt="imgSrc" mat-card-image="" class="mat-mdc-card-image mdc-card__media w-100" src="assets/images/gallery-grid/s7.jpg"></a>
+        <div>
+          <button type="button" class="btn btn-icon btn-primary d-inline-flex">
+            <i class="feather icon-thumbs-up"></i>
+         <!--- </button>-->
+            <span class="mat-mdc-button-persistent-ripple mdc-fab__ripple"></span>
+            <span class="mdc-button__label"><i  class="icon-16">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M7 10l5 -6l5 6"></path>
+      <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
+      <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+    </svg>
+    </i></span>
+  
+    <span class="mat-mdc-focus-indicator"></span>
+    <span class="mat-mdc-button-touch-target"></span>
+    <span class="mat-mdc-button-ripple"></span></button>
+    <p>Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600">$285</h6>
+        <span class="f-s-14 m-l-4 text-decoration-line-through">$375</span></div>
+        <div class="m-l-auto d-flex gap-4"><span>
+          <i name="star" class="feather-star" _nghost-ng-c2034356942="">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+    </svg> </i></span>
+    <span><i class="feather-star">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+    </svg>
+    
+    
+    </i></span>
+    
+   
+  </div></div></div></app-card>
+   
+  </div>
+  
+  
+  <div class="col-sm-6 col-lg-3 ng-star-inserted">
+    <app-card class="mat-mdc-card mdc-card cardWithShadow productcard overflow-hidden">
+      <a routerlink="/widgets/cards" href="/widgets/cards">
+        <img alt="imgSrc" mat-card-image="" class="mat-mdc-card-image mdc-card__media w-100" src="assets/images/gallery-grid/s11.jpg"></a>
+        <div>
+          <button type="button" class="btn btn-icon btn-primary d-inline-flex">
+            <i class="feather icon-thumbs-up"></i>
+         <!--- </button>-->
+            <span class="mat-mdc-button-persistent-ripple mdc-fab__ripple"></span>
+            <span class="mdc-button__label"><i  class="icon-16">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M7 10l5 -6l5 6"></path>
+      <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
+      <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+    </svg>
+    </i></span>
+  
+    <span class="mat-mdc-focus-indicator"></span>
+    <span class="mat-mdc-button-touch-target"></span>
+    <span class="mat-mdc-button-ripple"></span></button>
+    <p>Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600">$285</h6>
+        <span class="f-s-14 m-l-4 text-decoration-line-through">$375</span></div>
+        <div class="m-l-auto d-flex gap-4"><span>
+          <i name="star" class="feather-star" _nghost-ng-c2034356942="">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+    </svg> </i></span>
+    <span><i class="feather-star">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+    </svg>
+    
+    
+    </i></span>
+    
+   
+  </div></div></div></app-card>
+  </div>
+  <!---->
+</div>
+
+
+
+
+
+
+
+   <!--transacctions-->
   <div class="col-md-12">
     <app-card cardTitle="Campaign Monitor" cardClass="tab-card tab-content" blockClass="nav-fill" [options]="false">
       <ul ngbNav #nav="ngbNav" aria-busy="true" class="nav-pills">
@@ -257,4 +540,8 @@
       <div [ngbNavOutlet]="nav" class="mt-2"></div>
     </app-card>
   </div>
+
+ 
 </div>
+
+

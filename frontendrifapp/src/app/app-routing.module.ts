@@ -13,11 +13,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/analytics',
+        redirectTo: '/Inicio',
         pathMatch: 'full'
       },
       {
-        path: 'analytics',
+        path: 'Inicio',
         loadComponent: () => import('./demo/dashboard/dash-analytics/dash-analytics.component')
       },
       {

@@ -1,5 +1,5 @@
 <ng-container *ngIf="this.navigationList">
-  <ng-container *ngFor="let breadcrumb of navigationList; let last = last">
+  <!--<ng-container *ngFor="let breadcrumb of navigationList; let last = last">
     <div class="page-header" *ngIf="last && breadcrumb.breadcrumbs !== false">
       <div class="page-block">
         <div class="row align-items-center">
@@ -11,20 +11,26 @@
             </div>
             <ul class="breadcrumb">
               <li class="breadcrumb-item">
-                <a [routerLink]="['/dashboard/analytics/']" title="Home"><i class="feather icon-home"></i></a>
+                <a [routerLink]="['/Inicio']" title="Home"><i class="feather icon-home"></i></a>
               </li>
               <ng-container *ngFor="let breadcrumb of navigationList">
                 <li class="breadcrumb-item" *ngIf="breadcrumb.url !== false"
-                  ><a [routerLink]="breadcrumb.url">{{ breadcrumb.title }}</a></li
+                  ><a [routerLink]="breadcrumb.url" >{{ breadcrumb.title }}</a></li
                 >
                 <li class="breadcrumb-item" *ngIf="breadcrumb.url === false"
                   ><a href="javascript:">{{ breadcrumb.title }}</a></li
                 >
+              </ng-container>
+               <ng-container *ngFor="let breadcrumb of navigationList; let last=last">
+                <li class="breadcrumb-item" *ngIf="breadcrumb.url !== false && last"
+                  ><a [routerLink]="breadcrumb.url" style="color: rgb(64, 153, 255);">{{ breadcrumb.title }}</a></li
+                >
+               
               </ng-container>
             </ul>
           </div>
         </div>
       </div>
     </div>
-  </ng-container>
+  </ng-container>-->
 </ng-container>
