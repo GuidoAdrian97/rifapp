@@ -6,6 +6,7 @@ export interface NavigationItem {
   icon?: string;
   hidden?: boolean;
   url?: string;
+  visible?:boolean;
   classes?: string;
   exactMatch?: boolean;
   external?: boolean;
@@ -21,16 +22,17 @@ export interface NavigationItem {
 export const NavigationItems: NavigationItem[] = [
   {
     id: 'navigation',
-    title: 'Navigation',
+    title: 'Navegación',
     type: 'group',
     icon: 'icon-group',
     children: [
       {
         id: 'dashboard',
-        title: 'Dashboard',
+        title: 'Inicio',
         type: 'item',
-        url: '/analytics',
+        url: '/Inicio',
         icon: 'feather icon-home'
+   
       }
     ]
   },
@@ -42,43 +44,43 @@ export const NavigationItems: NavigationItem[] = [
     children: [
       {
         id: 'basic',
-        title: 'Component',
+        title: 'Administración',
         type: 'collapse',
-        icon: 'feather icon-box',
+        icon: 'fa fa-cogs',
         children: [
           {
             id: 'button',
-            title: 'Button',
+            title: 'Publicar rifas',
             type: 'item',
             url: '/component/button'
           },
           {
             id: 'badges',
-            title: 'Badges',
+            title: 'Gestionar ganancias',
             type: 'item',
             url: '/component/badges'
           },
           {
             id: 'breadcrumb-pagination',
-            title: 'Breadcrumb & Pagination',
+            title: 'Gestionar ventas',
             type: 'item',
             url: '/component/breadcrumb-paging'
           },
           {
             id: 'collapse',
-            title: 'Collapse',
+            title: 'Recargar saldo',
             type: 'item',
             url: '/component/collapse'
           },
           {
             id: 'tabs-pills',
-            title: 'Tabs & Pills',
+            title: 'Resultados de rifas',
             type: 'item',
             url: '/component/tabs-pills'
           },
           {
             id: 'typography',
-            title: 'Typography',
+            title: 'Compras realizadas',
             type: 'item',
             url: '/component/typography'
           }
@@ -94,19 +96,19 @@ export const NavigationItems: NavigationItem[] = [
     children: [
       {
         id: 'signup',
-        title: 'Sign up',
+        title: 'Transacciones',
         type: 'item',
         url: '/auth/signup',
-        icon: 'feather icon-at-sign',
+        icon: 'feather icon-activity',
         target: true,
         breadcrumbs: false
       },
       {
         id: 'signin',
-        title: 'Sign in',
+        title: 'Sorteos',
         type: 'item',
         url: '/auth/signin',
-        icon: 'feather icon-log-in',
+        icon: 'feather icon-server',
         target: true,
         breadcrumbs: false
       }
@@ -120,11 +122,11 @@ export const NavigationItems: NavigationItem[] = [
     children: [
       {
         id: 'apexchart',
-        title: 'ApexChart',
+        title: 'Reportes',
         type: 'item',
         url: '/chart',
         classes: 'nav-item',
-        icon: 'feather icon-pie-chart'
+        icon: 'feather icon-file-text'
       }
     ]
   },
@@ -136,23 +138,23 @@ export const NavigationItems: NavigationItem[] = [
     children: [
       {
         id: 'forms',
-        title: 'Basic Elements',
+        title: 'Perfil',
         type: 'item',
         url: '/forms',
         classes: 'nav-item',
-        icon: 'feather icon-file-text'
+        icon: 'feather icon-user '
       },
       {
         id: 'tables',
-        title: 'tables',
+        title: 'Tutoriales',
         type: 'item',
         url: '/tables',
         classes: 'nav-item',
-        icon: 'feather icon-server'
+        icon: 'feather icon-sidebar'
       }
     ]
   },
-  {
+  /*{
     id: 'other',
     title: 'Other',
     type: 'group',
@@ -203,5 +205,5 @@ export const NavigationItems: NavigationItem[] = [
         ]
       }
     ]
-  }
+  }*/
 ];

@@ -17,7 +17,7 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'analytics',
+        path: 'Inicio',
         loadComponent: () => import('./demo/dashboard/dash-analytics/dash-analytics.component')
       },
       {

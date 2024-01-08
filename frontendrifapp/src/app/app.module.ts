@@ -24,12 +24,13 @@ import { NavGroupComponent } from './theme/layout/admin/navigation/nav-content/n
 import { NavItemComponent } from './theme/layout/admin/navigation/nav-content/nav-item/nav-item.component';
 import { SharedModule } from './theme/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig
-} from '@abacritt/angularx-social-login';
-import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import { OAuthModule } from 'angular-oauth2-oidc';
+// import {
+//   SocialLoginModule,
+//   SocialAuthServiceConfig
+// } from '@abacritt/angularx-social-login';
+// import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+// import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -51,20 +52,23 @@ import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
     NavGroupComponent,
     
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,SocialLoginModule,GoogleSigninButtonModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,
+    OAuthModule.forRoot()
+  ],
   providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('556193101893-aqt6binlorrpimjtlu0ku9v1c37mrd3p.apps.googleusercontent.com'),
-          },
-        ],
-      } as SocialAuthServiceConfig
-    }
+    
+    // {
+    //   provide: 'SocialAuthServiceConfig',
+    //   useValue: {
+    //     autoLogin: false,
+    //     providers: [
+    //       {
+    //         id: GoogleLoginProvider.PROVIDER_ID,
+    //         provider: new GoogleLoginProvider('556193101893-aqt6binlorrpimjtlu0ku9v1c37mrd3p.apps.googleusercontent.com'),
+    //       },
+    //     ],
+    //   } as SocialAuthServiceConfig
+    // }
   ],
   bootstrap: [AppComponent]
 })

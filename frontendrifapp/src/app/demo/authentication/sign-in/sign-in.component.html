@@ -21,24 +21,21 @@
               </div>
             </div>
             <div class="d-grid">
-              <button (click)="signInWithGoogle()" class="btn btn-block btn-primary mb-4">Iniciar sesción</button>
+              <button  class="btn btn-block btn-primary mb-4" ><i class="feather icon-log-in"></i> Iniciar sesión</button>
+            
+              <button (click)="login()" type="button" class="btn btn-block btn-light mb-4 text-primary" style="margin-top: -5%; border-color: #4099ff;"> <img src="https://demo.flatlogic.com/angular-material-admin-full/assets/auth/google.svg" /> Iniciar sesión con Google </button>
             </div>
+            
+             
             <p class="mb-2 text-muted" style="width: 288px;">¿Has olvidado tu contraseña? <a href="javascriprt:" class="f-w-400">Recuperar</a></p>
             <p class="mb-0 text-muted">¿No tienes una cuenta? <a [routerLink]="['/auth/signup']" class="f-w-400">Inscribirse</a></p>
-          </div>
-          
-          <div *ngIf="user">
-            <img src="{{user.photoUrl}}" alt="">
-            <div>
-              <h4>{{user.name}}</h4>
-              <p>{{user.email}}</p>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <asl-google-signin-button type='icon' size='medium'>Hola guido</asl-google-signin-button>
+  <!-- <asl-google-signin-button>Hola guido</asl-google-signin-button> -->
+  
 </div>
 
 
