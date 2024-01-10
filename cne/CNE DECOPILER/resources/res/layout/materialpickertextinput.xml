@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<crc647c4c06b10f3352ff.MaterialPickerTextInputLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/XamarinFormsMaterialEntryFilled">
-    <crc647c4c06b10f3352ff.MaterialPickerEditText android:id="@+id/materialformsedittext" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-</crc647c4c06b10f3352ff.MaterialPickerTextInputLayout>
