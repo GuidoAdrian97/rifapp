@@ -10,7 +10,7 @@ use App\Models\OauthAccessToken;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Hash;
 use Google_Client;
 
 class LoginController extends Controller
@@ -35,7 +35,12 @@ class LoginController extends Controller
                 'name'=>$payload['name'],
                 'email'=>$payload['email'],
             ]);
-        
+
+            $value = true;
+
+            if($user->identificacion==null||$user->telefono==null||$user->fecha_nacimiento==null){
+                $value==false;
+            };
             
             Auth::login($user);
             $token = $user->createToken('token')->plainTextToken;
@@ -45,7 +50,7 @@ class LoginController extends Controller
         
             $cookie = cookie('cookie_token',$token,60*1);
 
-            return response(['token'=>$token, 'usuario'=>$user,'menssage'=>'Login correcto','code'=>'200'])->withoutCookie($cookie);
+            return response(['token'=>$token, 'usuario'=>$user,'menssage'=>'Login correcto','code'=>'200','User'=>$value])->withoutCookie($cookie);
         }else{
                 return response(['menssage'=>'datos incorrectos','code'=>'400']);
         }
@@ -77,4 +82,37 @@ class LoginController extends Controller
      
         // $user->token
     }
+
+    public function Register(Request $request){
+        $user= new User();
+        
+        User::create([
+            'name' =>$request->name ,
+            'email' =>$request->email,
+            'identificacion'=> $request->identificacion,
+            'telefono' => $request->telefono,
+            'fecha_nacimiento'=> $request->fecha_nacimiento,
+            'password' =>Hash::make($request->password)
+        ]); 
+
+
+        return response()->json(['menssage'=>'registro correcto']);
+    }
+
+    public function Verificar_User_identificacion(Request $request){
+        if (($validar= User::where('identificacion', $request->identificacion)->orWhere('telefono', $request->telefono)->orWhere('email', $request->email)->get())->count() !== 0) {
+            $duplicateUser = $validar->first();
+
+            // Verificar cuál campo está duplicado
+            foreach(['identificacion', 'telefono', 'email'] as $field){
+                if ($duplicateUser->$field === $request->$field) {
+                    $repeatedField = $field;
+                }
+            };
+            return response(['menssage'=>'Error '.$repeatedField.' que esta intentando ingresar ya se enctra registrada']);
+        }else{
+            return response(['code'=>'200']);
+        }
+    }
+
 }

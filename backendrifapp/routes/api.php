@@ -23,4 +23,8 @@ Route::post('Login',[AuthController::class, 'Login']);
 Route::get('ListarPerfiles',[PerfilesController::class, 'ListarPerfiles']);
 Route::get('login/google', [LoginController::class,'redirectToGoogle'])->name('login.google');
 
+
+Route::post('register', [LoginController::class,'Register']);
+Route::post('verificar_user_data', [LoginController::class,'Verificar_User_identificacion']);
+
 Route::post('login/google/callback', [LoginController::class,'handleGoogleCallback']);
