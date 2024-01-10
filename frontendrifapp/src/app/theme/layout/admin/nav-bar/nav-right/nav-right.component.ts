@@ -39,18 +39,22 @@ export class NavRightComponent implements DoCheck, OnInit {
 
   ngOnInit(){
     setTimeout(() => {
-    this.validateAcess();
-    }, 2000);
+    const accesToken = localStorage.getItem('access_token');
+    if(accesToken == null){
+      this.getTokenBackend();
+    }
+    }, 1500);
   }
 
-  validateAcess(){
+  getTokenBackend(){
     this.authGoogleService.authUser().subscribe({
       next: res=> {
-        debugger
+        localStorage.setItem('access_token',res['token'])
         console.log(`OK`,res)
       },
       error:error => {
         this.logout();
+        console.log(error)
       }
     })
   }
