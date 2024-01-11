@@ -38,7 +38,7 @@ class LoginController extends Controller
 
             $value = true;
 
-            if($user->identificacion==null||$user->telefono==null||$user->fecha_nacimiento==null){
+            if($user->identificacion==null||$user->telefono==null||$user->fecha_nacimiento==null||$user->password==null){
                 $value==false;
             };
             
@@ -130,6 +130,29 @@ class LoginController extends Controller
             return response()->json(['message' => 'Cédula incorrecta'], 404);
         }
     }
+
+
+    public function UpdateRegisterSocialite(Request $request){
+        $client = new Google_Client(['client_id' => '556193101893-aqt6binlorrpimjtlu0ku9v1c37mrd3p.apps.googleusercontent.com']); 
+
+        $payload = $client->verifyIdToken($request->accessToken);
+
+        $user = User::updateOrCreate([
+            'google_id'=> $payload['sub'],
+        ], [
+            'email'=>$payload['email'],
+            'name' =>$request->name,
+            'identificacion'=> $request->identificacion,
+            'telefono' => $request->telefono,
+            'fecha_nacimiento'=> $request->fecha_nacimiento,
+            'password' =>Hash::make($request->password)
+        ]);
+
+        return response()->json(['menssage'=>'registro correcto','code'=>'200']);
+
+
+    }
+    
 
     
 

@@ -27,6 +27,7 @@ Route::get('login/google', [LoginController::class,'redirectToGoogle'])->name('l
 Route::post('register', [LoginController::class,'Register']);
 Route::post('verificar_user_data', [LoginController::class,'Verificar_User_identificacion']);
 Route::post('validarcedula', [LoginController::class,'ValidarCedula']);
+Route::post('updateregistersocialite', [LoginController::class,'UpdateRegisterSocialite']);
 
 
 Route::post('login/google/callback', [LoginController::class,'handleGoogleCallback']);
