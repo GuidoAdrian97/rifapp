@@ -25,6 +25,7 @@ import { NavItemComponent } from './theme/layout/admin/navigation/nav-content/na
 import { SharedModule } from './theme/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
+
 // import {
 //   SocialLoginModule,
 //   SocialAuthServiceConfig

@@ -32,7 +32,7 @@
               <p  class="text-muted m-b-30" style="font-size: medium; margin-top: 2%;">Has ganado un 54 % más que el mes pasado, lo cual es fantástico.</p>
               <button type="button" class="btn btn-primary" >
                 <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                <span class="mdc-button__label" style="vertical-align: inherit;">Controlar</span>
+                <span class="mdc-button__label" style="vertical-align: inherit;">Gestionar ganancias</span>
                 <span class="mat-mdc-focus-indicator"></span>
                 <span class="mat-mdc-button-touch-target"></span></button></div>
                 <div class="col-sm-5"><img src="assets/images/gallery-grid/welcome.png" alt="bienvenido" width="300" class="welcome-img"></div>
@@ -316,176 +316,117 @@
    </div>
 
 
-   <!--editar esto-->
-   <div class="row">
-    <div class="col-sm-6 col-lg-3 ng-star-inserted">
-    <app-card class="Activity Feed" blockClass="m-t-10" [options]="false">
-    <a  href="/widgets/cards">
-      <img alt="imgSrc" mat-card-image="" class="mat-mdc-card-image mdc-card__media w-100" src="assets/images/gallery-grid/s4.jpg"></a>
-      <div>
-        <button type="button" class="btn btn-icon btn-primary d-inline-flex">
-          <i class="feather icon-thumbs-up"></i></button>
-  <p>Boat Headphone</p>
+<!--editar esto imágenes carrupsel-->
+<div class="row">
+
+
+<div class="col-sm-6 col-lg-3 ng-star-inserted">
+<app-card [hidHeader]="true" blockClass="text-center">
+     <p style="font-weight: bold;">Title</p>
+        <a  href="/widgets/cards">
+          <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%">
+          </a>
+  <div style="margin-top: 5%;">
+  <p class="text-muted">Boat Headphone</p>
   <div class="d-flex align-items-center justify-content-between">
 
-    <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600">$285</h6>
-      <span class="f-s-14 m-l-4 text-decoration-line-through">$375</span>
+    <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600" style="color: green;">$285</h6>
+      <span class="f-s-14 m-l-4 text-decoration-line-through" style="color: firebrick;">$375</span>
     </div>
-
-      <div class="m-l-auto d-flex gap-4"><span>
-    
-    <i name="star" class="feather icon-star text-c-red" >
-   </i></span>
-  <span><i class="feather-star">
-    
-  
-  
-  </i></span>
-  
- 
-</div></div></div></app-card>
+   
+      <div class="m-l-auto d-flex gap-4">
+        <span class="badge m-r-5 badge-light-warning">4.5
+          <i name="star" class="fa fa-star" style="color: gold;" ></i>
+        </span>
+      </div>
+  </div>
+</div>
+</app-card>
 </div>
 
 
 
 <div class="col-sm-6 col-lg-3 ng-star-inserted">
-  <app-card class="mat-mdc-card mdc-card cardWithShadow productcard overflow-hidden">
-    <a routerlink="/widgets/cards" href="/widgets/cards">
-      <img alt="imgSrc" mat-card-image="" class="mat-mdc-card-image mdc-card__media w-100" src="assets/images/gallery-grid/s5.jpg"></a>
-      <div>
-        <button type="button" class="btn btn-icon btn-primary d-inline-flex">
-          <i class="feather icon-thumbs-up"></i>
-       <!--- </button>-->
-          <span class="mat-mdc-button-persistent-ripple mdc-fab__ripple"></span>
-          <span class="mdc-button__label"><i  class="icon-16">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-    <path d="M7 10l5 -6l5 6"></path>
-    <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
-    <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-  </svg>
-  </i></span>
+  <app-card [hidHeader]="true" blockClass="text-center">
+       <p style="font-weight: bold;">Title</p>
+          <a  href="/widgets/cards">
+            <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%">
+            </a>
+    <div style="margin-top: 5%;">
+    <p class="text-muted">Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
+  
+      <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600" style="color: green;">$285</h6>
+        <span class="f-s-14 m-l-4 text-decoration-line-through" style="color: firebrick;">$375</span>
+      </div>
+     
+        <div class="m-l-auto d-flex gap-4">
+          <span class="badge m-r-5 badge-light-warning">4.5
+            <i name="star" class="fa fa-star" style="color: gold;" ></i>
+          </span>
+        </div>
+    </div>
+  </div>
+  </app-card>
+  </div>
 
-  <span class="mat-mdc-focus-indicator"></span>
-  <span class="mat-mdc-button-touch-target"></span>
-  <span class="mat-mdc-button-ripple"></span></button>
-  <p>Boat Headphone</p>
-  <div class="d-flex align-items-center justify-content-between">
-    <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600">$285</h6>
-      <span class="f-s-14 m-l-4 text-decoration-line-through">$375</span></div>
-      <div class="m-l-auto d-flex gap-4"><span>
-        <i name="star" class="feather-star" _nghost-ng-c2034356942="">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
-  </svg> </i></span>
-  <span><i class="feather-star">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
-  </svg>
+
+  <div class="col-sm-6 col-lg-3 ng-star-inserted">
+    <app-card [hidHeader]="true" blockClass="text-center">
+         <p style="font-weight: bold;">Title</p>
+            <a  href="/widgets/cards">
+              <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%">
+              </a>
+      <div style="margin-top: 5%;">
+      <p class="text-muted">Boat Headphone</p>
+      <div class="d-flex align-items-center justify-content-between">
+    
+        <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600" style="color: green;">$285</h6>
+          <span class="f-s-14 m-l-4 text-decoration-line-through" style="color: firebrick;">$375</span>
+        </div>
+       
+          <div class="m-l-auto d-flex gap-4">
+            <span class="badge m-r-5 badge-light-warning">4.5
+              <i name="star" class="fa fa-star" style="color: gold;" ></i>
+            </span>
+          </div>
+      </div>
+    </div>
+    </app-card>
+    </div>
+
+
+  <div class="col-sm-6 col-lg-3 ng-star-inserted">
+      <app-card [hidHeader]="true" blockClass="text-center">
+           <p style="font-weight: bold;">Title</p>
+              <a  href="/widgets/cards">
+                <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%">
+                </a>
+        <div style="margin-top: 5%;">
+        <p class="text-muted">Boat Headphone</p>
+        <div class="d-flex align-items-center justify-content-between">
+      
+          <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600" style="color: green;">$285</h6>
+            <span class="f-s-14 m-l-4 text-decoration-line-through" style="color: firebrick;">$375</span>
+          </div>
+         
+            <div class="m-l-auto d-flex gap-4">
+              <span class="badge m-r-5 badge-light-warning">4.5
+                <i name="star" class="fa fa-star" style="color: gold;" ></i>
+              </span>
+            </div>
+        </div>
+      </div>
+      </app-card>
+    </div>
   
   
-  </i></span>
   
  
-</div></div></div></app-card>
- </div>
-  
-  
-  
-  
-  <div class="col-sm-6 col-lg-3 ng-star-inserted">
-    <app-card class="mat-mdc-card mdc-card cardWithShadow productcard overflow-hidden">
-      <a routerlink="/widgets/cards" href="/widgets/cards">
-        <img alt="imgSrc" mat-card-image="" class="mat-mdc-card-image mdc-card__media w-100" src="assets/images/gallery-grid/s7.jpg"></a>
-        <div>
-          <button type="button" class="btn btn-icon btn-primary d-inline-flex">
-            <i class="feather icon-thumbs-up"></i>
-         <!--- </button>-->
-            <span class="mat-mdc-button-persistent-ripple mdc-fab__ripple"></span>
-            <span class="mdc-button__label"><i  class="icon-16">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M7 10l5 -6l5 6"></path>
-      <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
-      <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-    </svg>
-    </i></span>
-  
-    <span class="mat-mdc-focus-indicator"></span>
-    <span class="mat-mdc-button-touch-target"></span>
-    <span class="mat-mdc-button-ripple"></span></button>
-    <p>Boat Headphone</p>
-    <div class="d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600">$285</h6>
-        <span class="f-s-14 m-l-4 text-decoration-line-through">$375</span></div>
-        <div class="m-l-auto d-flex gap-4"><span>
-          <i name="star" class="feather-star" _nghost-ng-c2034356942="">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
-    </svg> </i></span>
-    <span><i class="feather-star">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
-    </svg>
-    
-    
-    </i></span>
-    
-   
-  </div></div></div></app-card>
-   
-  </div>
-  
-  
-  <div class="col-sm-6 col-lg-3 ng-star-inserted">
-    <app-card class="mat-mdc-card mdc-card cardWithShadow productcard overflow-hidden">
-      <a routerlink="/widgets/cards" href="/widgets/cards">
-        <img alt="imgSrc" mat-card-image="" class="mat-mdc-card-image mdc-card__media w-100" src="assets/images/gallery-grid/s11.jpg"></a>
-        <div>
-          <button type="button" class="btn btn-icon btn-primary d-inline-flex">
-            <i class="feather icon-thumbs-up"></i>
-         <!--- </button>-->
-            <span class="mat-mdc-button-persistent-ripple mdc-fab__ripple"></span>
-            <span class="mdc-button__label"><i  class="icon-16">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M7 10l5 -6l5 6"></path>
-      <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
-      <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-    </svg>
-    </i></span>
-  
-    <span class="mat-mdc-focus-indicator"></span>
-    <span class="mat-mdc-button-touch-target"></span>
-    <span class="mat-mdc-button-ripple"></span></button>
-    <p>Boat Headphone</p>
-    <div class="d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center"><h6 class="mat-body-2 f-w-600">$285</h6>
-        <span class="f-s-14 m-l-4 text-decoration-line-through">$375</span></div>
-        <div class="m-l-auto d-flex gap-4"><span>
-          <i name="star" class="feather-star" _nghost-ng-c2034356942="">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
-    </svg> </i></span>
-    <span><i class="feather-star">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
-    </svg>
-    
-    
-    </i></span>
-    
-   
-  </div></div></div></app-card>
-  </div>
-  <!---->
 </div>
+
+
+
 
 
 
