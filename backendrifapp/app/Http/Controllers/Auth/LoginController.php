@@ -124,10 +124,10 @@ class LoginController extends Controller
                 $nombreComercial = $response['contribuyente']['nombreComercial'] ?? null;
                 return response()->json(['nombre' => $nombreComercial]);
             }else{
-                return response()->json(['message' => 'Cédula incorrecta'], 404);
+                return response()->json(['message' => 'Cédula incorrecta']);
             }
         } else {
-            return response()->json(['message' => 'Cédula incorrecta'], 404);
+            return response()->json(['message' => 'Cédula incorrecta']);
         }
     }
 
