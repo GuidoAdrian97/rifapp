@@ -68,7 +68,7 @@ export const NavigationItems: NavigationItem[] = [
           },
           {
             id: 'collapse',
-            title: 'Recargar saldo',
+            title: 'Gestionar saldo',
             type: 'item',
             url: '/component/collapse'
           },
@@ -98,7 +98,7 @@ export const NavigationItems: NavigationItem[] = [
         id: 'signup',
         title: 'Transacciones',
         type: 'item',
-        url: '/auth/signup',
+        url: '/transacciones',
         icon: 'feather icon-activity',
         target: true,
         breadcrumbs: false
