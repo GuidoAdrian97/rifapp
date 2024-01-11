@@ -38,9 +38,9 @@ export class AuthGoogleService {
     return this.oAuthService.getIdentityClaims();
   }
 
-  authUser(): Observable<any> {
+  authUserGoogle(): Observable<any> {
     const tokenid = sessionStorage.getItem('id_token');
-    debugger
+    
     return this.httpCliente.post('http://rifapp.com:8000/api/login/google/callback',{accessToken:tokenid});
   }
 

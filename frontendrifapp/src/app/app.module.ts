@@ -50,7 +50,6 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     NavItemComponent,
     NavCollapseComponent,
     NavGroupComponent,
-    
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,
     OAuthModule.forRoot()

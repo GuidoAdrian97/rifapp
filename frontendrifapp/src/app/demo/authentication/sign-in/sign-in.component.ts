@@ -30,32 +30,4 @@ export default class SignInComponent implements OnInit{
    this.authGoogleService.login();
   }
 
-  sendTokenToLaravelApi(token: string): void {
-    const apiUrl = 'http://your-laravel-api.com/login/google/callback';
-
-    this.http.post(apiUrl, { token }).subscribe(response => {
-      console.log("Respuesta del Auth "+response); // Manejar la respuesta de tu API Laravel
-    });
-  }
-
-  // loginWithGoogle(): void {
-  //   this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  // }
-
-  // logOut(): void {
-  //   this.socialAuthService.signOut();
-  // }
-
-  // probarGoogle(){
-  //   this.service.googleLogin().subscribe({
-  //     next: rest =>{
-
-  //     },
-  //     error:error =>{
-
-  //     }
-  //   })
-  //   const urlExterna = 'http://rifapp.com:8000/google-auth/redirect'; // Reemplaza con tu URL externa
-  //   window.open(urlExterna, '_self');
-  // }
 }
