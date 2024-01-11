@@ -1,0 +1,51 @@
+<div class="auth-wrapper">
+    <div class="auth-content">
+      <div class="card">
+        <div class="row align-items-center text-center">
+          <div class="col-md-12">
+            <div class="card-body">
+              <img src="assets/images/logo-dark.png" alt="logo" class="img-fluid mb-4" />
+              <h4 class="mb-3 f-w-400">Actualizar datos</h4>
+              <p class="text-muted">Actualice los datos faltantes</p>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-id-card-o"></i></span>
+                <input type="text" required  maxlength="10" class="form-control" placeholder="Ingrese número de cédula" [(ngModel)]="identificacionUpdated"  aria-label="dni" aria-describedby="basic-addon1" />
+               
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-user"></i></span>
+                <input type="text" [(ngModel)]="nameUpdated" class="form-control" placeholder="Ingrese nombre completo"  aria-label="names" aria-describedby="basic-addon1" disabled />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-calendar"></i></span>
+                <input type="date" [(ngModel)]="fecha_nacimientoUpdated"  class="form-control" placeholder="Ingrese fecha de nacimiento"  aria-label="date" aria-describedby="basic-addon1" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-phone"></i></span>
+                <input type="text"  [(ngModel)]="telefonoUpdated" class="form-control" placeholder="Ingrese número de teléfono"  aria-label="phone" aria-describedby="basic-addon1" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2"><i class="fa fa fa-envelope"></i></span>
+                <input type="email" [(ngModel)]="emailUpdated" class="form-control" placeholder="Ingrese correo electrónico" aria-label="mail" aria-describedby="basic-addon2" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3"><i class="fa fa fa-lock"></i></span>
+                <input type="password" [(ngModel)]="passwordUpdated"  class="form-control" placeholder="Ingrese contraseña" aria-label="pass" aria-describedby="basic-addon3" />
+              </div>
+             
+          
+             
+              <div class="d-grid">
+                <button class="btn btn-primary btn-block mb-4" (click)="ActualizarDatos()">Actualizar</button>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!--<p>new page</p>-->
+
+<router-outlet></router-outlet>
