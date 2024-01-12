@@ -28,6 +28,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { UpdateDatosComponent } from './demo/authentication/update-datos/update-datos.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 // import {
 //   SocialLoginModule,
 //   SocialAuthServiceConfig
@@ -57,7 +59,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,
-    OAuthModule.forRoot(),NgxSpinnerModule
+    ModalModule.forRoot(), OAuthModule.forRoot(),NgxSpinnerModule
   ],
   providers: [
     

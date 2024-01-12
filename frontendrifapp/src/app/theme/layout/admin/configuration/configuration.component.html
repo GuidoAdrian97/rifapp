@@ -1,8 +1,49 @@
+
+
+
+
 <div class="fixed-button active">
-  <a href="https://codedthemes.com/item/gradient-able-angular-admin-template/" target="_blank" class="btn btn-md btn-dark has-ripple">
+  <button type="button" (click)="openModalWithClass(template)" class="btn btn-md btn-dark has-ripple">
     <i aria-hidden="true" class="fa fa-credit-card-alt"></i> 
     Recargar saldo
-  </a>
+  </button>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h6 class="modal-title pull-left" style="color: rgb(39, 38, 41);">Opciones para recargar saldo</h6>
+    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  
+<div class="col-md-12" style="margin-top: 2%;">
+<div class="row">
+<div class="col-md-4">
+  <img src="assets/images/gallery-grid/logo-Paypal.png" alt="bienvenido" width="100%" class="welcome-img">
+</div>
+<div class="col-md-8">
+  <p class="text-muted" style="text-justify: auto;">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
+     williamsburg carles vegan helvetica. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+</div>
+</div>
+   </div>
+   <div class="col-md-12" style="margin-top: 5%;">
+    <div class="row">
+    <div class="col-md-4">
+      <img src="assets/images/gallery-grid/transferencia.png" alt="bienvenido" width="100%" class="welcome-img">
+    </div>
+    <div class="col-md-8">
+      <p class="text-muted" style="text-justify: auto;">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
+         williamsburg carles vegan helvetica. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+    </div>
+    </div>
+       </div>
+
+
+  </div>
+  
+</ng-template>
 
 
