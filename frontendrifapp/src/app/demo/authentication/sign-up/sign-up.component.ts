@@ -21,8 +21,6 @@ export default class SignUpComponent {
   constructor(private authService:AuthService, private router: Router,private spinner: NgxSpinnerService){
     const fechaActual = new Date();
     const fechaMinima = new Date(fechaActual.getFullYear() - 18, fechaActual.getMonth(), fechaActual.getDate() + 1);
-    
-
     this.maxFechaPermitida = fechaMinima.toISOString().split('T')[0];
   }
 
@@ -68,7 +66,14 @@ export default class SignUpComponent {
         this.messageDni="Ingrese un número de cédula valido porfavor";
       }else if(valorIngresado.length != 10 && valorIngresado.length != 0 && input == 'tlf'){
         this.tlfError = true;
-        this.messageTlf="Ingrese un número de cédula valido porfavor";
+        this.messageTlf="Ingrese un número de teléfono valido porfavor";
+      }
+
+      if (!(/^[0-9]{10}$/.test(this.telefono)) && this.telefono.length !=0 ) {
+        this.tlfError = true;
+        this.messageTlf="Ingrese un número de teléfono valido porfavor";
+      } else {
+        this.tlfError = false
       }
     }
   
@@ -87,20 +92,6 @@ export default class SignUpComponent {
       this.validarDatos(typeDato);
     }
   }
-
-  // validarEdad(){
-  //   const fechaNacimiento = new Date(this.fecha_nacimiento);
-  //   const fechaActual = new Date();
-  //   const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-  //   console.log(edad)
-  //   if(edad < 18){
-  //     this.fecha_nacimiento="";
-  //     this.fechaError=true;
-  //     this.messageFecha="Debe ser mayor de edad para continuar."
-  //   }else{
-  //     this.fechaError=false;
-  //   }
-  // }
 
   name:string=""; identificacion:string=""; telefono:string=""; fecha_nacimiento:string=""; email:string=""; password:string="";
   crearCuenta(){

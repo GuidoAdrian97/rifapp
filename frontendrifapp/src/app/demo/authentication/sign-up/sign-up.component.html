@@ -39,15 +39,11 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon3"><i class="fa fa fa-lock"></i></span>
               <input type="password" [(ngModel)]="password" (input)="validarPassword()" class="form-control" placeholder="Ingrese contraseña" aria-label="pass" aria-describedby="basic-addon3" />
-              <small *ngIf="passwordError == true" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important; margin-right: 47px;"
+              <small *ngIf="passwordError == true && password.length <30" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important; margin-right: 47px;"
+              >{{messagePassword}}</small>
+              <small *ngIf="passwordError == true && password.length >30" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important;"
               >{{messagePassword}}</small>
             </div>
-            <!-- <div class="form-group text-start mt-2">
-              <div class="checkbox checkbox-primary d-inline">
-                <input type="checkbox" name="checkbox-fill-2" id="checkbox-fill-2" />
-                <label for="checkbox-fill-2" class="cr">Send me the <a href="javascript:"> Newsletter </a> weekly.</label>
-              </div>
-            </div> -->
             <div class="d-grid">
               <button [disabled]="btnDisabled" class="btn btn-primary btn-block mb-4" (click)="crearCuenta()">Crear una cuenta</button>
             </div>
