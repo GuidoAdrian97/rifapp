@@ -51,39 +51,16 @@ class LoginController extends Controller
                 return response(['token'=>null, 'usuario'=>$user,'menssage'=>'Login correcto','code'=>'200','User'=>$value])->withoutCookie($cookie);
             };
             
-            
-
             return response(['token'=>$token, 'usuario'=>$user,'menssage'=>'Login correcto','code'=>'200','User'=>$value])->withoutCookie($cookie);
         }else{
                 return response(['menssage'=>'datos incorrectos','code'=>'400']);
         }
 
-
         return $payload;
 
-        
-    
-    
-       // $urlExterna = 'https://www.ejemplo.com';
-    
-        // Datos que deseas enviar mediante POST
-      //  $datosPost = [
-     //       'parametro1' => $token,
-       //     'parametro2' => 'valor2',
-       // ];
-    
-        // Guardar los datos en la sesión
-      //  session(['datosPost' => $datosPost]);
-    
-        // Redireccionar a la página externa
-      //  return Redirect::away($urlExterna);
-    
-        
-    //s    $token= $user->createToken('token')->plainTextToken;
     
         return response()->json(['token' => $token]);
-     
-        // $user->token
+
     }
 
     public function Register(Request $request){
@@ -138,7 +115,7 @@ class LoginController extends Controller
     }
 
     public function Verificar_User_identificacion(Request $request){
-        if (($validar= User::where('identificacion', $request->identificacion)->orWhere('telefono', $request->telefono)->orWhere('email', $request->email)->get())->count() !== 0) {
+        if (($validar= User::where('identificacion', $request->identificacion)->orWhere('telefono', $request->telefono)->orWhere('email', $request->email)->get())->count() != 0) {
             $duplicateUser = $validar->first();
 
             // Verificar cuál campo está duplicado
