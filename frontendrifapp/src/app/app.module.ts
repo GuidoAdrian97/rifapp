@@ -1,5 +1,5 @@
 // Angular Import
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +25,10 @@ import { NavItemComponent } from './theme/layout/admin/navigation/nav-content/na
 import { SharedModule } from './theme/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { UpdateDatosComponent } from './demo/authentication/update-datos/update-datos.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 // import {
 //   SocialLoginModule,
@@ -51,10 +55,11 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     NavItemComponent,
     NavCollapseComponent,
     NavGroupComponent,
+    UpdateDatosComponent,
     
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,
-    OAuthModule.forRoot()
+    ModalModule.forRoot(), OAuthModule.forRoot(),NgxSpinnerModule
   ],
   providers: [
     
@@ -70,7 +75,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     //     ],
     //   } as SocialAuthServiceConfig
     // }
-  ],
+  ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

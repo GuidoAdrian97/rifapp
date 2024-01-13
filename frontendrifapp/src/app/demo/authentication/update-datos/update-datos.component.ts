@@ -1,29 +1,26 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'src/app/theme/shared/shared.module';
-import { Router, RouterModule } from '@angular/router';
+import { Component,OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { Router, RouterModule } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/services/auth.service';
+import { SharedModule } from 'src/app/theme/shared/shared.module';
+
 
 @Component({
-  selector: 'app-sign-up',
-  standalone: true,
-  imports: [NgxSpinnerModule,CommonModule, SharedModule, RouterModule, 
-    FormsModule, NgbDropdownModule, ColorPickerModule],
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  selector: 'app-update-datos',
+  templateUrl: './update-datos.component.html',
+  styleUrls: ['./update-datos.component.scss']
 })
-export default class SignUpComponent {
+export class UpdateDatosComponent implements OnInit {
 
   constructor(private authService:AuthService, private router: Router,private spinner: NgxSpinnerService){
     const fechaActual = new Date();
     const fechaMinima = new Date(fechaActual.getFullYear() - 18, fechaActual.getMonth(), fechaActual.getDate() + 1);
     this.maxFechaPermitida = fechaMinima.toISOString().split('T')[0];
   }
-
   dni:string="";
 
   dniError=false;
@@ -40,6 +37,7 @@ export default class SignUpComponent {
   maxFechaPermitida: string;
   btnDisabled:boolean = true;
 
+  ngOnInit():void{}
 
   limitarLongitud(event: any,typeDato:any) {
     const valorIngresado: string = event.target.value;
@@ -48,7 +46,7 @@ export default class SignUpComponent {
         this.loader = true;
         this.validarDatos(typeDato);
       }else{
-        this.name = "";
+        this.nameUpdated = "";
         this.nameRegister = false;
       }
     }
@@ -68,41 +66,44 @@ export default class SignUpComponent {
         this.tlfError = true;
         this.messageTlf="Ingrese un número de teléfono valido porfavor";
       }
-
-      if (!(/^[0-9]{10}$/.test(this.telefono)) && this.telefono.length !=0 ) {
+      if (!(/^[0-9]{10}$/.test(this.telefonoUpdated)) && this.telefonoUpdated.length !=0 ) {
         this.tlfError = true;
         this.messageTlf="Ingrese un número de teléfono valido porfavor";
       } else {
         this.tlfError = false
       }
     }
-  
 
-  verificarEstructEmail(typeDato:any){
-  
-    const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-    if (!regexCorreo.test(this.email) && this.email.length !=0) {
-      console.log('Correo electrónico no válido');
-      this.emailError = true
-      this.messageEmail = 'Correo electrónico no válido'
-    } else {
-      console.log('Correo electrónico válido');
-      this.emailError = false
-      this.validarDatos(typeDato);
+    verificarEstructEmail(typeDato:any){
+      const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      if (!regexCorreo.test(this.emailUpdated) && this.emailUpdated.length !=0) {
+        console.log('Correo electrónico no válido');
+        this.emailError = true
+        this.messageEmail = 'Correo electrónico no válido'
+      } else {
+        console.log('Correo electrónico válido');
+        this.emailError = false
+        this.validarDatos(typeDato);
+      }
     }
-  }
+  
 
-  name:string=""; identificacion:string=""; telefono:string=""; fecha_nacimiento:string=""; email:string=""; password:string="";
+  nameUpdated:string=""; 
+  identificacionUpdated:string="";
+  telefonoUpdated:string=""; 
+  fecha_nacimientoUpdated:string="";
+  emailUpdated:string="";
+  passwordUpdated:string="";
+
   crearCuenta(){
     this.spinner.show();
     let data = {
-      name:this.name,
-      identificacion:this.identificacion,
-      telefono:this.telefono,
-      fecha_nacimiento:this.fecha_nacimiento,
-      email:this.email,
-      password:this.password
+      name:this.nameUpdated,
+      identificacion:this.identificacionUpdated,
+      telefono:this.telefonoUpdated,
+      fecha_nacimiento:this.fecha_nacimientoUpdated,
+      email:this.emailUpdated,
+      password:this.passwordUpdated
     }
     this.authService.authUser(data).subscribe({
       next: rest => {
@@ -115,13 +116,15 @@ export default class SignUpComponent {
       }
     })
   }
-
+  // ActualizarDatos(){
+  //  alert("datos actualizados!!!")
+  // }
   updateNombre(){
-    this.authService.validarNombre(this.identificacion).subscribe({
+    this.authService.validarNombre(this.identificacionUpdated).subscribe({
       next:rest=>{
         console.log(rest)
         if(rest.nombre){
-        this.name = rest.nombre
+        this.nameUpdated = rest.nombre
         this.dniError = false
         this.nameRegister = true
         this.loader = false;
@@ -140,7 +143,7 @@ export default class SignUpComponent {
   }
 
   validarDatos(input:any){
-    this.authService.validarDatos(this.identificacion,this.telefono,this.email).subscribe({
+    this.authService.validarDatos(this.identificacionUpdated,this.telefonoUpdated,this.emailUpdated).subscribe({
       next:rest =>{
         console.log(rest)
         if(input == 'dni' && rest.menssage){
@@ -175,10 +178,10 @@ export default class SignUpComponent {
 
   validarPassword(){
     // Validar la contraseña
-    if (!this.password) {
+    if (!this.passwordUpdated) {
       this.passwordError = true
       this.messagePassword = 'La contraseña es obligatoria.';
-    } else if (this.password.length < 8) {
+    } else if (this.passwordUpdated.length < 8) {
       this.passwordError=true
       this.messagePassword = 'La contraseña debe tener al menos 8 caracteres.';
     } else {
@@ -189,10 +192,10 @@ export default class SignUpComponent {
   }
 
   inputsValidado(){
-    if(this.identificacion != '' && this.dniError == false && this.name != '' 
-    && this.fecha_nacimiento != ''  && this.telefono != ''
-    && this.tlfError == false && this.email != '' && this.emailError ==false 
-    && this.password != '' && this.passwordError == false){
+    if(this.identificacionUpdated != '' && this.dniError == false && this.nameUpdated != '' 
+    && this.fecha_nacimientoUpdated != ''  && this.telefonoUpdated != ''
+    && this.tlfError == false && this.emailUpdated != '' && this.emailError ==false 
+    && this.passwordUpdated != '' && this.passwordError == false){
       this.btnDisabled = false;
     }else{
       this.btnDisabled = true;
@@ -200,6 +203,6 @@ export default class SignUpComponent {
   }
 
 
- 
- 
+
 }
+

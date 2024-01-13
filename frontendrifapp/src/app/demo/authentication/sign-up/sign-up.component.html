@@ -8,39 +8,44 @@
             <h4 class="mb-3 f-w-400">Registrarse</h4>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-id-card-o"></i></span>
-              <input type="text" required (input)="limitarLongitud($event,'dni')"  [(ngModel)]="identificacion"  maxlength="10" class="form-control" placeholder="Ingrese número de cédula"  aria-label="dni" aria-describedby="basic-addon1" />
-              <div class="invalid-feedback"> Este número cédula ya esta registrada </div>
+              <input type="text" required (blur)="numValidated($event,'dni')" (input)="limitarLongitud($event,'dni')"  [(ngModel)]="identificacion"  maxlength="10" class="form-control" placeholder="Ingrese número de cédula"  aria-label="dni" aria-describedby="basic-addon1" />
+              <small *ngIf="dniError == true" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important;"
+        >{{messageDni}}</small>
             </div>
-            <div class="input-group mb-3">
+            <div *ngIf="loader" class="lds-facebook">
+              <div></div><div></div><div></div>
+            </div>
+            <div *ngIf="nameRegister==true" class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-user"></i></span>
               <input type="text" [(ngModel)]="name" class="form-control" placeholder="Ingrese nombre completo"  aria-label="names" aria-describedby="basic-addon1" disabled />
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-calendar"></i></span>
-              <input type="date" [(ngModel)]="fecha_nacimiento" class="form-control" placeholder="Ingrese fecha de nacimiento"  aria-label="date" aria-describedby="basic-addon1" />
+              <input type="date" [(ngModel)]="fecha_nacimiento" class="form-control" placeholder="Ingrese fecha de nacimiento" aria-label="date" aria-describedby="basic-addon1" 
+              [max]="maxFechaPermitida" />
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-phone"></i></span>
-              <input type="text" (input)="limitarLongitud($event,'tlf')" [(ngModel)]="telefono" class="form-control" placeholder="Ingrese número de teléfono"  aria-label="phone" aria-describedby="basic-addon1" />
+              <input type="text" maxlength="10" (blur)="numValidated($event,'tlf')" required (input)="limitarLongitud($event,'tlf')" [(ngModel)]="telefono" class="form-control" placeholder="Ingrese número de teléfono"  aria-label="phone" aria-describedby="basic-addon1" />
+              <small *ngIf="tlfError == true" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important;"
+              >{{messageTlf}}</small>
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon2"><i class="fa fa fa-envelope"></i></span>
-              <input type="email" [(ngModel)]="email"  (blur)="validarDatos('email')" class="form-control" placeholder="Ingrese correo electrónico" aria-label="mail" aria-describedby="basic-addon2" />
+              <input type="email" [(ngModel)]="email"  (blur)="verificarEstructEmail('email')" class="form-control" placeholder="Ingrese correo electrónico" aria-label="mail" aria-describedby="basic-addon2" />
+              <small *ngIf="emailError == true" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important; margin-right: 50px;"
+              >{{messageEmail}}</small>
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon3"><i class="fa fa fa-lock"></i></span>
-              <input type="password" [(ngModel)]="password" class="form-control" placeholder="Ingrese contraseña" aria-label="pass" aria-describedby="basic-addon3" />
+              <input type="password" [(ngModel)]="password" (input)="validarPassword()" class="form-control" placeholder="Ingrese contraseña" aria-label="pass" aria-describedby="basic-addon3" />
+              <small *ngIf="passwordError == true && password.length <30" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important; margin-right: 47px;"
+              >{{messagePassword}}</small>
+              <small *ngIf="passwordError == true && password.length >30" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important;"
+              >{{messagePassword}}</small>
             </div>
-           
-        
-            <!-- <div class="form-group text-start mt-2">
-              <div class="checkbox checkbox-primary d-inline">
-                <input type="checkbox" name="checkbox-fill-2" id="checkbox-fill-2" />
-                <label for="checkbox-fill-2" class="cr">Send me the <a href="javascript:"> Newsletter </a> weekly.</label>
-              </div>
-            </div> -->
             <div class="d-grid">
-              <button class="btn btn-primary btn-block mb-4" (click)="crearCuenta()">Crear una cuenta</button>
+              <button [disabled]="btnDisabled" class="btn btn-primary btn-block mb-4" (click)="crearCuenta()">Crear una cuenta</button>
             </div>
             <p class="mb-2">¿Ya tienes una cuenta? <a [routerLink]="['/auth/signin']" class="f-w-400">Iniciar sesión</a></p>
           </div>
@@ -49,3 +54,10 @@
     </div>
   </div>
 </div>
+
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+
+
+
+
+

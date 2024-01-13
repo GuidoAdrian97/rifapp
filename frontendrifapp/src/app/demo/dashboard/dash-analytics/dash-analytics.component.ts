@@ -7,6 +7,8 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ProductSaleComponent } from './product-sale/product-sale.component';
 
+
+
 import {
   ChartComponent,
   ApexAxisChartSeries,

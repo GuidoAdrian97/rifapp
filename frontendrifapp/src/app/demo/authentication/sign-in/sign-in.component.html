@@ -8,11 +8,13 @@
             <h4 class="mb-3 f-w-400">Iniciar Sesión</h4>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1"><i class="feather icon-mail"></i></span>
-              <input type="email" class="form-control" placeholder="Introduce tu correo electrónico" aria-label="Username" aria-describedby="basic-addon1" />
+              <input type="email" class="form-control" placeholder="Introduce tu correo electrónico"
+                aria-label="Username" aria-describedby="basic-addon1" />
             </div>
             <div class="input-group mb-4">
               <span class="input-group-text" id="basic-addon3"><i class="feather icon-lock"></i></span>
-              <input type="password" class="form-control" placeholder="Ingresa tu contraseña" aria-label="Username" aria-describedby="basic-addon3" />
+              <input type="password" class="form-control" placeholder="Ingresa tu contraseña" aria-label="Username"
+                aria-describedby="basic-addon3" />
             </div>
             <div class="form-group text-start mt-2">
               <div class="checkbox checkbox-primary d-inline">
@@ -21,36 +23,32 @@
               </div>
             </div>
             <div class="d-grid">
-              <button  class="btn btn-block btn-primary mb-4" ><i class="feather icon-log-in"></i> Iniciar sesión</button>
-              </div>
-              <div class="d-grid" style="margin-top: 2%;">
-                <table class="default">
-
-                  <tr>
-                
-                    <td style="width: 49%;"><hr style="background-color: #adc7e4;" /></td>
-                
-                    <td style="width: 2%; font-size:18px;" class="text-muted text-center" >O</td>
-                
-                    <td style="width: 49%;"><hr style="background-color:  #adc7e4;" ></td>
-                
-                  </tr>
-                
-                </table>
-              </div>
-            <div class="d-grid" style="margin-top: 5%;">
-              <button (click)="login()" type="button" class="btn btn-block btn-light mb-4 text-primary" style="font-weight: bold;"> <img src="assets/images/lg-google1.png"  /> Iniciar con Google </button>
+              <button class="btn btn-block btn-primary mb-4"><i class="feather icon-log-in"></i> Iniciar sesión</button>
             </div>
-             
-            <p class="mb-2 text-muted" style="width: 288px;">¿Has olvidado tu contraseña? <a href="javascriprt:" class="f-w-400">Recuperar</a></p>
-            <p class="mb-0 text-muted">¿No tienes una cuenta? <a [routerLink]="['/auth/signup']" class="f-w-400">Inscribirse</a></p>
+            <div class="d-grid" style="margin-top: 2%;">
+              <table class="default">
+                <tr>
+                  <td style="width: 49%;">
+                    <hr style="background-color: #adc7e4;" />
+                  </td>
+                  <td style="width: 2%; font-size:18px;" class="text-muted text-center">O</td>
+                  <td style="width: 49%;">
+                    <hr style="background-color:  #adc7e4;">
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="d-grid" style="margin-top: 5%;">
+              <button (click)="login()" type="button" class="btn btn-block btn-light mb-4 text-primary"
+                style="font-weight: bold;"> <img src="assets/images/lg-google1.png" /> Iniciar con Google </button>
+            </div>
+            <p class="mb-2 text-muted" style="width: 288px;">¿Has olvidado tu contraseña? <a href="javascriprt:"
+                class="f-w-400">Recuperar</a></p>
+            <p class="mb-0 text-muted">¿No tienes una cuenta? <a [routerLink]="['/auth/signup']"
+                class="f-w-400">Inscribirse</a></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <asl-google-signin-button>Hola guido</asl-google-signin-button> -->
-  
 </div>
-
-

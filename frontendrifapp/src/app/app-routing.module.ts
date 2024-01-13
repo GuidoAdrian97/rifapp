@@ -5,7 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 // project import
 import { AdminComponent } from './theme/layout/admin/admin.component';
 import { GuestComponent } from './theme/layout/guest/guest.component';
+import { UpdateDatosComponent } from './demo/authentication/update-datos/update-datos.component';
 
+ 
 const routes: Routes = [
   {
     path: '',
@@ -54,8 +56,13 @@ const routes: Routes = [
         path: 'auth/signin',
         loadComponent: () => import('./demo/authentication/sign-in/sign-in.component')
       }
+    
     ]
-  }
+  },
+  { 
+    path: 'updateDatos', component: UpdateDatosComponent 
+  
+  },
 ];
 
 @NgModule({
