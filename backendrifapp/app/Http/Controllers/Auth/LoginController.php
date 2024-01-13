@@ -152,10 +152,7 @@ class LoginController extends Controller
     public function UpdateRegisterSocialite(Request $request){
         
         $client = new Google_Client(['client_id' => env('GOOGLE_TOKEN')]); 
-
-       
-        
-
+        $payload = $client->verifyIdToken($request->accessToken);
         $user = User::updateOrCreate([
             'google_id'=> $payload['sub'],
         ], [
