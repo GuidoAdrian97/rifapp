@@ -11,38 +11,179 @@
 
 <ng-template #template>
   <div class="modal-header">
-    <h6 class="modal-title pull-left" style="color: rgb(39, 38, 41);">Opciones para recargar saldo</h6>
+    <h6 class="modal-title pull-left" style="color: rgb(39, 38, 41);" >{{titulo}} </h6>
     <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
   </div>
   <div class="modal-body">
   
-<div class="col-md-12" style="margin-top: 2%;">
-<div class="row">
-<div class="col-md-4">
-  <img src="assets/images/gallery-grid/logo-Paypal.png" alt="bienvenido" width="100%" class="welcome-img">
-</div>
-<div class="col-md-8">
-  <p class="text-muted" style="text-justify: auto;">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
-     williamsburg carles vegan helvetica. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-</div>
-</div>
-   </div>
-   <div class="col-md-12" style="margin-top: 5%;">
-    <div class="row">
+
+
+
+ <!--opciones de recarga de saldo-->
+<div class="col-md-12" id="opcionespago" *ngIf="opciones">
+  <div class="row">
     <div class="col-md-4">
-      <img src="assets/images/gallery-grid/transferencia.png" alt="bienvenido" width="100%" class="welcome-img">
+      <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true" >
+   
+        <img src="assets/images/gallery-grid/logo-Paypal.png" alt="Pago1" width="100%"  class="welcome-img">
+        <div class="text-center">
+          <button type="button" class="btn btn-icon btn-success d-inline-flex" (click)="toggleParrafo2()">
+            <i class="feather icon-check-circle"> Recargar</i>
+          </button>
+          <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
+        </div>
+        <div class="app-card-footer"> </div>
+      </app-card>
     </div>
-    <div class="col-md-8">
-      <p class="text-muted" style="text-justify: auto;">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
-         williamsburg carles vegan helvetica. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+    <div class="col-md-4">
+      <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true" >
+   
+        <img src="assets/images/gallery-grid/transferencia.png" alt="Pago1" width="100%"  class="welcome-img" style="padding-bottom: 10%;padding-top: 14%;">
+        <div class="text-center">
+          <button type="button" class="btn btn-icon btn-success d-inline-flex" (click)="toggleParrafo1()" >
+            <i class="feather icon-check-circle"> Recargar</i>
+          </button>
+          <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
+        </div>
+        <div class="app-card-footer"> </div>
+      </app-card>
     </div>
+    <div class="col-md-4" >
+      <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true"  >
+   
+        <img src="assets/images/gallery-grid/tarjetaedit.png" alt="Pago1" width="100%"  class="welcome-img" >
+        <div class="text-center">
+          <button type="button" class="btn btn-icon btn-success d-inline-flex" (click)="toggleParrafo3()">
+            <i class="feather icon-check-circle"> Recargar</i>
+          </button>
+          <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
+        </div>
+        <div class="app-card-footer"> </div>
+      </app-card>
     </div>
-       </div>
-
-
   </div>
+</div>
+
+
+<!--recomendaciones para recarga de saldo y reporte de consiganción-->
+<div class="col-md-12" *ngIf="mostrarFormG" >
+  <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true"  >
+  <div class="row">
+    
+    <ngb-accordion [closeOthers]="true" activeIds="static-1">
+    <ngb-panel id="static-2" *ngIf="mostrarForm1">
+      <ng-template ngbPanelTitle>
+        <a href="javascript:">Recomendaciones para recarga de saldo por tranferencias</a>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <p class="text-muted text-justify">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
+        cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a
+        bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
+        raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        Aqui se realizará el proceso de recarga de saldo por transferencias bancarias
+      </p>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="static-3" *ngIf="mostrarForm2">
+      <ng-template ngbPanelTitle>
+        <a href="javascript:">Recomendaciones para recarga de saldo por Paypal</a>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <p class="text-muted text-justify">
+        Aqui se realizará el proceso de recarga de saldo por paypal
+      </p>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="static-4" *ngIf="mostrarForm3">
+      <ng-template ngbPanelTitle>
+        <a href="javascript:">Recomendaciones para recarga de saldo por tarjetas</a>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <p class="text-muted text-justify">
+        Aqui se realizará el proceso de recarga de saldo por tarjetas
+        </p>
+        <p class="text-danger"> <i class="feather icon-alert-triangle"></i> Esta opción no se encuentra disponible por el momento.</p>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="static-1" *ngIf="mostrarForm">
+      <ng-template ngbPanelTitle>
+        <a href="javascript:">Datos para reportar la consignación de transacción realizada</a>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <p class="text-muted" >Los siguientes datos son obligatorios para poder realizar un proceso efectivo de carga de saldo,
+          por lo tanto deben coincidir en el comprobante de pago tanto el valor consignado, como la opción con la que se haya realizado la transacción correspondiente.
+          </p>
+          
+            <form action="javascript:">
+             <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1" style="color: #505488;">Fecha y hora de consignación</label>
+                  <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
+                  <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1" style="color: #505488;">Valor de consignación</label>
+                  <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Ej: 5.00" />
+                  <small id="emailHelp" class="form-text text-muted" >Agregue los valores decimales separados por punto.</small>
+                </div>
+               
+              </div>
+                <div class="col-md-6">
+                
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1" style="color: #505488;">Opción de recarga utilizada</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>Seleccione opción...</option>
+                      <option>Mediante Paypal</option>
+                      <option>Mediante transferencia bancaria</option>
+                      <option disabled>Mediante tarjetas bancarias</option>
+                 
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1" style="color: #505488;">Comprobante de pago</label>
+                    <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Seleccione archivo..." />
+                  </div>
+                 
+                  
+                </div>
+             </div>
+           
+              <div class="form-group text-center" style="margin-top: 2%;">
+               <button type="button" class="btn btn-light-primary" title="Confirmar consignación">Confirmar</button>
+               <button type="button" class="btn btn-light-danger" title="Volver a opciones de recarga" (click)="Cancelar()">Cancelar</button>
+              </div>
+             
+            </form>
+
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+  </div>
+  </app-card>
+  </div>
+
+
+
+  
+  
+
+
+
+
+
+</div>
+
+ 
+
+
+  
   
 </ng-template>
 

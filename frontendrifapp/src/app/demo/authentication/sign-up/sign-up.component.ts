@@ -22,6 +22,8 @@ export default class SignUpComponent {
     const fechaActual = new Date();
     const fechaMinima = new Date(fechaActual.getFullYear() - 18, fechaActual.getMonth(), fechaActual.getDate() + 1);
     this.maxFechaPermitida = fechaMinima.toISOString().split('T')[0];
+    sessionStorage.clear();
+    localStorage.clear();
   }
 
   dni:string="";

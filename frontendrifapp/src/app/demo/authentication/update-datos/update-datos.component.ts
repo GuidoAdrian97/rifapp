@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { AuthGoogleService } from 'src/app/services/auth-google.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 
@@ -16,10 +17,13 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 })
 export class UpdateDatosComponent implements OnInit {
 
-  constructor(private authService:AuthService, private router: Router,private spinner: NgxSpinnerService){
+  constructor(private authService:AuthService, private authGoogleService:AuthGoogleService,
+    private router: Router,private spinner: NgxSpinnerService){
     const fechaActual = new Date();
     const fechaMinima = new Date(fechaActual.getFullYear() - 18, fechaActual.getMonth(), fechaActual.getDate() + 1);
     this.maxFechaPermitida = fechaMinima.toISOString().split('T')[0];
+      
+      this.spinner.hide();
   }
   dni:string="";
 
@@ -37,7 +41,11 @@ export class UpdateDatosComponent implements OnInit {
   maxFechaPermitida: string;
   btnDisabled:boolean = true;
 
-  ngOnInit():void{}
+  ngOnInit():void{
+    const jsonString :any = sessionStorage.getItem('id_token_claims_obj')!
+    const jsonObject = JSON.parse(jsonString);
+    this.emailUpdated = jsonObject.email
+  }
 
   limitarLongitud(event: any,typeDato:any) {
     const valorIngresado: string = event.target.value;
@@ -92,33 +100,35 @@ export class UpdateDatosComponent implements OnInit {
   identificacionUpdated:string="";
   telefonoUpdated:string=""; 
   fecha_nacimientoUpdated:string="";
-  emailUpdated:string="";
+  emailUpdated:string ="";
   passwordUpdated:string="";
 
-  crearCuenta(){
-    this.spinner.show();
+ 
+  actualizarCuenta(){
+    this.spinner.show()
     let data = {
-      name:this.nameUpdated,
+      accessToken: sessionStorage.getItem('id_token'),
       identificacion:this.identificacionUpdated,
       telefono:this.telefonoUpdated,
       fecha_nacimiento:this.fecha_nacimientoUpdated,
-      email:this.emailUpdated,
-      password:this.passwordUpdated
+      password:this.passwordUpdated,
+      name:this.nameUpdated,
     }
-    this.authService.authUser(data).subscribe({
-      next: rest => {
-        console.log(rest);
-          this.spinner.hide();
-        this.router.navigate(['/auth/signin']);
-      },error:error =>{
-        console.log(error);
-        this.spinner.hide();  
+
+    this.authService.updateregistersocialite(data).subscribe({
+      next:rest => {
+        this.router.navigate(['/Inicio']);
+      },error:error=>{
+        this.logout();
       }
     })
   }
-  // ActualizarDatos(){
-  //  alert("datos actualizados!!!")
-  // }
+
+  logout(){
+    localStorage.clear();
+    this.authGoogleService.logout();
+    this.router.navigate(['/'])
+  }
   updateNombre(){
     this.authService.validarNombre(this.identificacionUpdated).subscribe({
       next:rest=>{

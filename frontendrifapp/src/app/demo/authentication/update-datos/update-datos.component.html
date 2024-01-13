@@ -33,7 +33,7 @@
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2"><i class="fa fa fa-envelope"></i></span>
-                <input type="email" [(ngModel)]="emailUpdated"  (blur)="verificarEstructEmail('email')" class="form-control" placeholder="Ingrese correo electrónico" aria-label="mail" aria-describedby="basic-addon2" />
+                <input disabled type="email" [(ngModel)]="emailUpdated"  (blur)="verificarEstructEmail('email')" class="form-control" placeholder="Ingrese correo electrónico" aria-label="mail" aria-describedby="basic-addon2" />
                 <small *ngIf="emailError == true" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important; margin-right: 50px;"
                 >{{messageEmail}}</small>
               </div>
@@ -46,7 +46,7 @@
                 >{{messagePassword}}</small>
               </div>
               <div class="d-grid">
-                <button [disabled]="btnDisabled" class="btn btn-primary btn-block mb-4">Actualizar</button>
+                <button [disabled]="btnDisabled" class="btn btn-primary btn-block mb-4" (click)="actualizarCuenta()">Actualizar</button>
               </div>
             </div>
           </div>
@@ -55,6 +55,7 @@
     </div>
   </div>
   
+  <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 <!--<p>new page</p>-->
 
 <!-- <router-outlet></router-outlet> -->

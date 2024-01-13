@@ -8,13 +8,17 @@
             <h4 class="mb-3 f-w-400">Iniciar Sesión</h4>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1"><i class="feather icon-mail"></i></span>
-              <input type="email" class="form-control" placeholder="Introduce tu correo electrónico"
+              <input [(ngModel)]="email"  (blur)="verificarEstructEmail()"  type="text" class="form-control" placeholder="Introduce tu correo electrónico"
                 aria-label="Username" aria-describedby="basic-addon1" />
+                <small *ngIf="emailError == true" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important; margin-right: 50px;"
+              >{{messageEmail}}</small>
             </div>
             <div class="input-group mb-4">
               <span class="input-group-text" id="basic-addon3"><i class="feather icon-lock"></i></span>
-              <input type="password" class="form-control" placeholder="Ingresa tu contraseña" aria-label="Username"
+              <input type="password" [(ngModel)]="password" (input)="validarPassword()"  class="form-control" placeholder="Ingresa tu contraseña" aria-label="Username"
                 aria-describedby="basic-addon3" />
+                <small *ngIf="passwordError == true" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important; margin-right: 80px;"
+                  >{{messagePassword}}</small>
             </div>
             <div class="form-group text-start mt-2">
               <div class="checkbox checkbox-primary d-inline">
@@ -23,7 +27,7 @@
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-block btn-primary mb-4"><i class="feather icon-log-in"></i> Iniciar sesión</button>
+              <button class="btn btn-block btn-primary mb-4" (click)="login()"><i class="feather icon-log-in"></i> Iniciar sesión</button>
             </div>
             <div class="d-grid" style="margin-top: 2%;">
               <table class="default">
@@ -39,7 +43,7 @@
               </table>
             </div>
             <div class="d-grid" style="margin-top: 5%;">
-              <button (click)="login()" type="button" class="btn btn-block btn-light mb-4 text-primary"
+              <button (click)="loginGoogle()" type="button" class="btn btn-block btn-light mb-4 text-primary"
                 style="font-weight: bold;"> <img src="assets/images/lg-google1.png" /> Iniciar con Google </button>
             </div>
             <p class="mb-2 text-muted" style="width: 288px;">¿Has olvidado tu contraseña? <a href="javascriprt:"

@@ -42,6 +42,28 @@ export class AuthService {
     return this.httpClient.post<any>(url,body);
   } 
 
+  updateregistersocialite(datos:any):Observable<any>{
+    const body = new FormData();
+    body.append('accessToken', datos.accessToken);
+    body.append('identificacion', datos.identificacion);
+    body.append('telefono', datos.telefono);
+    body.append('fecha_nacimiento', datos.fecha_nacimiento);
+    body.append('password', datos.password);
+    body.append('name', datos.name);
+    
+    const url = this.api + 'updateregistersocialite';
+    return this.httpClient.post<any>(url,body);
+  } 
+
+  login(datos:any):Observable<any>{
+    const body = new FormData();
+    body.append('email', datos.email);
+    body.append('password', datos.password);
+    const url = this.api + 'login';
+    return this.httpClient.post<any>(url,body);
+  }
+  
+
 
 
 }
