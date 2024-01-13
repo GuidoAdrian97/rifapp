@@ -7,7 +7,7 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ProductSaleComponent } from './product-sale/product-sale.component';
 
-
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 import {
   ChartComponent,
@@ -46,7 +46,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-dash-analytics',
   standalone: true,
-  imports: [CommonModule, SharedModule, NgApexchartsModule, ProductSaleComponent],
+  imports: [CommonModule, SharedModule, NgApexchartsModule, ProductSaleComponent,NgxSpinnerModule],
   templateUrl: './dash-analytics.component.html',
   styleUrls: ['./dash-analytics.component.scss']
 })
@@ -61,7 +61,8 @@ export default class DashAnalyticsComponent {
 
 
   // constructor
-  constructor() {
+  constructor(private spinner: NgxSpinnerService) {
+    // this.spinner.show();
     this.chartOptions = {
       chart: {
         height: 205,

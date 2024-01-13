@@ -137,3 +137,5 @@
 <section class="header-chat" *ngIf="chatMessage && this.gradientConfig.isRtlLayout" [ngClass]="{ open: chatMessage }" [@slideInOutRight]>
   <app-chat-msg (ChatToggle)="this.chatMessage = !this.chatMessage" [friendId]="friendId"></app-chat-msg>
 </section>
+
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
