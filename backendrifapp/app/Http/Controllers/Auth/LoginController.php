@@ -23,9 +23,11 @@ class LoginController extends Controller
     public function handleGoogleCallback(Request $request)
     {
 
-        $client = new Google_Client(['client_id' => '556193101893-aqt6binlorrpimjtlu0ku9v1c37mrd3p.apps.googleusercontent.com']); 
+        $client = new Google_Client(['client_id' => env('GOOGLE_TOKEN')]); 
 
-        $payload = $client->verifyIdToken($request->accessToken);
+
+            $payload = $client->verifyIdToken($request->accessToken);
+        
 
         if ($payload) {
 
@@ -133,9 +135,11 @@ class LoginController extends Controller
 
 
     public function UpdateRegisterSocialite(Request $request){
-        $client = new Google_Client(['client_id' => '556193101893-aqt6binlorrpimjtlu0ku9v1c37mrd3p.apps.googleusercontent.com']); 
+        
+        $client = new Google_Client(['client_id' => env('GOOGLE_TOKEN')]); 
 
-        $payload = $client->verifyIdToken($request->accessToken);
+       
+        
 
         $user = User::updateOrCreate([
             'google_id'=> $payload['sub'],
@@ -147,6 +151,8 @@ class LoginController extends Controller
             'fecha_nacimiento'=> $request->fecha_nacimiento,
             'password' =>Hash::make($request->password)
         ]);
+
+        
 
         return response()->json(['menssage'=>'registro correcto','code'=>'200']);
 
