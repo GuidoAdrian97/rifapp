@@ -19,11 +19,11 @@ use App\Http\Controllers\Auth\LoginController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('Login',[AuthController::class, 'Login']);
-Route::get('ListarPerfiles',[PerfilesController::class, 'ListarPerfiles']);
+//Route::post('Login',[AuthController::class, 'Login']);
+
+Route::post('login',[LoginController::class, 'Login']);
+
 Route::get('login/google', [LoginController::class,'redirectToGoogle'])->name('login.google');
-
-
 Route::post('register', [LoginController::class,'Register']);
 Route::post('verificar_user_data', [LoginController::class,'Verificar_User_identificacion']);
 Route::post('validarcedula', [LoginController::class,'ValidarCedula']);

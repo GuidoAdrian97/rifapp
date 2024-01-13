@@ -39,11 +39,6 @@ class LoginController extends Controller
             ]);
 
             $value = true;
-
-            if($user->identificacion==null||$user->telefono==null||$user->fecha_nacimiento==null||$user->password==null){
-                $value==false;
-            };
-            
             Auth::login($user);
             $token = $user->createToken('token')->plainTextToken;
             $tokenexpire= OauthAccessToken::where('tokenable_id',$user->id)->get()->last();
@@ -51,6 +46,12 @@ class LoginController extends Controller
             $tokenexpire->update();
         
             $cookie = cookie('cookie_token',$token,60*1);
+            if($user->identificacion==null||$user->telefono==null||$user->fecha_nacimiento==null||$user->password==null){
+                $value=false;
+                return response(['token'=>null, 'usuario'=>$user,'menssage'=>'Login correcto','code'=>'200','User'=>$value])->withoutCookie($cookie);
+            };
+            
+            
 
             return response(['token'=>$token, 'usuario'=>$user,'menssage'=>'Login correcto','code'=>'200','User'=>$value])->withoutCookie($cookie);
         }else{
@@ -86,6 +87,8 @@ class LoginController extends Controller
     }
 
     public function Register(Request $request){
+
+        
         $user= new User();
         
         User::create([
@@ -99,6 +102,39 @@ class LoginController extends Controller
 
 
         return response()->json(['menssage'=>'registro correcto']);
+    }
+
+    public function Login(Request $request){
+        
+        $credentials= $request->validate([
+            'email'=>['required','email'],
+            'password'=>['required']    
+        ]);
+
+        
+        if(Auth::attempt($credentials)){
+            $user=Auth::user();
+            $userAuth= Auth::user()->where('email',$request->email)->get();
+            $token= $user->createToken('token')->plainTextToken;
+
+            $tokenexpire= OauthAccessToken::where('tokenable_id',$userAuth[0]->id)->get()->last();
+            $tokenexpire->expires_at=Carbon :: now ( )->addHour(2);
+            $tokenexpire->update();
+
+            $cookie = cookie('cookie_token',$token,60*1);
+            $value=true;
+            
+            if($user->identificacion==null||$user->telefono==null||$user->fecha_nacimiento==null||$user->password==null){
+                $value=false;
+                return response(['token'=>null, 'usuario'=>$user,'menssage'=>'Login correcto','code'=>'200','User'=>$value])->withoutCookie($cookie);
+            };
+            
+
+            return response(['token'=>$token, 'usuario'=>$user,'menssage'=>'Login correcto','code'=>'200','User'=>$value])->withoutCookie($cookie);
+        }else{
+            return response()->json(['error' => 'Unauthorized','code'=>'401']);
+        }
+        return response()->json(['menssage'=>'Login correcto','code'=>'200']);
     }
 
     public function Verificar_User_identificacion(Request $request){
