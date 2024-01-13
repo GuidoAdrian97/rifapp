@@ -115,6 +115,20 @@ class LoginController extends Controller
     }
 
     public function Verificar_User_identificacion(Request $request){
+
+        if($request->identificacion==null || $request->telefono==null || $request->email==null ){
+
+            foreach(['identificacion', 'telefono', 'email'] as $field){
+                $i=0;
+                if ($request->$field === null) {
+                    
+                    $DatoNull[$i] = $field;
+                    $i++;
+                }
+            };
+            return response(['menssage'=>'Error '. $DatoNull[0].' se encuentra vacio']);
+        }
+
         if (($validar= User::where('identificacion', $request->identificacion)->orWhere('telefono', $request->telefono)->orWhere('email', $request->email)->get())->count() != 0) {
             $duplicateUser = $validar->first();
 
