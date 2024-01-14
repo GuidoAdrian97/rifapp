@@ -6,12 +6,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './theme/layout/admin/admin.component';
 import { GuestComponent } from './theme/layout/guest/guest.component';
 import { UpdateDatosComponent } from './demo/authentication/update-datos/update-datos.component';
+import { updatedatosGuard } from './guards/updatedatos.guard';
+import { notfounGuard } from './guards/notfoun.guard';
 
  
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    canActivate:[notfounGuard],
     children: [
       {
         path: '',
@@ -60,9 +63,10 @@ const routes: Routes = [
     ]
   },
   { 
-    path: 'updateDatos', component: UpdateDatosComponent 
+    path: 'updateDatos', component: UpdateDatosComponent
   
   },
+  { path: '**', redirectTo: '/' } 
 ];
 
 @NgModule({
