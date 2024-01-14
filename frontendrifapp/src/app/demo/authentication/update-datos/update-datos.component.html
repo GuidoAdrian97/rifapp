@@ -34,8 +34,6 @@
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2"><i class="fa fa fa-envelope"></i></span>
                 <input disabled type="email" [(ngModel)]="emailUpdated"  (blur)="verificarEstructEmail('email')" class="form-control" placeholder="Ingrese correo electrónico" aria-label="mail" aria-describedby="basic-addon2" />
-                <small *ngIf="emailError == true" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important; margin-right: 50px;"
-                >{{messageEmail}}</small>
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon3"><i class="fa fa fa-lock"></i></span>

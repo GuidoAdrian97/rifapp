@@ -153,7 +153,7 @@ export class UpdateDatosComponent implements OnInit {
   }
 
   validarDatos(input:any){
-    this.authService.validarDatos(this.identificacionUpdated,this.telefonoUpdated,this.emailUpdated).subscribe({
+    this.authService.validarDatos(this.identificacionUpdated,this.telefonoUpdated).subscribe({
       next:rest =>{
         console.log(rest)
         if(input == 'dni' && rest.menssage){
@@ -204,8 +204,7 @@ export class UpdateDatosComponent implements OnInit {
   inputsValidado(){
     if(this.identificacionUpdated != '' && this.dniError == false && this.nameUpdated != '' 
     && this.fecha_nacimientoUpdated != ''  && this.telefonoUpdated != ''
-    && this.tlfError == false && this.emailUpdated != '' && this.emailError ==false 
-    && this.passwordUpdated != '' && this.passwordError == false){
+    && this.tlfError == false && this.passwordUpdated != '' && this.passwordError == false){
       this.btnDisabled = false;
     }else{
       this.btnDisabled = true;

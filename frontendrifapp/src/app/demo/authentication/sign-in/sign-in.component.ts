@@ -22,6 +22,9 @@ export default class SignInComponent implements OnInit{
 
   constructor(private authGoogleService:AuthGoogleService,
     private authService:AuthService, private router: Router,private spinner: NgxSpinnerService){
+      sessionStorage.clear();
+    localStorage.clear();
+    this.spinner.hide();
   }
 
   email:string="";
@@ -60,9 +63,7 @@ export default class SignInComponent implements OnInit{
       this.emailError = true
       this.messageEmail = 'Ingrese un correo electrónico'
     }
-    // this.verificarEstructEmail();
 
-    
     if(this.emailError == false && this.passwordError == false && this.password.length >0 && this.email.length > 0){
       this.spinner.show();
     let data = {
@@ -72,6 +73,8 @@ export default class SignInComponent implements OnInit{
     this.authService.login(data).subscribe({
       next:rest =>{
         console.log('Login:',rest)
+        localStorage.setItem('access_token',rest.token)
+        debugger
         this.router.navigate(['/Inicio'])
       },error:error=>{
         console.log(error)

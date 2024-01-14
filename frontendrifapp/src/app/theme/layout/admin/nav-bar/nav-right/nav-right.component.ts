@@ -41,13 +41,14 @@ export class NavRightComponent implements DoCheck, OnInit {
 
   ngOnInit(){
     setTimeout(() => {
+      debugger
     const accesToken = localStorage.getItem('access_token');
     if(!accesToken || accesToken == 'null'){
       this.getTokenBackend();
     }else{
       this.spinner.hide();
     }
-    }, 1500);
+    }, 2000);
   }
 
   getTokenBackend(){
@@ -58,6 +59,7 @@ export class NavRightComponent implements DoCheck, OnInit {
           this.router.navigate(['/updateDatos'])
         }
         console.log(`OK`,res)
+        this.spinner.hide();
       },
       error:error => {
         this.logout();

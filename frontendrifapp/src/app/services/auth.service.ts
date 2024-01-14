@@ -32,12 +32,21 @@ export class AuthService {
     return this.httpClient.post<any>(url,body,{ headers })
   }
 
-  validarDatos(identificacion:any,telefono:any,email:any):Observable<any>{
+  validarDatos(identificacion:any,telefono:any,email?:any):Observable<any>{
     const body = new FormData();
+    if(identificacion == ""){
+      identificacion = "."
+    }
+    if(telefono == ""){
+      telefono = "."
+    }
+    if(email == "" ){
+      email = "."
+    }
     body.append('identificacion', identificacion);
     body.append('telefono', telefono);
     body.append('email', email);
-    
+    debugger
     const url = this.api + 'verificar_user_data';
     return this.httpClient.post<any>(url,body);
   } 
@@ -50,7 +59,6 @@ export class AuthService {
     body.append('fecha_nacimiento', datos.fecha_nacimiento);
     body.append('password', datos.password);
     body.append('name', datos.name);
-    
     const url = this.api + 'updateregistersocialite';
     return this.httpClient.post<any>(url,body);
   } 
