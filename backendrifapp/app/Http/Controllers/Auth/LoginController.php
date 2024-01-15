@@ -31,22 +31,24 @@ class LoginController extends Controller
 
         if ($payload) {
 
-            $user = User::updateOrCreate([
-                'google_id'=> $payload['sub'],
-            ], [
-                'email'=>$payload['email'],
-            ]);
-
-            if (!$user) {
-                $user = User::updateOrCreate(
-                    [
-                        'email' => $payload['email'],
-                    ],
-                    [
-                        'google_id'=> $payload['sub'],
-                    ]
-                );
+        
+            if ($existingUser = User::where('google_id', $payload['sub'])->first()) {
+                // Si se encuentra un usuario por 'google_id', actualiza el email
+                $existingUser->update(['email' => $payload['email']]);
+                $user = $existingUser;
+            } elseif ($existingUser = User::where('email', $payload['email'])->first()) {
+                // Si no se encuentra un usuario por 'google_id' pero sí por 'email', actualiza 'google_id'
+                $existingUser->update(['google_id' => $payload['sub']]);
+                $user = $existingUser;
+            } else {
+                // Si no se encuentra un usuario, crea uno nuevo
+                $user = User::create([
+                    'google_id' => $payload['sub'],
+                    'email' => $payload['email'],
+                ]);
             }
+            
+
 
             $value = true;
             Auth::login($user);
