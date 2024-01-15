@@ -27,6 +27,9 @@ class LoginController extends Controller
 
 
             $payload = $client->verifyIdToken($request->accessToken);
+        
+
+        if ($payload) {
 
             $user = User::updateOrCreate([
                 'google_id'=> $payload['sub'],
@@ -44,7 +47,6 @@ class LoginController extends Controller
                     ]
                 );
             }
-
 
             $value = true;
             Auth::login($user);
