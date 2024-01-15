@@ -74,7 +74,7 @@ export default class SignInComponent implements OnInit{
       next:rest =>{
         console.log('Login:',rest)
         localStorage.setItem('access_token',rest.token)
-        debugger
+        
         this.router.navigate(['/Inicio'])
       },error:error=>{
         console.log(error)

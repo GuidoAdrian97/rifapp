@@ -46,7 +46,7 @@ export class AuthService {
     body.append('identificacion', identificacion);
     body.append('telefono', telefono);
     body.append('email', email);
-    debugger
+    
     const url = this.api + 'verificar_user_data';
     return this.httpClient.post<any>(url,body);
   } 

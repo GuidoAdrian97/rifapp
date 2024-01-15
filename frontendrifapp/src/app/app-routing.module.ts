@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    canActivate:[notfounGuard],
+    // canActivate:[notfounGuard],
     children: [
       {
         path: '',
@@ -66,7 +66,7 @@ const routes: Routes = [
     path: 'updateDatos', component: UpdateDatosComponent
   
   },
-  { path: '**', redirectTo: '/' } 
+  // { path: '**', redirectTo: '/' } 
 ];
 
 @NgModule({

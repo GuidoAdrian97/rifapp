@@ -41,7 +41,7 @@ export class NavRightComponent implements DoCheck, OnInit {
 
   ngOnInit(){
     setTimeout(() => {
-      debugger
+      
     const accesToken = localStorage.getItem('access_token');
     if(!accesToken || accesToken == 'null'){
       this.getTokenBackend();
@@ -52,7 +52,7 @@ export class NavRightComponent implements DoCheck, OnInit {
   }
 
   getTokenBackend(){
-    debugger
+    
     this.authGoogleService.authUserGoogle().subscribe({
       next: res=> {
         localStorage.setItem('access_token',res['token']);
