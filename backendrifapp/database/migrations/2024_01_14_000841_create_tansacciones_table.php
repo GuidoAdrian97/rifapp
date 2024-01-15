@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->decimal('saldo_consumible', 14, 4);
             $table->dateTime('fecha_transaccion');
-            $table->foreignId('type_tansacciones_id')->references('id')->on('type_tansacciones');
+        //    $table->foreignId('type_tansacciones_id')->references('id')->on('type_tansacciones');
             $table->timestamps();
         });
     }
