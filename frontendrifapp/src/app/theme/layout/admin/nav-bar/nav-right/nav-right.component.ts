@@ -52,7 +52,6 @@ export class NavRightComponent implements DoCheck, OnInit {
   }
 
   getTokenBackend(){
-    
     this.authGoogleService.authUserGoogle().subscribe({
       next: res=> {
         localStorage.setItem('access_token',res['token']);
