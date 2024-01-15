@@ -27,16 +27,24 @@ class LoginController extends Controller
 
 
             $payload = $client->verifyIdToken($request->accessToken);
-        
-
-        if ($payload) {
 
             $user = User::updateOrCreate([
                 'google_id'=> $payload['sub'],
             ], [
-                'name'=>$payload['name'],
                 'email'=>$payload['email'],
             ]);
+
+            if (!$user) {
+                $user = User::updateOrCreate(
+                    [
+                        'email' => $payload['email'],
+                    ],
+                    [
+                        'google_id'=> $payload['sub'],
+                    ]
+                );
+            }
+
 
             $value = true;
             Auth::login($user);
