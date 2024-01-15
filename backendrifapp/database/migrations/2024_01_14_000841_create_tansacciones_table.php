@@ -19,7 +19,6 @@ return new class extends Migration
             $table->dateTime('fecha_transaccion');
             $table->foreignId('type_tansacciones_id')->references('id')->on('type_tansacciones');
             $table->timestamps();
-            $table->timestamps();
         });
     }
 
