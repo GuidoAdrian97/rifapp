@@ -29,6 +29,9 @@ import { UpdateDatosComponent } from './demo/authentication/update-datos/update-
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ErrorpruebaComponent } from './pageError/errorprueba/errorprueba.component';
+import { Page500Component } from './pageError/page500/page500.component';
+import { Page404Component } from './pageError/page404/page404.component';
 
 // import {
 //   SocialLoginModule,
@@ -56,6 +59,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     NavCollapseComponent,
     NavGroupComponent,
     UpdateDatosComponent,
+    ErrorpruebaComponent,
+    Page500Component,
+    Page404Component,
     
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,

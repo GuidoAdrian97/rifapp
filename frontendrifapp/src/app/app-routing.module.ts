@@ -8,6 +8,9 @@ import { GuestComponent } from './theme/layout/guest/guest.component';
 import { UpdateDatosComponent } from './demo/authentication/update-datos/update-datos.component';
 import { updatedatosGuard } from './guards/updatedatos.guard';
 import { notfounGuard } from './guards/notfoun.guard';
+import { ErrorpruebaComponent } from './pageError/errorprueba/errorprueba.component';
+import { Page500Component } from './pageError/page500/page500.component';
+import { Page404Component } from './pageError/page404/page404.component';
 
  
 const routes: Routes = [
@@ -64,8 +67,18 @@ const routes: Routes = [
   },
   { 
     path: 'updateDatos', component: UpdateDatosComponent
-  
   },
+  { 
+    path: 'pruebaerror', component: ErrorpruebaComponent
+  },
+  { 
+    path: 'page500', component: Page500Component
+  },
+  { 
+    path: 'page404', component: Page404Component
+  },
+  
+  
   // { path: '**', redirectTo: '/' } 
 ];
 
