@@ -3,11 +3,13 @@
 
 
 <div class="fixed-button active">
-  <button type="button" (click)="openModalWithClass(template)" class="btn btn-md btn-dark has-ripple">
+  <button type="button" (click)="openModalWithClass(template)" class="btn btn-md btn-primary has-ripple">
     <i aria-hidden="true" class="fa fa-credit-card-alt"></i> 
     Recargar saldo
   </button>
 </div>
+
+
 
 <ng-template #template>
   <div class="modal-header">
@@ -18,9 +20,6 @@
   </div>
   <div class="modal-body">
   
-
-
-
  <!--opciones de recarga de saldo-->
 <div class="col-md-12" id="opcionespago" *ngIf="opciones">
   <div class="row">
@@ -29,7 +28,7 @@
    
         <img src="assets/images/gallery-grid/logo-Paypal.png" alt="Pago1" width="100%"  class="welcome-img">
         <div class="text-center">
-          <button type="button" class="btn btn-icon btn-success d-inline-flex" (click)="toggleParrafo2()">
+          <button type="button" class="btn btn-icon btn-success d-inline-flex"   (click)="toggleParrafo2()">
             <i class="feather icon-check-circle"> Recargar</i>
           </button>
           <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
@@ -67,124 +66,217 @@
 </div>
 
 
-<!--recomendaciones para recarga de saldo y reporte de consiganción-->
-<div class="col-md-12" *ngIf="mostrarFormG" >
+
+
+
+<!--recarga por transferencia-->
+<div class="col-md-12" *ngIf="mostrarForm1" >
+ 
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-3"></h5>
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <ul class="nav flex-column nav-pills" ngbNav #nav3="ngbNav" orientation="vertical" y>
+                <li [ngbNavItem]="1" class="nav-item">
+                  <a class="nav-link" ngbNavLink>Banco Pichincha</a>
+                  <ng-template ngbNavContent>
+                   
+                    <p style="color: #8e3cdb;">Indicaciones para realizar transferencias a la cuenta XYZ de Banco Pichincha</p>
+                     
+                        Acercate a cualquier punto Banco Pichincha e indica que haras una transferencia.
+                         Da los datos correspondientes al tipo de cuenta, número y valor de consignación.
+                        Una vez realizado el pago por favor sube una foto del comprobante a través del botón reportar consignación.
+                        Tu consignación será procesada en horario laboral de lunes a domingo de 9:00 am a 9:00 pm, consignación mínima de 2 USD.
+                        <p></p>
+                        <ul>
+                          <li><span style="color: #8e3cdb;">Tipo de cuenta:</span>  Corriente</li>
+                          <li><span style="color: #8e3cdb;">No. Cuenta:</span>  22000215587</li>
+                         </ul>
+                  
+                 
+                    <div class="text-center" style="margin-top: 2%;">
+                  
+                       <a class="btn btn-link-success" role="button" type="button" (click)="openModalWithClass(template1)">Reportar consignación</a>
+                    </div>
+                   
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="2" class="nav-item">
+                  <a class="nav-link" ngbNavLink>Banco Guayaquil</a>
+                  <ng-template ngbNavContent>
+                   
+                    <p style="color: #8e3cdb;">Indicaciones para realizar transferencias a la cuenta XYZ de Banco Guayaquil</p>
+                     
+                        Acercate a cualquier punto Banco Guayaquil e indica que haras una transferencia.
+                         Da los datos correspondientes al tipo de cuenta, número y valor de consignación.
+                        Una vez realizado el pago por favor sube una foto del comprobante a través del botón reportar consignación.
+                        Tu consignación será procesada en horario laboral de lunes a domingo de 9:00 am a 9:00 pm, consignación mínima de 2 USD.
+                        <p></p>
+                        <ul>
+                          <li><span style="color: #8e3cdb;">Tipo de cuenta:</span>  Corriente</li>
+                          <li><span style="color: #8e3cdb;">No. Cuenta:</span>  22000215587</li>
+                         </ul>
+                  
+                 
+                    <div class="text-center" style="margin-top: 2%;">
+                  
+                       <a class="btn btn-link-success" role="button" type="button" (click)="openModalWithClass(template1)">Reportar consignación</a>
+                    </div>
+                   
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="3" class="nav-item">
+                  <a class="nav-link" ngbNavLink>BanEcuador</a>
+                  <ng-template ngbNavContent>
+                   
+                    <p style="color: #8e3cdb;">Indicaciones para realizar transferencias a la cuenta XYZ de BanEcuador</p>
+                     
+                        Acercate a cualquier punto BanEcuador indica que haras una transferencia.
+                        Da los datos correspondientes al tipo de cuenta, número y valor de consignación.
+                        Una vez realizado el pago por favor sube una foto del comprobante a través del botón reportar consignación.
+                        Tu consignación será procesada en horario laboral de lunes a domingo de 9:00 am a 9:00 pm, consignación mínima de 2 USD.
+                        <p></p>
+                        <ul>
+                          <li><span style="color: #8e3cdb;">Tipo de cuenta:</span>  Corriente</li>
+                          <li><span style="color: #8e3cdb;">No. Cuenta:</span>  22000215587</li>
+                         </ul>
+                  
+                 
+                    <div class="text-center" style="margin-top: 2%;">
+                  
+                       <a class="btn btn-link-success" role="button" type="button" (click)="openModalWithClass(template1)">Reportar consignación</a>
+                    </div>
+                   
+                  </ng-template>
+                </li>
+                
+              </ul>
+            </div>
+            <div class="col-md-8 col-sm-12">
+              <div [ngbNavOutlet]="nav3" class="ms-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+<!--recarga por Paypal-->
+<div class="col-md-12" *ngIf="mostrarForm2" >
   <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true"  >
   <div class="row">
-    
-    <ngb-accordion [closeOthers]="true" activeIds="static-1">
-    <ngb-panel id="static-2" *ngIf="mostrarForm1">
-      <ng-template ngbPanelTitle>
-        <a href="javascript:">Recomendaciones para recarga de saldo por tranferencias</a>
-      </ng-template>
-      <ng-template ngbPanelContent>
-        <p class="text-muted text-justify">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-        cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a
-        bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
-        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-        raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        Aqui se realizará el proceso de recarga de saldo por transferencias bancarias
+    <p style="color: #8e3cdb;">Indicaciones para recarga de saldo por Paypal</p>
+    <p class="text-justify"> 
+      Da los datos correspondientes al tipo de cuenta, número y valor de consignación.
+      Una vez realizado el pago por favor sube una foto del comprobante a través del botón reportar consignación.
+      Tu consignación será procesada en horario laboral de lunes a domingo de 9:00 am a 9:00 pm, consignación mínima de 2 USD.
       </p>
-      </ng-template>
-    </ngb-panel>
-
-    <ngb-panel id="static-3" *ngIf="mostrarForm2">
-      <ng-template ngbPanelTitle>
-        <a href="javascript:">Recomendaciones para recarga de saldo por Paypal</a>
-      </ng-template>
-      <ng-template ngbPanelContent>
-        <p class="text-muted text-justify">
-        Aqui se realizará el proceso de recarga de saldo por paypal
-      </p>
-      </ng-template>
-    </ngb-panel>
-    <ngb-panel id="static-4" *ngIf="mostrarForm3">
-      <ng-template ngbPanelTitle>
-        <a href="javascript:">Recomendaciones para recarga de saldo por tarjetas</a>
-      </ng-template>
-      <ng-template ngbPanelContent>
-        <p class="text-muted text-justify">
-        Aqui se realizará el proceso de recarga de saldo por tarjetas
-        </p>
-        <p class="text-danger"> <i class="feather icon-alert-triangle"></i> Esta opción no se encuentra disponible por el momento.</p>
-      </ng-template>
-    </ngb-panel>
-    <ngb-panel id="static-1" *ngIf="mostrarForm">
-      <ng-template ngbPanelTitle>
-        <a href="javascript:">Datos para reportar la consignación de transacción realizada</a>
-      </ng-template>
-      <ng-template ngbPanelContent>
-        <p class="text-muted" >Los siguientes datos son obligatorios para poder realizar un proceso efectivo de carga de saldo,
-          por lo tanto deben coincidir en el comprobante de pago tanto el valor consignado, como la opción con la que se haya realizado la transacción correspondiente.
-          </p>
-          
-            <form action="javascript:">
-             <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="exampleInputEmail1" style="color: #505488;">Fecha y hora de consignación</label>
-                  <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
-                  <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1" style="color: #505488;">Valor de consignación</label>
-                  <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Ej: 5.00" />
-                  <small id="emailHelp" class="form-text text-muted" >Agregue los valores decimales separados por punto.</small>
-                </div>
-               
-              </div>
-                <div class="col-md-6">
-                
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1" style="color: #505488;">Opción de recarga utilizada</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>Seleccione opción...</option>
-                      <option>Mediante Paypal</option>
-                      <option>Mediante transferencia bancaria</option>
-                      <option disabled>Mediante tarjetas bancarias</option>
-                 
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1" style="color: #505488;">Comprobante de pago</label>
-                    <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Seleccione archivo..." />
-                  </div>
-                 
-                  
-                </div>
-             </div>
-           
-              <div class="form-group text-center" style="margin-top: 2%;">
-               <button type="button" class="btn btn-light-primary" title="Confirmar consignación">Confirmar</button>
-               <button type="button" class="btn btn-light-danger" title="Volver a opciones de recarga" (click)="Cancelar()">Cancelar</button>
-              </div>
-             
-            </form>
-
-      </ng-template>
-    </ngb-panel>
-  </ngb-accordion>
+   
+      <div class="text-center" style="margin-top: 2%;">
+        <a class="btn btn-link-primary" role="button" href="https://www.paypal.com/ec/signin" >Recargar saldo</a>
+        <a class="btn btn-link-success" role="button" type="button" (click)="openModalWithClass(template1)">Reportar consignación</a>
+     </div>
   </div>
   </app-card>
   </div>
 
 
 
+<!--recarga por tarjetas-->
+<div class="col-md-12" *ngIf="mostrarForm3" >
+  <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true"  >
+  <div class="row">
+    <p style="color: #8e3cdb;">Indicaciones para recarga de saldo por tarjetas</p>
   
-  
+      
+    <p class="text-danger text-justify"> <i class="feather icon-alert-triangle"></i> Esta opción no se encuentra disponible por el momento.</p>
+    
 
 
+  </div>
+  </app-card>
+  </div>
 
 
 
 </div>
 
  
-
-
-  
-  
 </ng-template>
 
+
+
+
+
+<!--modal para reportar consignación de saldo recargado-->
+<ng-template #template1>
+  <div class="modal-header">
+    <h6 class="modal-title pull-left" style="color: rgb(39, 38, 41);" >Reportar consignación </h6>
+    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  
+<div class="col-md-12">
+  <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true"  >
+    
+    <p  style="color: #505488;">Datos para reportar la consignación de transacción realizada</p>
+
+   
+    <p class="text-muted" >Los siguientes datos son obligatorios para poder realizar un proceso efectivo de carga de saldo,
+      por lo tanto deben coincidir en el comprobante de pago tanto el valor consignado, como la opción con la que se haya realizado la transacción correspondiente.
+      </p>
+      
+        <form action="javascript:">
+         <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" style="color: #505488;">Fecha y hora de consignación</label>
+              <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
+              <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1" style="color: #505488;">Valor de consignación</label>
+              <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Ej: 5.00" />
+              <small id="emailHelp" class="form-text text-muted" >Agregue los valores decimales separados por punto.</small>
+            </div>
+           
+          </div>
+            <div class="col-md-6">
+            
+              <div class="form-group">
+                <label for="exampleFormControlSelect1" style="color: #505488;">Detalle de consignación</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Ej: Transferencia bancaria - cuenta Banco Pichincha"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1" style="color: #505488;">Comprobante de pago</label>
+                <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Seleccione archivo..." />
+              </div>
+             
+              
+            </div>
+         </div>
+       
+          <div class="form-group text-center" style="margin-top: 2%;">
+           <button type="button" class="btn btn-light-primary" title="Confirmar consignación">Confirmar</button>
+           <button type="button" class="btn btn-light-danger"  (click)="modalRef?.hide()">Cancelar</button>
+          </div>
+         
+        </form>
+
+
+
+  </app-card>
+</div>
+
+</div>
+
+</ng-template>
 

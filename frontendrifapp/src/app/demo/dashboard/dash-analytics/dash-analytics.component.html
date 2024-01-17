@@ -22,64 +22,60 @@
   <div class="col-md-12" >
       <!--mensaje bienvenida-->
       <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <app-card cardTitle="" cardClass="tab-card tab-content" blockClass="nav-fill" [options]="false" >
      
           <!--contenido agregado-->
           <div class="row justify-content-between">
-            <div class="col-sm-6">
+            <div class="col-md-4">
               <h3 class="mat-mdc-card-title" style="vertical-align: inherit;">¡Bienvenido de nuevo Mateo!</h3>
               <p  class="text-muted m-b-30" style="font-size: medium; margin-top: 2%;">Has ganado un 54 % más que el mes pasado, lo cual es fantástico.</p>
-              <button type="button" class="btn btn-primary" >
-                <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                <span class="mdc-button__label" style="vertical-align: inherit;">Gestionar ganancias</span>
-                <span class="mat-mdc-focus-indicator"></span>
-                <span class="mat-mdc-button-touch-target"></span></button></div>
-                <div class="col-sm-5"><img src="assets/images/gallery-grid/welcome.png" alt="bienvenido" width="300" class="welcome-img"></div>
-               
+              <button type="button" class="btn btn-light-success" ngbTooltip="">Gestionar ganancias</button>
+
+              </div>
+                <div class="col-md-5">
+                <img src="assets/images/gallery-grid/welcome.png" alt="bienvenido" width="300" class="welcome-img">
+              </div>
+               <div class="col-md-3">
+               <!--- <app-card [hidHeader]="true">-->
+                  <div class="row">
+                    <div class="col-auto">
+                      <span>Customers</span>
+                    </div>
+                    <div class="col text-end">
+                      <h2 class="mb-0">826</h2>
+                      <span class="text-c-green">8.2%<i class="feather icon-trending-up ms-1"></i></span>
+                    </div>
+                  </div>
+                  <apx-chart
+                    [series]="chartOptions_1.series!"
+                    [chart]="chartOptions_1.chart!"
+                    [stroke]="chartOptions_1.stroke!"
+                    [dataLabels]="chartOptions_1.dataLabels!"
+                    [labels]="chartOptions_1.labels!"
+                    [legend]="chartOptions_1.legend!"
+                    [colors]="chartOptions_1.colors!"
+                    [fill]="chartOptions_1.fill!"
+                    [grid]="chartOptions_1.grid!"
+                  >
+                    [plotOptions]="chartOptions_1.plotOptions" [tooltip]="chartOptions_1.tooltip"
+                  </apx-chart>
+                  <div class="row mt-3 text-center">
+                    <div class="col">
+                      <h5 class="m-0"><i class="fas fa-circle f-10 m-r-5 text-success"></i>674</h5>
+                      <span class="ms-3">New</span>
+                    </div>
+                    <div class="col">
+                      <h5 class="m-0"><i class="fas fa-circle text-primary f-10 m-r-5"></i>182</h5>
+                      <span class="ms-3">Return</span>
+                    </div>
+                  </div>
+              <!-- </app-card>-->
+               </div>
               </div>
         </app-card>
       </div>
-      <div class="col-md-3">
-        <app-card [hidHeader]="true">
-          <div class="row">
-            <div class="col-auto">
-              <span>Customers</span>
-            </div>
-            <div class="col text-end">
-              <h2 class="mb-0">826</h2>
-              <span class="text-c-green">8.2%<i class="feather icon-trending-up ms-1"></i></span>
-            </div>
-          </div>
-          <apx-chart
-            [series]="chartOptions_1.series!"
-            [chart]="chartOptions_1.chart!"
-            [stroke]="chartOptions_1.stroke!"
-            [dataLabels]="chartOptions_1.dataLabels!"
-            [labels]="chartOptions_1.labels!"
-            [legend]="chartOptions_1.legend!"
-            [colors]="chartOptions_1.colors!"
-            [fill]="chartOptions_1.fill!"
-            [grid]="chartOptions_1.grid!"
-          >
-            [plotOptions]="chartOptions_1.plotOptions" [tooltip]="chartOptions_1.tooltip"
-          </apx-chart>
-          <div class="row mt-3 text-center">
-            <div class="col">
-              <h3 class="m-0"><i class="fas fa-circle f-10 m-r-5 text-success"></i>674</h3>
-              <span class="ms-3">New</span>
-            </div>
-            <div class="col">
-              <h3 class="m-0"><i class="fas fa-circle text-primary f-10 m-r-5"></i>182</h3>
-              <span class="ms-3">Return</span>
-            </div>
-          </div>
-        </app-card>
       </div>
-
-      </div>
-     
-    
   </div>
 
   <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
@@ -317,10 +313,7 @@
 
 
 
-   <!--Images section / code added-->
-   <div class="col-md-12"> 
-
-   </div>
+ 
 
 
 <!--editar esto imágenes carrupsel-->
