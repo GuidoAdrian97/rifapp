@@ -140,7 +140,7 @@ export const NavigationItems: NavigationItem[] = [
         id: 'forms',
         title: 'Perfil',
         type: 'item',
-        url: '/forms',
+        url: '/userProfile', //forms 
         classes: 'nav-item',
         icon: 'feather icon-user '
       },

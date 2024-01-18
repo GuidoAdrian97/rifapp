@@ -32,6 +32,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ErrorpruebaComponent } from './pageError/errorprueba/errorprueba.component';
 import { Page500Component } from './pageError/page500/page500.component';
 import { Page404Component } from './pageError/page404/page404.component';
+import { UserProfileComponent } from './demo/user-profile/user-profile.component';
 
 // import {
 //   SocialLoginModule,
@@ -62,6 +63,7 @@ import { Page404Component } from './pageError/page404/page404.component';
     ErrorpruebaComponent,
     Page500Component,
     Page404Component,
+    UserProfileComponent,
     
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,

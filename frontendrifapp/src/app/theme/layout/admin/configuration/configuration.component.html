@@ -3,14 +3,14 @@
 
 
 <div class="fixed-button active">
-  <button type="button" (click)="openModalWithClass(template)" class="btn btn-md btn-primary has-ripple">
+  <button type="button" (click)="openModal(template)" class="btn btn-md btn-primary has-ripple">
     <i aria-hidden="true" class="fa fa-credit-card-alt"></i> 
     Recargar saldo
   </button>
 </div>
 
 
-
+<!--modal principal-->
 <ng-template #template>
   <div class="modal-header">
     <h6 class="modal-title pull-left" style="color: rgb(39, 38, 41);" >{{titulo}} </h6>
@@ -20,6 +20,8 @@
   </div>
   <div class="modal-body">
   
+
+
  <!--opciones de recarga de saldo-->
 <div class="col-md-12" id="opcionespago" *ngIf="opciones">
   <div class="row">
@@ -63,6 +65,7 @@
       </app-card>
     </div>
   </div>
+
 </div>
 
 
@@ -75,88 +78,78 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-body">
-          <h5 class="mb-3"></h5>
           <div class="row">
-            <div class="col-md-4 col-sm-12">
-              <ul class="nav flex-column nav-pills" ngbNav #nav3="ngbNav" orientation="vertical" y>
-                <li [ngbNavItem]="1" class="nav-item">
-                  <a class="nav-link" ngbNavLink>Banco Pichincha</a>
-                  <ng-template ngbNavContent>
-                   
-                    <p style="color: #8e3cdb;">Indicaciones para realizar transferencias a la cuenta XYZ de Banco Pichincha</p>
-                     
-                        Acercate a cualquier punto Banco Pichincha e indica que haras una transferencia.
-                         Da los datos correspondientes al tipo de cuenta, número y valor de consignación.
-                        Una vez realizado el pago por favor sube una foto del comprobante a través del botón reportar consignación.
-                        Tu consignación será procesada en horario laboral de lunes a domingo de 9:00 am a 9:00 pm, consignación mínima de 2 USD.
-                        <p></p>
-                        <ul>
-                          <li><span style="color: #8e3cdb;">Tipo de cuenta:</span>  Corriente</li>
-                          <li><span style="color: #8e3cdb;">No. Cuenta:</span>  22000215587</li>
-                         </ul>
-                  
-                 
-                    <div class="text-center" style="margin-top: 2%;">
-                  
-                       <a class="btn btn-link-success" role="button" type="button" (click)="openModalWithClass(template1)">Reportar consignación</a>
-                    </div>
-                   
+      
+           <div class="text-end">
+                <button type="button" class="close btn-close pull-right text-danger" style="width: min-content;" title="Cerrar" (click)="CerrarForm()">
+                </button>
+           </div>
+        
+              <p style="color: #8e3cdb;">Indicaciones para recarga de saldo por transferencias</p>
+           
+          </div>
+         
+          <div class="row"  >
+          
+              <ngb-accordion [closeOthers]="true" *ngFor="let count of data">
+                <ngb-panel id='static-count.id'>
+                  <ng-template ngbPanelTitle>
+                    <a href="javascript:">{{count.entidad}}</a>
                   </ng-template>
-                </li>
-                <li [ngbNavItem]="2" class="nav-item">
-                  <a class="nav-link" ngbNavLink>Banco Guayaquil</a>
-                  <ng-template ngbNavContent>
-                   
-                    <p style="color: #8e3cdb;">Indicaciones para realizar transferencias a la cuenta XYZ de Banco Guayaquil</p>
-                     
-                        Acercate a cualquier punto Banco Guayaquil e indica que haras una transferencia.
-                         Da los datos correspondientes al tipo de cuenta, número y valor de consignación.
-                        Una vez realizado el pago por favor sube una foto del comprobante a través del botón reportar consignación.
-                        Tu consignación será procesada en horario laboral de lunes a domingo de 9:00 am a 9:00 pm, consignación mínima de 2 USD.
-                        <p></p>
-                        <ul>
-                          <li><span style="color: #8e3cdb;">Tipo de cuenta:</span>  Corriente</li>
-                          <li><span style="color: #8e3cdb;">No. Cuenta:</span>  22000215587</li>
-                         </ul>
-                  
-                 
-                    <div class="text-center" style="margin-top: 2%;">
-                  
-                       <a class="btn btn-link-success" role="button" type="button" (click)="openModalWithClass(template1)">Reportar consignación</a>
-                    </div>
-                   
+                  <ng-template ngbPanelContent>
+                    <p class="text-justify">{{count.indicaciones}}</p>
+                    <ul>
+                      <li><span style="color: #8e3cdb;">Tipo de cuenta:</span>  {{count.tipoCuenta}}</li>
+                      <li><span style="color: #8e3cdb;">No. Cuenta:</span>  {{count.numero}}</li>
+                     </ul>
+                     <div class="text-center" style="margin-top: 2%;">
+          
+                      <a class="btn btn-link-success" role="button" type="button" (click)="openModal2(templateNested,count.tipoRecarga+'-'+count.entidad,count.id)">Reportar consignación</a>
+                   </div>
                   </ng-template>
-                </li>
-                <li [ngbNavItem]="3" class="nav-item">
-                  <a class="nav-link" ngbNavLink>BanEcuador</a>
-                  <ng-template ngbNavContent>
-                   
-                    <p style="color: #8e3cdb;">Indicaciones para realizar transferencias a la cuenta XYZ de BanEcuador</p>
-                     
-                        Acercate a cualquier punto BanEcuador indica que haras una transferencia.
-                        Da los datos correspondientes al tipo de cuenta, número y valor de consignación.
-                        Una vez realizado el pago por favor sube una foto del comprobante a través del botón reportar consignación.
-                        Tu consignación será procesada en horario laboral de lunes a domingo de 9:00 am a 9:00 pm, consignación mínima de 2 USD.
-                        <p></p>
-                        <ul>
-                          <li><span style="color: #8e3cdb;">Tipo de cuenta:</span>  Corriente</li>
-                          <li><span style="color: #8e3cdb;">No. Cuenta:</span>  22000215587</li>
-                         </ul>
-                  
-                 
-                    <div class="text-center" style="margin-top: 2%;">
-                  
-                       <a class="btn btn-link-success" role="button" type="button" (click)="openModalWithClass(template1)">Reportar consignación</a>
-                    </div>
-                   
-                  </ng-template>
-                </li>
+                </ngb-panel>
+               
                 
-              </ul>
+              </ngb-accordion>
+          
+
+            
+              
+      <!---  <ul *ngFor="let count of data">
+          <li>
+            <p >{{count.entidad}}</p>
+                 
+                   
+            <p style="color: #8e3cdb;">Indicaciones para realizar transferencias a la cuenta XYZ de Banco Pichincha</p>
+             
+               {{count.indicaciones}}
+                <p></p>
+                <ul>
+                  <li><span style="color: #8e3cdb;">Tipo de cuenta:</span>  {{count.tipoCuenta}}</li>
+                  <li><span style="color: #8e3cdb;">No. Cuenta:</span>  {{count.numero}}</li>
+                 </ul>
+          
+         
+            <div class="text-center" style="margin-top: 2%;">
+          
+               <a class="btn btn-link-success" role="button" type="button" (click)="openModal2(templateNested)">Reportar consignación</a>
             </div>
-            <div class="col-md-8 col-sm-12">
-              <div [ngbNavOutlet]="nav3" class="ms-4"></div>
-            </div>
+          </li>
+
+        </ul>-->
+                 
+                   
+                
+               
+                
+              
+                
+         
+
+
+
+         
+          
           </div>
         </div>
       </div>
@@ -170,8 +163,16 @@
 <!--recarga por Paypal-->
 <div class="col-md-12" *ngIf="mostrarForm2" >
   <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true"  >
-  <div class="row">
-    <p style="color: #8e3cdb;">Indicaciones para recarga de saldo por Paypal</p>
+    <div class="row">
+
+      <div class="text-end">
+          <button type="button" class="close btn-close pull-right " style="width: min-content;" title="Cerrar" (click)="CerrarForm()">
+          </button>
+      </div>
+      <p style="color: #8e3cdb;">Indicaciones para recarga de saldo por Paypal</p>
+    </div>
+    <div class="row">
+    
     <p class="text-justify"> 
       Da los datos correspondientes al tipo de cuenta, número y valor de consignación.
       Una vez realizado el pago por favor sube una foto del comprobante a través del botón reportar consignación.
@@ -180,7 +181,7 @@
    
       <div class="text-center" style="margin-top: 2%;">
         <a class="btn btn-link-primary" role="button" href="https://www.paypal.com/ec/signin" >Recargar saldo</a>
-        <a class="btn btn-link-success" role="button" type="button" (click)="openModalWithClass(template1)">Reportar consignación</a>
+        <a class="btn btn-link-success" role="button" type="button" (click)="openModal2(templateNested,'Recarga por Paypal',0)">Reportar consignación</a>
      </div>
   </div>
   </app-card>
@@ -192,6 +193,10 @@
 <div class="col-md-12" *ngIf="mostrarForm3" >
   <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true"  >
   <div class="row">
+    <div class="text-end">
+      <button type="button" class="close btn-close pull-right text-danger" style="width: min-content;" title="Cerrar" (click)="CerrarForm()">
+      </button>
+    </div>
     <p style="color: #8e3cdb;">Indicaciones para recarga de saldo por tarjetas</p>
   
       
@@ -215,10 +220,10 @@
 
 
 <!--modal para reportar consignación de saldo recargado-->
-<ng-template #template1>
+<ng-template #templateNested>
   <div class="modal-header">
     <h6 class="modal-title pull-left" style="color: rgb(39, 38, 41);" >Reportar consignación </h6>
-    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef2?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
   </div>
@@ -245,15 +250,23 @@
             <div class="form-group">
               <label for="exampleInputPassword1" style="color: #505488;">Valor de consignación</label>
               <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Ej: 5.00" />
-              <small id="emailHelp" class="form-text text-muted" >Agregue los valores decimales separados por punto.</small>
+              <small id="emailHelp" class="form-text text-muted" >Agregue los valores decimales separados por punto. {{Idcuenta}}</small>
             </div>
            
           </div>
             <div class="col-md-6">
             
               <div class="form-group">
-                <label for="exampleFormControlSelect1" style="color: #505488;">Detalle de consignación</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Ej: Transferencia bancaria - cuenta Banco Pichincha"></textarea>
+                <label for="exampleFormControlSelect1" style="color: #505488;">Tipo de consignación</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Transferencia Banco Pichincha cuenta XYZ" [(ngModel)]="tipoConsignacion" name="tipoCuenta" disabled=""/>
+               <!--- <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Ej: Transferencia bancaria - cuenta Banco Pichincha"></textarea>-->
+                <!--<select class="form-control" id="exampleFormControlSelect1">
+                  <option>Transferencia Banco Pichincha</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>-->
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1" style="color: #505488;">Comprobante de pago</label>
@@ -266,7 +279,7 @@
        
           <div class="form-group text-center" style="margin-top: 2%;">
            <button type="button" class="btn btn-light-primary" title="Confirmar consignación">Confirmar</button>
-           <button type="button" class="btn btn-light-danger"  (click)="modalRef?.hide()">Cancelar</button>
+           <button type="button" class="btn btn-light-danger"  (click)="modalRef2?.hide()">Cancelar</button>
           </div>
          
         </form>
