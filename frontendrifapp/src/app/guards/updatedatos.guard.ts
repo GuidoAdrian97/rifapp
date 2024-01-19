@@ -4,9 +4,9 @@ import { CanActivateFn, Router } from '@angular/router';
 export const updatedatosGuard: CanActivateFn = (route, state) => {
   const rutas = inject(Router);
   
-  let updateDatos = localStorage.getItem('updateDatos');
+  let updateDatos = sessionStorage.getItem('update_true');
   if(!updateDatos){
-    return rutas.navigate(['/']);
+     return rutas.navigate(['/page404']);
     // return false
   }
   

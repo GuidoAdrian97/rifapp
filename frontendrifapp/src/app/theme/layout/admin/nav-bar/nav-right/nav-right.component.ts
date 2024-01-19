@@ -56,6 +56,7 @@ export class NavRightComponent implements DoCheck, OnInit {
       next: res=> {
         localStorage.setItem('access_token',res['token']);
         if(res['User'] == false){
+          sessionStorage.setItem('update_true','true');
           this.router.navigate(['/updateDatos'])
         }
         console.log(`OK`,res)

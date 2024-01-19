@@ -117,6 +117,7 @@ export class UpdateDatosComponent implements OnInit {
 
     this.authService.updateregistersocialite(data).subscribe({
       next:rest => {
+        sessionStorage.removeItem('update_true');
         this.router.navigate(['/Inicio']);
       },error:error=>{
         this.logout();

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./page500.component.scss']
 })
 export class Page500Component {
+  constructor() {
+    
+  }
+
 
 }
