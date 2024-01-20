@@ -49,7 +49,10 @@ const routes: Routes = [
       {
         path: 'sample-page',
         loadComponent: () => import('./demo/sample-page/sample-page.component')
-      }
+      },
+      { 
+        path: 'userProfile', component: UserProfileComponent
+      },
     ]
   },
   {
@@ -82,9 +85,7 @@ const routes: Routes = [
   { 
     path: 'page403', component: Page403Component
   },
-  { 
-    path: 'userProfile', component: UserProfileComponent
-  },
+  
   
   
   // { path: '**', redirectTo: '/' } 

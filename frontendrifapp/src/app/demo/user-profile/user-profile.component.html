@@ -1,36 +1,147 @@
-<app-navigation
-  class="pcoded-navbar menupos-fixed menu-light"
-  [ngClass]="{
-    'navbar-collapsed': navCollapsed,
-    'mob-open': navCollapsedMob
-  }"
-  (NavCollapsedMob)="navMobClick()"
-></app-navigation>
-<app-nav-bar
-  class="navbar pcoded-header navbar-expand-lg navbar-light header-blue headerPos-fixed"
-  (NavCollapse)="this.navCollapsed = !this.navCollapsed"
-  (NavCollapsedMob)="navMobClick()"
-></app-nav-bar>
-<div class="pcoded-main-container">
-  <div class="pcoded-wrapper">
-    <div class="pcoded-content">
-      <div class="pcoded-inner-content">
-        <div class="main-body">
-          <div class="page-wrapper">
-            <app-breadcrumb></app-breadcrumb>
-            <div class="row">
-               <app-card>
-                <h1>hello user profile view</h1>
-               </app-card>
+
+      <div class="row">     
+        <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-md-4">
+
+                          <!-- Profile Image -->
+                          <div class="card card-primary card-outline">
+                              <div class="card-body box-profile">
+                                  <div class="text-center">
+                                      <img class="profile-user-img img-fluid  img-radius"
+                                           src="assets/images/user/avatar-1.jpg"
+                                           alt="User profile picture" >
+                                  </div>
+
+                                  <h3 class="profile-username text-center">John Doe</h3>
+
+                                  <p class="text-secondary text-center">1234567890</p>
+
+                                 
+                                  <div style="margin-top:5%"></div>
+                                  <hr>
+                                  <strong class="text-secondary"><i class="fas fa-phone mr-1"></i><span class="text-muted ms-2">0994578923</span>  </strong>
+
+                                  <hr>
+
+                                  <strong class="text-secondary"><i class="fas fa-envelope -alt mr-1" ></i><span class="text-muted ms-2">johndoe@gmail.com</span> </strong>
+
+                                  <hr>
+
+                                  <strong class="text-secondary"><i class="fas fa-map-marker-alt mr-1"></i><span class="text-muted ms-2">Manabí</span> </strong>
+                                  <hr>
+                                 <!--- <div class="text-center">
+                                    <a class="btn btn-block text-light" style="background-color: #505488;"><b>Editar datos</b></a>
+
+                                  </div>-->
+
+                                  
+
+
+                              </div>
+                              <!-- /.card-body -->
+                          </div>
+                          <!-- /.card -->
+
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-md-8">
+                          <div class="card card-primary card-outline">
+                              <div class="card-header p-2">
+                                 <!--- <ul class="nav nav-pills">
+                                     
+                                      <li class="nav-item"><a class="nav-link " href="#settings" data-toggle="tab" >Información de perfil</a></li>
+                                  </ul>-->
+                              </div><!-- /.card-header -->
+                              
+                              <div class="card-body">
+                                  <div class="tab-content">
+                                    <div class="row">
+
+                                   
+                                    <div class="col-md-6 col-lg-4">
+                                      <div class="card" style="border-color: rgb(83, 189, 231); border-width: 2px;">
+                                        <p class="text-center text-primary" style="margin-top: 5%;" >Saldo</p>
+                                        <p class="text-center"><i class="fa fa-money text-primary" aria-hidden="true"></i></p>
+                                        <p class="text-center text-secondary">  $ 486,00 </p>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4">
+                                      <div class="card" style="border-color: rgb(83, 189, 231); border-width: 2px;">
+                                        <p class="text-center text-primary" style="margin-top: 5%;" >Ventas</p>
+                                        <p class="text-center"><i class="fa fa-shopping-basket text-primary" aria-hidden="true"></i></p>
+                                        <p class="text-center text-secondary">  3 </p>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4">
+                                      <div class="card" style="border-color: rgb(83, 189, 231); border-width: 2px;">
+                                        <p class="text-center text-primary" style="margin-top: 5%;" >Ganancias</p>
+                                        <p class="text-center"><i class="fa fa-line-chart text-primary" aria-hidden="true"></i></p>
+                                        <p class="text-center text-secondary">  $ 300,00 </p>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="card" style="border-color: rgb(151, 219, 168); border-width: 1px;">
+                                        <div style="margin-top:4%"></div>
+
+                                          <div class="row">
+                                            <div class="col-md-1"></div>
+
+                                            <div class="col-md-3">
+                                              <p class="text-success"> <i class="fa fa-user-plus text-success" aria-hidden="true"></i> Referir usuarios</p>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                              <div class="input-group mb-3">
+                                                <input
+                                                  type="text"
+                                                  class="form-control"
+                                                  placeholder="Código para usuarios referidos"
+                                                  aria-label="Recipient's username"
+                                               
+                                                  aria-describedby="button-addon2"
+                                                />
+                                                <button class="btn btn-success" type="button" id="button-addon2"> Copiar </button>
+                                              </div>
+                                            </div>
+                                           
+                                            <div class="col-md-1"></div>
+                                      </div>
+
+                                      <div style="margin-top:2%"></div>
+                                    </div>
+                                  </div>
+                                  </div>
+
+                                  <div class="row">
+                                  <div style="margin-top: 2%;"><p style="color:#505488"> <i class="fa fa-users" style="color:#505488" aria-hidden="true"></i> Usuarios referidos: <span class="text-muted ms-2" style="font-size: 14px;">5</span></p>
+                                  
+                                  
+                                    <div style="margin-top: 2%;"><p style="color:#505488"> <i class="fa fa-calendar" style="color:#505488" aria-hidden="true"></i> Recha de registro: <span class="text-muted ms-2" style="font-size: 14px;" >24/01/2024</span></p>
+                                    </div>
+
+                              </div><!-- /.card-body -->
+                          </div>
+                          <!-- /.card -->
+                      </div>
+                      <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+              </div><!-- /.container-fluid -->
+
+
+              
             </div>
+
+             <!--//end-contenido nuevo agregado-->
             <router-outlet></router-outlet>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<app-configuration></app-configuration>
+   
 
                           
                          
