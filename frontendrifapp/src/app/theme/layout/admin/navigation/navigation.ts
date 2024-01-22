@@ -37,6 +37,22 @@ export const NavigationItems: NavigationItem[] = [
     ]
   },
   {
+    id: 'crear',
+    title: 'Crear Rifa',
+    type: 'group',
+    icon: 'icon-group',
+    children: [
+      {
+        id: 'creation',
+        title: 'Crear rifa',
+        type: 'item',
+        url: '/CreateRifa',
+        icon: 'feather icon-file-plus'
+   
+      }
+    ]
+  },
+  {
     id: 'ui-component',
     title: 'Ui Component',
     type: 'group',

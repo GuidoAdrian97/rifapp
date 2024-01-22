@@ -13,7 +13,7 @@ import { Page500Component } from './pageError/page500/page500.component';
 import { Page404Component } from './pageError/page404/page404.component';
 import { UserProfileComponent } from './demo/user-profile/user-profile.component';
 import { Page403Component } from './pageError/page403/page403.component';
-
+import { CreateRifasComponent } from './demo/create-rifas/create-rifas.component';
  
 const routes: Routes = [
   {
@@ -52,6 +52,9 @@ const routes: Routes = [
       },
       { 
         path: 'userProfile', component: UserProfileComponent
+      },
+      { 
+        path: 'CreateRifa', component: CreateRifasComponent
       },
     ]
   },
