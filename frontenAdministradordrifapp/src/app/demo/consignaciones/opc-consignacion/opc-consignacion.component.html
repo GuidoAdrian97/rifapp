@@ -1,45 +1,120 @@
-<div class="col-md-12" id="opcionespago" >
-    <div class="row">
-      <div class="col-md-4">
-        <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true" >
-     
-          <img src="assets/images/gallery-grid/logo-Paypal.png" alt="Pago1" width="100%"  class="welcome-img">
-          <div class="text-center">
-            <button type="button" class="btn btn-icon btn-success d-inline-flex"  >
-              <i class="feather icon-check-circle"> Editar</i>
-            </button>
-            <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
-          </div>
-          <div class="app-card-footer"> </div>
-        </app-card>
-      </div>
-      <div class="col-md-4">
-        <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true" >
-     
-          <img src="assets/images/gallery-grid/transferencia.png" alt="Pago1" width="100%"  class="welcome-img" style="padding-bottom: 10%;padding-top: 14%;">
-          <div class="text-center">
-            <button type="button" class="btn btn-icon btn-success d-inline-flex" >
-              <i class="feather icon-check-circle"> Editar</i>
-            </button>
-            <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
-          </div>
-          <div class="app-card-footer"> </div>
-        </app-card>
-      </div>
+<div class="col-md-12" id="opcionespago">
+  <div class="row">
+    <div class="col-md-4">
+      <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true">
+
+        <img src="assets/images/gallery-grid/logo-Paypal.png" alt="Pago1" width="100%" class="welcome-img">
+        <div class="text-center">
+          <button type="button" class="btn btn-icon btn-success d-inline-flex">
+            <i class="feather icon-edit"> Editar</i>
+          </button>
+          <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
+        </div>
+        <div class="app-card-footer"> </div>
+      </app-card>
+    </div>
+    <div class="col-md-4">
+      <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true">
+
+        <img src="assets/images/gallery-grid/transferencia.png" alt="Pago1" width="100%" class="welcome-img"
+          style="padding-bottom: 10%;padding-top: 14%;">
+        <div class="text-center">
+          <button (click)="openModalListBanc(template)" type="button" class="btn btn-icon btn-success d-inline-flex">
+            <i class="feather icon-edit"> Editar</i>
+          </button>
+          <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
+        </div>
+        <div class="app-card-footer"> </div>
+      </app-card>
+    </div>
+    <div class="col-md-4">
+      <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true">
+
+        <img src="assets/images/gallery-grid/tarjetaedit.png" alt="Pago1" width="100%" class="welcome-img">
+        <div class="text-center">
+          <button type="button" class="btn btn-icon btn-success d-inline-flex">
+            <i class="feather icon-edit"> Editar</i>
+          </button>
+        </div>
+        <div class="app-card-footer"> </div>
+      </app-card>
+    </div>
+    <!-- 
       <div class="col-md-4" >
         <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true"  >
      
-          <img src="assets/images/gallery-grid/tarjetaedit.png" alt="Pago1" width="100%"  class="welcome-img" >
           <div class="text-center">
-            <button type="button" class="btn btn-icon btn-success d-inline-flex" >
-              <i class="feather icon-check-circle"> Editar</i>
-            </button>
-            <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
+            <img src="assets/images/gallery-grid/plus_.png" alt="Pago1" style="max-width: 200px; max-height: 150px;" class="welcome-img">
           </div>
           <div class="app-card-footer"> </div>
         </app-card>
+      </div> -->
+  </div>
+
+</div>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h6 class="modal-title pull-left" style="color: rgb(39, 38, 41);">Ttiulo </h6>
+    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!--recarga por transferencia-->
+    <div class="col-md-12">
+      <div class="row">
+        <p style="color: #8e3cdb;">Indicaciones para recarga de saldo por transferencias</p>
+      </div>
+      <div class="row">
+        <ngb-accordion [closeOthers]="true" *ngFor="let count of data">
+          <ngb-panel id='static-count.id'>
+            <ng-template ngbPanelTitle>
+              <a href="javascript:">{{count.entidad}}</a>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <p *ngIf="editar" class="text-justify">{{count.indicaciones}}</p>
+              <textarea *ngIf="!editar" class="text-justify" class="form-control" required id="validationTextarea"
+                placeholder="Required example textarea">{{count.indicaciones}}</textarea>
+              <ul>
+                <li *ngIf="editar"><span style="color: #8e3cdb;">Tipo de cuenta:</span> {{count.tipoCuenta}}</li>
+                <li *ngIf="!editar">
+                  <div class="form-group row">
+                    <span class="col-sm-3 col-form-label" style="color: #8e3cdb;">Tipo de cuenta:</span>
+                    <div class="col-sm-3">
+                      <select id="inputState" class="form-control">
+                        <option selected>Ahorro</option>
+                        <option>Corriente</option>
+                      </select>                    
+                    </div>
+                  </div>
+                </li>
+                <li *ngIf="editar"><span style="color: #8e3cdb;">No. Cuenta:</span> {{count.numero}}</li>
+                <li *ngIf="!editar">
+                  <div class="form-group row">
+                    <span class="col-sm-3 col-form-label" style="color: #8e3cdb;">Tipo de cuenta:</span>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control" id="inputPassword" placeholder="Número de cuenta" />                  
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <div class="text-center" style="margin-top: 2%;">
+                <a class="btn btn-link-success" role="button" type="button" (click)="editar = true" *ngIf="!editar"><i
+                    class="feather icon-edit"> Guardar</i></a>
+                <a class="btn btn-link-success" role="button" type="button" (click)="editar = false" *ngIf="editar"><i
+                    class="feather icon-edit"> Editar</i></a>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <div style="margin-top: 10px !important; width: 100%;" class="text-center">
+          <button type="button" class="btn btn-icon btn-success d-inline-flex">
+            <i class="feather icon-edit"> Agregar nuevo metodo de transferencia</i>
+          </button>
+        </div>
       </div>
     </div>
-  
   </div>
-  
+</ng-template>

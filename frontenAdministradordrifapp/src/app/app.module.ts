@@ -34,6 +34,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,11 +58,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ConsignacionRechazadaComponent,
     ConsignacionTipoComponent,
     ConsignacionEsperaComponent,
+  
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,MatSliderModule,
-    MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
+    MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,
+    ModalModule.forRoot()],
   providers: [],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule {}
