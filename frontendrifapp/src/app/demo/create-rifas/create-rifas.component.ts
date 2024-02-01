@@ -22,6 +22,7 @@ export class CreateRifasComponent {
   divInformation:boolean=false;
   btnClear:boolean=false;
   divCreate:boolean=true;
+  divConsult:boolean=true;
   divUpdated:boolean=false;
 
   MRT1:number=0;
@@ -101,6 +102,7 @@ export class CreateRifasComponent {
 
   CrearRifa(){
     this.divCreate=false;
+    this.divConsult=false;
     this.divUpdated=true;
 
   }
