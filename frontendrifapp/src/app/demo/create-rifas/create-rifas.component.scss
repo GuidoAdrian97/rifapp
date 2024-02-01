@@ -1,0 +1,17 @@
+.contenedor-imagen {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .boton-con-icono {
+    position: absolute;
+    top: 10px; /* Ajusta la posición vertical según tus necesidades */
+    right: 10px; /* Ajusta la posición horizontal según tus necesidades */
+    /*background-color: transparent;  Puedes cambiar el color de fondo según tus necesidades */
+    background-color: rgb(231, 241, 245);
+    border: none;
+    border-radius:35px 35px 35px 35px;
+  
+    cursor: pointer;
+    font-size: 16px; /* Ajusta el tamaño del texto según tus necesidades */
+  }

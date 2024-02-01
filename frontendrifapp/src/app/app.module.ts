@@ -35,7 +35,7 @@ import { Page404Component } from './pageError/page404/page404.component';
 import { UserProfileComponent } from './demo/user-profile/user-profile.component';
 import { Page403Component } from './pageError/page403/page403.component';
 import { CreateRifasComponent } from './demo/create-rifas/create-rifas.component';
-
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 // import {
 //   SocialLoginModule,
 //   SocialAuthServiceConfig
@@ -71,7 +71,7 @@ import { CreateRifasComponent } from './demo/create-rifas/create-rifas.component
     
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,
-    ModalModule.forRoot(), OAuthModule.forRoot(),NgxSpinnerModule
+    NgbCarouselModule,ModalModule.forRoot(), OAuthModule.forRoot(),NgxSpinnerModule
   ],
   providers: [
     

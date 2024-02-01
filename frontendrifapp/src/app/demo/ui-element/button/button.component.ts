@@ -9,4 +9,9 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export default class ButtonComponent {}
+export default class ButtonComponent {
+
+  constructor(){
+    debugger
+  }
+}

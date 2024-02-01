@@ -276,14 +276,14 @@
                 <div class="col-md-12">
                   <div class="row">
                     <app-card cardTitle="" cardClass=" order-card" [hidHeader]="true" >
-                      <h6 class="text-dark text-center">Rifa título</h6>
+                      <h6 class=" text-center" style="color: #3e47c5;">Rifa título</h6>
                       <p class="text-muted text-justify">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.
                        El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". 
                        Estos textos hacen parecerlo un español que se puede leer. </p>
-                       <div><span class="text-muted">Fecha de sorteo: <span style="color: #3e47c5;">12/02/2024</span></span></div>
-                       <div><span class="text-muted">Tipo de sorteo: <span style="color: #3e47c5;">Mediante Loteria Nacional</span></span></div>
-                       <div><span class="text-muted">Total de premios: <span style="color: #3e47c5;">4</span></span></div>
-                       <div style="margin-bottom: 3%;"><span class="text-muted">Boletos a venderse: <span style="color: #3e47c5;">100</span> desde el <span style="color: #3e47c5;">00</span> al <span style="color: #3e47c5;">99</span> por el precio de <span style="color: #3e47c5;">$1,00</span> por boleto. </span></div>
+                       <div><span style="color: #3e47c5;">Fecha de sorteo: <span class="text-muted">12/02/2024</span></span></div>
+                       <div><span style="color: #3e47c5;">Tipo de sorteo: <span class="text-muted">Mediante Loteria Nacional</span></span></div>
+                       <div><span style="color: #3e47c5;">Total de premios: <span class="text-muted">4</span></span></div>
+                       <div style="margin-bottom: 3%;"><span style="color: #3e47c5;">Boletos a venderse:</span> <span class="text-muted"> 100 de el 00 al 99 por el precio de $1,00 por boleto. </span></div>
                      
                    
                     </app-card>    
@@ -314,13 +314,50 @@
 
                   <!--sección premios-->
                   <div class="row">
-                    
+             
+
+
 <div class="col-sm-6 col-lg-3 ">
   <app-card [hidHeader]="true" blockClass="text-center">
        <p style="font-weight: bold;">Premio 1</p>
-          <a  href="/widgets/cards">
-            <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%">
-            </a>
+          
+            <ngb-carousel>
+              <ng-template ngbSlide>
+
+            <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+            <button class="boton-con-icono" title="Eliminar imagen">
+              <i class="fa fa-times-circle text-danger"></i> 
+            </button>
+            </ng-template>
+            <ng-template ngbSlide>
+              
+                <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%" class="contenedor-imagen">
+                <button class="boton-con-icono" title="Eliminar imagen">
+                  <i class="fa fa-times-circle text-danger"></i> 
+                </button>
+          </ng-template>
+          <ng-template ngbSlide>
+            
+        <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+        </ng-template>
+        <ng-template ngbSlide>
+          
+          <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
+          <button class="boton-con-icono" title="Eliminar imagen">
+            <i class="fa fa-times-circle text-danger" ></i> 
+          </button>
+      </ng-template>
+      <ng-template ngbSlide>
+        
+        <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+    </ng-template>
+            </ngb-carousel>
     <div style="margin-top: 5%;">
     <p class="text-muted">Boat Headphone</p>
     <div class="d-flex align-items-center justify-content-between">
@@ -343,103 +380,213 @@
     </div>
   </div>
   </app-card>
-  </div>
+</div>
   
-  
-  
-  <div class="col-sm-6 col-lg-3 ng-star-inserted">
-    <app-card [hidHeader]="true" blockClass="text-center">
-         <p style="font-weight: bold;">Premio 2</p>
-            <a  href="/widgets/cards">
-              <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%">
-              </a>
-      <div style="margin-top: 5%;">
-      <p class="text-muted">Boat Headphone</p>
-      <div class="d-flex align-items-center justify-content-between">
-    
-        <div class="d-flex align-items-center">
-          <span class="badge m-r-5 badge-light-success" style="font-size: large;" type="button" title="Editar premio">
-            <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
-          </span>
-          <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
-            <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
-          </span>
-        
-        </div>
-       
-          <div class="m-l-auto d-flex gap-4">
-            <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
-              <i name="star" class="fa fa-trash" style="color:brown;" ></i>
-            </span>
-          </div>
-      </div>
-    </div>
-    </app-card>
-    </div>
-  
-  
-    <div class="col-sm-6 col-lg-3 ng-star-inserted">
-      <app-card [hidHeader]="true" blockClass="text-center">
-           <p style="font-weight: bold;">Premio 3</p>
-              <a  href="/widgets/cards">
-                <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%">
-                </a>
-        <div style="margin-top: 5%;">
-        <p class="text-muted">Boat Headphone</p>
-        <div class="d-flex align-items-center justify-content-between">
-      
-          <div class="d-flex align-items-center">
-            <span class="badge m-r-5 badge-light-success" style="font-size: large;" type="button" title="Editar premio">
-              <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
-            </span>
-            <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
-              <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
-            </span>
+
+<div class="col-sm-6 col-lg-3 ">
+  <app-card [hidHeader]="true" blockClass="text-center">
+       <p style="font-weight: bold;">Premio 2</p>
           
-          </div>
-         
-            <div class="m-l-auto d-flex gap-4">
-              <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
-                <i name="star" class="fa fa-trash" style="color:brown;" ></i>
-              </span>
-            </div>
-         
+            <ngb-carousel>
+              <ng-template ngbSlide>
+
+            <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+            <button class="boton-con-icono" title="Eliminar imagen">
+              <i class="fa fa-times-circle text-danger"></i> 
+            </button>
+            </ng-template>
+            <ng-template ngbSlide>
+              
+                <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%" class="contenedor-imagen">
+                <button class="boton-con-icono" title="Eliminar imagen">
+                  <i class="fa fa-times-circle text-danger"></i> 
+                </button>
+          </ng-template>
+          <ng-template ngbSlide>
             
-        </div>
-      </div>
-      </app-card>
-      </div>
+        <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+        </ng-template>
+        <ng-template ngbSlide>
+          
+          <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
+          <button class="boton-con-icono" title="Eliminar imagen">
+            <i class="fa fa-times-circle text-danger" ></i> 
+          </button>
+      </ng-template>
+      <ng-template ngbSlide>
+        
+        <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+    </ng-template>
+            </ngb-carousel>
+    <div style="margin-top: 5%;">
+    <p class="text-muted">Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
   
-                    <div class="col-sm-6 col-lg-3 ng-star-inserted">
-                      <app-card [hidHeader]="true" blockClass="text-center">
-                           <p style="font-weight: bold;">Premio 4</p>
-                              <a  href="/widgets/cards">
-                                <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%">
-                                </a>
-                        <div style="margin-top: 5%;">
-                        <p class="text-muted">Boat Headphone</p>
-                        <div class="d-flex align-items-center justify-content-between">
-                      
-                          <div class="d-flex align-items-center">
-                            <span class="badge m-r-5 badge-light-success" style="font-size: large;" type="button" title="Editar premio">
-                              <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
-                            </span>
-                            <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
-                              <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
-                            </span>
-                          
-                          </div>
-                         
-                            <div class="m-l-auto d-flex gap-4">
-                              <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
-                                <i name="star" class="fa fa-trash" style="color:brown;" ></i>
-                              </span>
-                            </div>
-                        </div>
-                      </div>
-                      </app-card>
-                    </div>
-                  </div>
+      <div class="d-flex align-items-center">
+        <span class="badge m-r-5 badge-light-success " style="font-size: large;" type="button" title="Editar premio">
+          <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
+        </span>
+        <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
+          <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
+        </span>
+      
+      </div>
+     
+        <div class="m-l-auto d-flex gap-4">
+          <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
+            <i name="star" class="fa fa-trash" style="color:brown;" ></i>
+          </span>
+        </div>
+    </div>
+  </div>
+  </app-card>
+</div>
+
+<div class="col-sm-6 col-lg-3 ">
+  <app-card [hidHeader]="true" blockClass="text-center">
+       <p style="font-weight: bold;">Premio 3</p>
+          
+            <ngb-carousel>
+              <ng-template ngbSlide>
+
+            <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+            <button class="boton-con-icono" title="Eliminar imagen">
+              <i class="fa fa-times-circle text-danger"></i> 
+            </button>
+            </ng-template>
+            <ng-template ngbSlide>
+              
+                <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%" class="contenedor-imagen">
+                <button class="boton-con-icono" title="Eliminar imagen">
+                  <i class="fa fa-times-circle text-danger"></i> 
+                </button>
+          </ng-template>
+          <ng-template ngbSlide>
+            
+        <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+        </ng-template>
+        <ng-template ngbSlide>
+          
+          <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
+          <button class="boton-con-icono" title="Eliminar imagen">
+            <i class="fa fa-times-circle text-danger" ></i> 
+          </button>
+      </ng-template>
+      <ng-template ngbSlide>
+        
+        <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+    </ng-template>
+            </ngb-carousel>
+    <div style="margin-top: 5%;">
+    <p class="text-muted">Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
+  
+      <div class="d-flex align-items-center">
+        <span class="badge m-r-5 badge-light-success " style="font-size: large;" type="button" title="Editar premio">
+          <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
+        </span>
+        <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
+          <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
+        </span>
+      
+      </div>
+     
+        <div class="m-l-auto d-flex gap-4">
+          <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
+            <i name="star" class="fa fa-trash" style="color:brown;" ></i>
+          </span>
+        </div>
+    </div>
+  </div>
+  </app-card>
+</div>
+
+<div class="col-sm-6 col-lg-3 ">
+  <app-card [hidHeader]="true" blockClass="text-center">
+       <p style="font-weight: bold;">Premio 4</p>
+          
+            <ngb-carousel>
+              <ng-template ngbSlide>
+
+            <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+            <button class="boton-con-icono" title="Eliminar imagen">
+              <i class="fa fa-times-circle text-danger"></i> 
+            </button>
+            </ng-template>
+            <ng-template ngbSlide>
+              
+                <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%" class="contenedor-imagen">
+                <button class="boton-con-icono" title="Eliminar imagen">
+                  <i class="fa fa-times-circle text-danger"></i> 
+                </button>
+          </ng-template>
+          <ng-template ngbSlide>
+            
+        <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+        </ng-template>
+        <ng-template ngbSlide>
+          
+          <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
+          <button class="boton-con-icono" title="Eliminar imagen">
+            <i class="fa fa-times-circle text-danger" ></i> 
+          </button>
+      </ng-template>
+      <ng-template ngbSlide>
+        
+        <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+    </ng-template>
+            </ngb-carousel>
+    <div style="margin-top: 5%;">
+    <p class="text-muted">Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
+  
+      <div class="d-flex align-items-center">
+        <span class="badge m-r-5 badge-light-success " style="font-size: large;" type="button" title="Editar premio">
+          <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
+        </span>
+        <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
+          <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
+        </span>
+      
+      </div>
+     
+        <div class="m-l-auto d-flex gap-4">
+          <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
+            <i name="star" class="fa fa-trash" style="color:brown;" ></i>
+          </span>
+        </div>
+    </div>
+  </div>
+  </app-card>
+</div>
+
+  
+  
+    
+  
+ 
+
+
+
+ </div>
              
                 </div>
                 
