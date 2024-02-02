@@ -1,5 +1,5 @@
 // Angular Import
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,7 +23,20 @@ import { NavCollapseComponent } from './theme/layout/admin/navigation/nav-conten
 import { NavGroupComponent } from './theme/layout/admin/navigation/nav-content/nav-group/nav-group.component';
 import { NavItemComponent } from './theme/layout/admin/navigation/nav-content/nav-item/nav-item.component';
 import { SharedModule } from './theme/shared/shared.module';
-
+import { OpcConsignacionComponent } from './demo/consignaciones/opc-consignacion/opc-consignacion.component';
+import { ConsignacionAprobadaComponent } from './demo/consignaciones/consignacion-aprobada/consignacion-aprobada.component';
+import { ConsignacionRechazadaComponent } from './demo/consignaciones/consignacion-rechazada/consignacion-rechazada.component';
+import { ConsignacionEsperaComponent } from './demo/consignaciones/consignacion-espera/consignacion-espera.component';
+import { ConsignacionTipoComponent } from './demo/consignaciones/consignacion-tipo/consignacion-tipo.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ListUserComponent } from './demo/list-user/list-user.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,10 +54,20 @@ import { SharedModule } from './theme/shared/shared.module';
     NavContentComponent,
     NavItemComponent,
     NavCollapseComponent,
-    NavGroupComponent
+    NavGroupComponent,
+    OpcConsignacionComponent,
+    ConsignacionAprobadaComponent,
+    ConsignacionRechazadaComponent,
+    ConsignacionTipoComponent,
+    ConsignacionEsperaComponent,
+    ListUserComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,MatSliderModule,
+    MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,
+    ModalModule.forRoot(),AlertModule],
   providers: [],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule {}

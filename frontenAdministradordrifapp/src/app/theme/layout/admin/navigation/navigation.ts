@@ -20,17 +20,52 @@ export interface NavigationItem {
 
 export const NavigationItems: NavigationItem[] = [
   {
-    id: 'navigation',
-    title: 'Navigation',
+    id: 'cuentas',
+    title: 'Cuentas',
     type: 'group',
     icon: 'icon-group',
     children: [
       {
-        id: 'dashboard',
-        title: 'Dashboard',
-        type: 'item',
-        url: '/analytics',
-        icon: 'feather icon-home'
+        id: 'Cuentas',
+        title: 'Cuentas',
+        type: 'collapse',
+        icon: 'feather icon-home',
+        children: [
+          {
+            id: 'list-user',
+            title: 'Usuarios',
+            type: 'item',
+            url: '/listUser'
+          },
+      ]
+      }
+    ]
+  },
+  {
+    id: 'consignacion',
+    title: 'Consignación',
+    type: 'group',
+    icon: 'icon-group',
+    children: [
+      {
+        id: 'Consignacion',
+        title: 'Consignación',
+        type: 'collapse',
+        icon: 'feather icon-home',
+        children: [
+          {
+            id: 'opc-consignacion',
+            title: 'Opciones de Consignación',
+            type: 'item',
+            url: '/opcConsigancion'
+          },
+          {
+            id: 'list-consignacion',
+            title: 'Lista de Consignaciones',
+            type: 'item',
+            url: '/listConsignacion'
+          },
+      ]
       }
     ]
   },
@@ -83,32 +118,6 @@ export const NavigationItems: NavigationItem[] = [
             url: '/component/typography'
           }
         ]
-      }
-    ]
-  },
-  {
-    id: 'Authentication',
-    title: 'Authentication',
-    type: 'group',
-    icon: 'icon-group',
-    children: [
-      {
-        id: 'signup',
-        title: 'Sign up',
-        type: 'item',
-        url: '/auth/signup',
-        icon: 'feather icon-at-sign',
-        target: true,
-        breadcrumbs: false
-      },
-      {
-        id: 'signin',
-        title: 'Sign in',
-        type: 'item',
-        url: '/auth/signin',
-        icon: 'feather icon-log-in',
-        target: true,
-        breadcrumbs: false
       }
     ]
   },

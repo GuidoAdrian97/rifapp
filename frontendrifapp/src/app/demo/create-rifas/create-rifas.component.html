@@ -1,155 +1,611 @@
 <div class="row">     
     <div class="container-fluid">     
+
         <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-body">
-                             
-                      <p class="text-secondary ">Acontinuación agregue los datos necesarios para crear su rifa y publicarla.</p>
-                          
-                        
-                    <div class="row">
-                      <div class="col-md-6">
-                        <form action="javascript:">
-                          <div class="form-group">
-                            <label for="exampleInputEmail1" style="color: #505488;">Título de rifa</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+
+            <div class="col-md-4" *ngIf="divConsult">
+              <div class="card">
+                <div class="card-body ">
+                  <p class="text-secondary ">Consulta de ganancias a obtener</p>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1" style="color: #568fda;">Tipo de sorteo</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option value="0">Seleccione una opción...</option>
+                      <option value="1">Mediante Loteria Nacional</option>
+                      <option value="2">Mediante esta plataforma</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1" style="color: #568fda;">Total de precio de premio/s</label>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"  [(ngModel)]="precioTotalpremio" />
+                    <span class="input-group-text">.00</span></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1" style="color: #568fda;">Precio de rifa por boleto</label>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"  [(ngModel)]="precioRifaboleto"/>
+                    <span class="input-group-text">.00</span></div>
+                  </div>
+                
+                  <div class="form-group" style="margin-top: 5%;" *ngIf="divInformation">
+                  
+                  <div class="text-center">
+                    <span class="badge m-r-5 badge-light-light text-danger">Número mínimo de boletos a vender :</span>
+                 
+                    <span class="badge m-r-5 badge-light-light text-danger" style="font-size: large;">{{MRT1}}</span>
+                    <br/>
+                 <small class="text-muted">Puedes consultar en el siguiente apartado de acuerdo al número de boletos a vender cual será la ganancia obtenida.</small>
+                
+                </div>
+                 
+                <div class="form-group" style="margin-top: 3%;">
+                  <!--<label for="exampleInputEmail1" style="color: #568fda;" >Número de boletos a vender</label>-->
+                  <div class="input-group mb-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Ej: 100"
+                      aria-label="Recipient's username"
+                      aria-describedby="button-addon2"
+                      [(ngModel)]="boletosVender"
+                    />
+                    <button class="btn btn text-light" type="button" id="button-addon2" (click)="CalcularGanancias(boletosVender)" style="background-color: #505488;"><i class="feather icon-search"></i></button>
+                  </div>
+                </div>
+                    <hr>
+                    <div class="col-md-12">
+
+                      <div class="row">
+                        <div class="col-md-8">
+                          <span class="badge m-r-5 badge-light text-secondary">Ganancia de venta total</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="text-end">
+                            <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-danger">$ {{gananciaVenta}}</span></span>
                           </div>
-                          <div class="form-group">
-                            <label for="exampleInputPassword1" style="color: #505488;">Descripción de rifa</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                              <label for="exampleInputEmail1" style="color: #505488;">Fecha y hora de sorteo</label>
-                              <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                            </div>
-                          <div class="form-group">
-                              <div class="row">
-                                  <label for="inputPassword3" style="color: #505488;">Estado de producto</label>
-                                  <div class="col-sm-12">
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked />
-                                      <label class="form-check-label" for="gridRadios1">Nuevo</label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" />
-                                      <label class="form-check-label" for="gridRadios2">Usado</label>
-                                    </div>
-                                    <div class="form-check disabled">
-                                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3"  />
-                                      <label class="form-check-label" for="gridRadios3">No aplica</label>
-                                    </div>
-                                  </div>
-                                </div>
-                          </div>
-                          <div class="form-group row">
-                              <label for="exampleInputEmail1" style="color: #505488;">Categorías a la que pertenece el producto</label>
-                              <div class="col-sm-12">
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                                  <label class="form-check-label" for="gridCheck1">Tecnología</label>
-                                </div>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                                  <label class="form-check-label" for="gridCheck1">Hogar</label>
-                                </div>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                                  <label class="form-check-label" for="gridCheck1">Monetario</label>
-                                </div>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                                  <label class="form-check-label" for="gridCheck1">Vehículos</label>
-                                </div>
-                              </div>
-                            </div>
-      
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                        </div>
                       </div>
-                      <div class="col-md-6">
-                        <form action="javascript:">
-                          <div class="form-group">
-                            <label>Premio principal</label>
-                            <input type="text" class="form-control" placeholder="Text" />
+
+                      <div class="row">
+                        <div class="col-md-8">
+                          <span class="badge m-r-5 badge-light text-secondary">Ganancia menos precio de premio/s</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="text-end">
+                    <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-danger">$ {{gananciamenosPP}}</span></span>
                           </div>
-                          <div class="form-group">
-                              <label>Imagen de premio principal</label>
-                              <input type="text" class="form-control" placeholder="Text" />
-                            </div>
-                          <div class="form-group">
-                            <label for="exampleFormControlSelect1">Example select</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                          </div>
-                        </form>
+                        </div>
                       </div>
+
+                      <div class="row">
+                        <div class="col-md-8">
+                       
+                        </div>
+                        <div class="col-md-4">
+                          <div class="text-end">
+                           
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-8">
+                          <span class="badge m-r-5 badge-light text-secondary">Ganancia % de la plataforma</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="text-end">
+                            <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-danger">$ {{gananciaPorcentajeEmpresa}} </span></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-8">
+                          <span class="badge m-r-5 badge-light text-secondary">Ganancia % de usuario</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="text-end">
+                            <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-danger">$ {{gananciaPorcentajeUsuario}}</span></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-8">
+                          <span class="badge m-r-5 badge-light text-secondary">Total de porcentajes</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="text-end">
+                            <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-danger">$ {{totalPorcentajes}}</span></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-8">
+                          <span class="badge m-r-5 badge-light text-secondary">Ganancia de usuario (retiro)</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="text-end">
+                            <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-danger">$ {{gananciaUsuario}}</span></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-8">
+                          <span class="badge m-r-5 badge-light text-secondary">Ganancia final de usuario</span>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="text-end">
+                            <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-danger">$ {{gananciaFinalUsuario}}</span></span>
+                          </div>
+                        </div>
+                      </div>
+
+
                     </div>
                     
-                </div>
+                   
                   </div>
-            </div>
-        <div class="col-md-3">
-          
-              
-           <div class="row">
-            <div class="card">
-                <div class="card-body ">
-             
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1" style="color: #505488;">Estado</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
+                  <div class="form-group text-center" style="margin-top: 10%;" >
+                    <button type="button" class="btn btn-icon btn-success d-inline-flex" (click)="consultar1()" *ngIf="btnConsult">
+                      <i class="feather icon-search"> Consultar</i>
+                    </button>
+                    <button type="button" class="btn btn-icon btn d-inline-flex text-light" *ngIf="btnClear" (click)="LimpiarDatos()" style="background-color: #505488;">
+                      <i class="feather icon-x"> Limpiar</i>
+                    </button>
                   </div>
 
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1" style="color: #505488;">Categoría</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-       
                 </div>
                 
             </div>
-        </div>
-
-
-        <button type="button" class="btn btn-success text-end"> <i class="feather icon-plus-circle me-1"></i>Agregar premio </button>
                
+            </div>
+
+
+             <div class="col-md-8" *ngIf="divCreate">
+              <div class="card">
+            <div class="card-body" >
+                   
+                <p class="text-secondary ">Acontinuación agregue los datos necesarios para crear su rifa</p>
+                      
+                    
+                <div class="row">
+                  <div class="col-md-12">
+                    <form action="javascript:">
+                      <div class="form-group">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label for="exampleInputEmail1" style="color: #505488;">Título de rifa</label>
+                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Título de rifa..."></textarea>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="exampleInputPassword1" style="color: #505488;">Descripción de rifa</label>
+                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de rifa..."></textarea>
+                            </div>
+                          </div>
+                        </div>
+                       
+                      </div>
+                      <div class="form-group">
+                       <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label for="exampleInputEmail1" style="color: #505488;">Cantidad de boletos</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 100" />
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1" style="color: #505488;">Números de boletos</label>
+                              <div class="input-group mb-3">
+                              <span class="input-group-text">Desde</span>
+                              <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ej: 1" />
+                              <span class="input-group-text">Hasta</span><input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ej: 100" />
+                            </div></div>
+                          </div>
+                        </div>
+                       </div>
+                      </div>
+                     
+                        <div class="form-group">
+                          <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label for="exampleInputEmail1" style="color: #505488;">Fecha y hora de sorteo</label>
+                              <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                            </div>
+                            <div class="col-md-6">
+                              <label for="exampleInputEmail1" style="color: #505488;">Tipo de sorteo</label>
+                              <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="0">Seleccione una opción...</option>
+                                <option value="1">Mediante Loteria Nacional</option>
+                                <option value="2">Mediante esta plataforma</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label for="exampleInputEmail1" style="color: #505488;">Número de premios</label>
+                              <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 1" />
+                            </div>
+                            <div class="col-md-6">
+                              <label for="exampleInputEmail1" style="color: #505488;">Costo boleto</label>
+                              <div class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ej: 1" />
+                                <span class="input-group-text">.00</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                      <div class="text-start" style="margin-top: 5%;">
+                        <button type="submit" class="btn btn text-light" style="background-color: #505488;" (click)="CrearRifa()">Crear</button>
+                      </div>
+                    
+                    </form>
+                  </div>
+                  
+                </div>
+                
+            </div>
+              </div>
+            </div>
 
         </div>
 
-        </div>   
+
+        <div class="row">
+          <div class="col-md-12" *ngIf="divUpdated">
+          <div class="card">
+            <div class="card-body">
+
+              <p class="text-secondary ">Agregue el o los premios para su rifa antes de publicarla</p>
+                    
+                  
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row">
+                    <app-card cardTitle="" cardClass=" order-card" [hidHeader]="true" >
+                      <h6 class=" text-center" style="color: #3e47c5;">Rifa título</h6>
+                      <p class="text-muted text-justify">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.
+                       El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". 
+                       Estos textos hacen parecerlo un español que se puede leer. </p>
+                       <div><span style="color: #3e47c5;">Fecha de sorteo: <span class="text-muted">12/02/2024</span></span></div>
+                       <div><span style="color: #3e47c5;">Tipo de sorteo: <span class="text-muted">Mediante Loteria Nacional</span></span></div>
+                       <div><span style="color: #3e47c5;">Total de premios: <span class="text-muted">4</span></span></div>
+                       <div style="margin-bottom: 3%;"><span style="color: #3e47c5;">Boletos a venderse:</span> <span class="text-muted"> 100 de el 00 al 99 por el precio de $1,00 por boleto. </span></div>
+                     
+                   
+                    </app-card>    
+                  </div>
+
+                   <div class="row">
+
+                    <div class="col-md-4 text-center">
+                      <span class="badge m-r-5 badge-light-primary text-center" type="button" style="font-size: medium;"><i class="feather icon-edit"></i> Editar datos de rifa</span>
+                    </div>
+                    <div class="col-md-4 text-center">
+                      <span class="badge m-r-5 badge-light-info text-center" type="button" style="font-size: medium;"><i class="feather icon-plus-square"></i> Agregar premio(s)</span>
+                    </div>
+                    <div class="col-md-4 text-center">
+                      <span class="badge m-r-5 badge-light-secondary " type="button" style="font-size: medium;"><i class="feather icon-check-square"></i> Publicar rifa</span>
+                   
+                    </div>
+                   </div>
+                     
+                      
+                          
+                  
+                  
+                  <div class="row" style="margin-top:5%">
+                    <p class="text-danger text-center"><i class="feather icon-alert-triangle"></i> No hay premios registrados aún!!!</p>
+                    
+                  </div>
+
+                  <!--sección premios-->
+                  <div class="row">
+             
+
+
+<div class="col-sm-6 col-lg-3 ">
+  <app-card [hidHeader]="true" blockClass="text-center">
+       <p style="font-weight: bold;">Premio 1</p>
+          
+            <ngb-carousel>
+              <ng-template ngbSlide>
+
+            <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+            <button class="boton-con-icono" title="Eliminar imagen">
+              <i class="fa fa-times-circle text-danger"></i> 
+            </button>
+            </ng-template>
+            <ng-template ngbSlide>
+              
+                <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%" class="contenedor-imagen">
+                <button class="boton-con-icono" title="Eliminar imagen">
+                  <i class="fa fa-times-circle text-danger"></i> 
+                </button>
+          </ng-template>
+          <ng-template ngbSlide>
+            
+        <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+        </ng-template>
+        <ng-template ngbSlide>
+          
+          <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
+          <button class="boton-con-icono" title="Eliminar imagen">
+            <i class="fa fa-times-circle text-danger" ></i> 
+          </button>
+      </ng-template>
+      <ng-template ngbSlide>
+        
+        <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+    </ng-template>
+            </ngb-carousel>
+    <div style="margin-top: 5%;">
+    <p class="text-muted">Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
+  
+      <div class="d-flex align-items-center">
+        <span class="badge m-r-5 badge-light-success " style="font-size: large;" type="button" title="Editar premio">
+          <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
+        </span>
+        <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
+          <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
+        </span>
       
-
-           
-
-
-   
-</div>
+      </div>
+     
+        <div class="m-l-auto d-flex gap-4">
+          <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
+            <i name="star" class="fa fa-trash" style="color:brown;" ></i>
+          </span>
+        </div>
+    </div>
   </div>
-                 
+  </app-card>
+</div>
+  
+
+<div class="col-sm-6 col-lg-3 ">
+  <app-card [hidHeader]="true" blockClass="text-center">
+       <p style="font-weight: bold;">Premio 2</p>
+          
+            <ngb-carousel>
+              <ng-template ngbSlide>
+
+            <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+            <button class="boton-con-icono" title="Eliminar imagen">
+              <i class="fa fa-times-circle text-danger"></i> 
+            </button>
+            </ng-template>
+            <ng-template ngbSlide>
+              
+                <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%" class="contenedor-imagen">
+                <button class="boton-con-icono" title="Eliminar imagen">
+                  <i class="fa fa-times-circle text-danger"></i> 
+                </button>
+          </ng-template>
+          <ng-template ngbSlide>
+            
+        <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+        </ng-template>
+        <ng-template ngbSlide>
+          
+          <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
+          <button class="boton-con-icono" title="Eliminar imagen">
+            <i class="fa fa-times-circle text-danger" ></i> 
+          </button>
+      </ng-template>
+      <ng-template ngbSlide>
+        
+        <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+    </ng-template>
+            </ngb-carousel>
+    <div style="margin-top: 5%;">
+    <p class="text-muted">Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
+  
+      <div class="d-flex align-items-center">
+        <span class="badge m-r-5 badge-light-success " style="font-size: large;" type="button" title="Editar premio">
+          <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
+        </span>
+        <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
+          <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
+        </span>
+      
+      </div>
+     
+        <div class="m-l-auto d-flex gap-4">
+          <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
+            <i name="star" class="fa fa-trash" style="color:brown;" ></i>
+          </span>
+        </div>
+    </div>
+  </div>
+  </app-card>
+</div>
+
+<div class="col-sm-6 col-lg-3 ">
+  <app-card [hidHeader]="true" blockClass="text-center">
+       <p style="font-weight: bold;">Premio 3</p>
+          
+            <ngb-carousel>
+              <ng-template ngbSlide>
+
+            <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+            <button class="boton-con-icono" title="Eliminar imagen">
+              <i class="fa fa-times-circle text-danger"></i> 
+            </button>
+            </ng-template>
+            <ng-template ngbSlide>
+              
+                <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%" class="contenedor-imagen">
+                <button class="boton-con-icono" title="Eliminar imagen">
+                  <i class="fa fa-times-circle text-danger"></i> 
+                </button>
+          </ng-template>
+          <ng-template ngbSlide>
+            
+        <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+        </ng-template>
+        <ng-template ngbSlide>
+          
+          <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
+          <button class="boton-con-icono" title="Eliminar imagen">
+            <i class="fa fa-times-circle text-danger" ></i> 
+          </button>
+      </ng-template>
+      <ng-template ngbSlide>
+        
+        <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+    </ng-template>
+            </ngb-carousel>
+    <div style="margin-top: 5%;">
+    <p class="text-muted">Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
+  
+      <div class="d-flex align-items-center">
+        <span class="badge m-r-5 badge-light-success " style="font-size: large;" type="button" title="Editar premio">
+          <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
+        </span>
+        <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
+          <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
+        </span>
+      
+      </div>
+     
+        <div class="m-l-auto d-flex gap-4">
+          <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
+            <i name="star" class="fa fa-trash" style="color:brown;" ></i>
+          </span>
+        </div>
+    </div>
+  </div>
+  </app-card>
+</div>
+
+<div class="col-sm-6 col-lg-3 ">
+  <app-card [hidHeader]="true" blockClass="text-center">
+       <p style="font-weight: bold;">Premio 4</p>
+          
+            <ngb-carousel>
+              <ng-template ngbSlide>
+
+            <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+            <button class="boton-con-icono" title="Eliminar imagen">
+              <i class="fa fa-times-circle text-danger"></i> 
+            </button>
+            </ng-template>
+            <ng-template ngbSlide>
+              
+                <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%" class="contenedor-imagen">
+                <button class="boton-con-icono" title="Eliminar imagen">
+                  <i class="fa fa-times-circle text-danger"></i> 
+                </button>
+          </ng-template>
+          <ng-template ngbSlide>
+            
+        <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+        </ng-template>
+        <ng-template ngbSlide>
+          
+          <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
+          <button class="boton-con-icono" title="Eliminar imagen">
+            <i class="fa fa-times-circle text-danger" ></i> 
+          </button>
+      </ng-template>
+      <ng-template ngbSlide>
+        
+        <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%" class="contenedor-imagen">
+        <button class="boton-con-icono" title="Eliminar imagen">
+          <i class="fa fa-times-circle text-danger"></i> 
+        </button>
+    </ng-template>
+            </ngb-carousel>
+    <div style="margin-top: 5%;">
+    <p class="text-muted">Boat Headphone</p>
+    <div class="d-flex align-items-center justify-content-between">
+  
+      <div class="d-flex align-items-center">
+        <span class="badge m-r-5 badge-light-success " style="font-size: large;" type="button" title="Editar premio">
+          <i name="star" class="fa fa-pencil" style="color:rgb(56, 158, 24) ;" ></i>
+        </span>
+        <span class="badge m-r-5 badge-light-primary" style="font-size: large;" type="button" title="Agregar imagen a premio">
+          <i name="star" class="fa fa-plus-circle" style="color:blue ;" ></i>
+        </span>
+      
+      </div>
+     
+        <div class="m-l-auto d-flex gap-4">
+          <span class="badge m-r-5 badge-light-danger" style="font-size: large;" type="button" title="Eliminar premio">
+            <i name="star" class="fa fa-trash" style="color:brown;" ></i>
+          </span>
+        </div>
+    </div>
+  </div>
+  </app-card>
+</div>
 
   
+  
+    
+  
+ 
+
+
+
+ </div>
+             
+                </div>
+                
+              </div>
+              
+            </div>
+          </div>
+          </div>
+        </div>
+
+    </div>   
+    
+</div>
+  
+                 
+
+<!--<button type="button" class="btn btn-success text-end"> <i class="feather icon-plus-circle me-1"></i>Agregar premio </button>-->
+               
+
 
 
 

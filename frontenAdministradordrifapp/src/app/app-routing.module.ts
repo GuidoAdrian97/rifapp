@@ -5,6 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 // project import
 import { AdminComponent } from './theme/layout/admin/admin.component';
 import { GuestComponent } from './theme/layout/guest/guest.component';
+import { ListUserComponent } from './demo/list-user/list-user.component';
+import { ConsignacionTipoComponent } from './demo/consignaciones/consignacion-tipo/consignacion-tipo.component';
+import { OpcConsignacionComponent } from './demo/consignaciones/opc-consignacion/opc-consignacion.component';
 
 const routes: Routes = [
   {
@@ -13,11 +16,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/analytics',
+        redirectTo: 'Inicio',
         pathMatch: 'full'
       },
       {
-        path: 'analytics',
+        path: 'Inicio',
         loadComponent: () => import('./demo/dashboard/dash-analytics/dash-analytics.component')
       },
       {
@@ -39,7 +42,16 @@ const routes: Routes = [
       {
         path: 'sample-page',
         loadComponent: () => import('./demo/sample-page/sample-page.component')
-      }
+      },
+      { 
+        path: 'listUser', component: ListUserComponent
+      },
+      { 
+        path: 'listConsignacion', component: ConsignacionTipoComponent
+      },
+      { 
+        path: 'opcConsigancion', component: OpcConsignacionComponent
+      },
     ]
   },
   {

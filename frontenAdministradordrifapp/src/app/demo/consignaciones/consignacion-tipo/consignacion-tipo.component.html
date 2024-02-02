@@ -1,0 +1,30 @@
+<div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="mb-3">Lista de Consiganciones</h5>
+        <ul class="nav nav-pills mb-3" ngbNav #nav1="ngbNav">
+          <li class="nav-item" [ngbNavItem]="1">
+            <a class="nav-link" style="margin-bottom: 10px !important;" ngbNavLink aria-controls="pills-home" aria-selected="true">En Espera</a>
+            <ng-template ngbNavContent >
+              <app-consignacion-espera></app-consignacion-espera>
+            </ng-template>
+          </li>
+          <li class="nav-item" [ngbNavItem]="2">
+            <a class="nav-link" ngbNavLink aria-controls="pills-home" aria-selected="true">Aprobadas</a>
+            <ng-template ngbNavContent>
+              <app-consignacion-aprobada></app-consignacion-aprobada>
+            </ng-template>
+          </li>
+          <li class="nav-item" [ngbNavItem]="3">
+            <a class="nav-link" ngbNavLink aria-controls="pills-home" aria-selected="true">Rechazadas</a>
+            <ng-template ngbNavContent>
+              <app-consignacion-rechazada></app-consignacion-rechazada>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav1" class="mt-2"></div>
+      </div>
+    </div>
+  </div>
+
+

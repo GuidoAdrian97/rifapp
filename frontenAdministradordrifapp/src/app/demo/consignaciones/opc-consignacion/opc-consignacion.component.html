@@ -1,0 +1,255 @@
+<div class="col-md-12" id="opcionespago">
+  <div class="row">
+    <div class="col-md-4">
+      <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true">
+
+        <img src="assets/images/gallery-grid/logo-Paypal.png" alt="Pago1" width="100%" class="welcome-img">
+        <div class="text-center">
+          <button type="button" class="btn btn-icon btn-success d-inline-flex">
+            <i class="feather icon-edit"> Editar</i>
+          </button>
+          <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
+        </div>
+        <div class="app-card-footer"> </div>
+      </app-card>
+    </div>
+    <div class="col-md-4">
+      <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true">
+
+        <img src="assets/images/gallery-grid/transferencia.png" alt="Pago1" width="100%" class="welcome-img"
+          style="padding-bottom: 10%;padding-top: 14%;">
+        <div class="text-center">
+          <button (click)="openModalListBanc(template)" type="button" class="btn btn-icon btn-success d-inline-flex">
+            <i class="feather icon-edit"> Editar</i>
+          </button>
+          <!--<a class="btn btn-link-success" role="button" href="javascript:"> Pago por Paypal</a>-->
+        </div>
+        <div class="app-card-footer"> </div>
+      </app-card>
+    </div>
+    <div class="col-md-4">
+      <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true">
+
+        <img src="assets/images/gallery-grid/tarjetaedit.png" alt="Pago1" width="100%" class="welcome-img">
+        <div class="text-center">
+          <button type="button" class="btn btn-icon btn-success d-inline-flex">
+            <i class="feather icon-edit"> Editar</i>
+          </button>
+        </div>
+        <div class="app-card-footer"> </div>
+      </app-card>
+    </div>
+    <!-- 
+      <div class="col-md-4" >
+        <app-card [hidHeader]="true" footerClass="border border-top-0 p-0 overflow-hidden" [isCardFooter]="true"  >
+     
+          <div class="text-center">
+            <img src="assets/images/gallery-grid/plus_.png" alt="Pago1" style="max-width: 200px; max-height: 150px;" class="welcome-img">
+          </div>
+          <div class="app-card-footer"> </div>
+        </app-card>
+      </div> -->
+  </div>
+
+</div>
+
+<ng-template #template class="modal-lg">
+  <div class="modal-header">
+    <h6 class="modal-title pull-left" style="color: rgb(39, 38, 41);">Tiulo </h6>
+    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide();aggBanco = false">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="aggBanco == false" class="modal-body">
+    <div class="col-md-12">
+      <div class="row">
+        <p style="color: #8e3cdb;">Indicaciones para recarga de saldo por transferencias</p>
+        <div ngbAccordion [closeOthers]="true">
+          <div ngbAccordionItem [destroyOnHide]="false" *ngFor="let count of data">
+            <h2 ngbAccordionHeader (click)="fresh()">
+              <button ngbAccordionButton>{{count.entidad}}</button>
+            </h2>
+            <div ngbAccordionCollapse>
+              <div ngbAccordionBody>
+                <ng-template>
+                  <p *ngIf="editar" class="text-justify">{{count.indicaciones}}</p>
+                  <textarea *ngIf="!editar" class="text-justify" class="form-control" required id="validationTextarea"
+                    placeholder="Required example textarea">{{count.indicaciones}}</textarea>
+                  <ul>
+                    <li *ngIf="editar"><span style="color: #8e3cdb;">Tipo de cuenta:</span> {{count.tipoCuenta}}</li>
+                    <li *ngIf="!editar">
+                      <div class="form-group row">
+                        <span class="col-sm-3 col-form-label" style="color: #8e3cdb;">Tipo de cuenta:</span>
+                        <div class="col-sm-3">
+                          <select id="inputState" class="form-control">
+                            <option selected>Ahorro</option>
+                            <option>Corriente</option>
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li *ngIf="editar"><span style="color: #8e3cdb;">No. Cuenta:</span> {{count.numero}}</li>
+                    <li *ngIf="!editar">
+                      <div class="form-group row">
+                        <span class="col-sm-3 col-form-label" style="color: #8e3cdb;">Número de cuenta:</span>
+                        <div class="col-sm-3">
+                          <input type="text" class="form-control" id="inputPassword" placeholder="Número de cuenta" />
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="text-center" style="margin-top: 2%;">
+                    <a class="btn btn-link-success" role="button" type="button" (click)="editar = true"
+                      *ngIf="!editar"><i class="feather icon-edit"> Guardar</i></a>
+                    <a class="btn btn-link-success" role="button" type="button" (click)="editar = false"
+                      *ngIf="editar"><i class="feather icon-edit"> Editar</i></a>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 10px !important; width: 100%;" class="text-center">
+          <button (click)="aggBanco = true" type="button" class="btn btn-icon btn-success d-inline-flex">
+            <i class="feather icon-edit"> Agregar nuevo metodo de transferencia</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+    <div *ngIf="aggBanco == true" style="padding-top: 0px;" class="modal-body">
+      <div class="col-md-12">
+        <div class="row">
+          <div style="background-color: rgb(246, 247, 251); padding-top: 15px;">
+            <textarea class="text-justify" class="form-control" required id="validationTextarea"
+                    placeholder="Required example textarea"></textarea>
+                  <!-- <ul>
+                    <li >
+                      <div class="form-group row">
+                        <span class="col-sm-3 col-form-label" style="color: #8e3cdb;">Nombre del Banco:</span>
+                        <div class="col-sm-6">
+                          <input type="text" class="form-control"  placeholder="Número de cuenta" />
+                        </div>
+                      </div>
+                    </li>
+                    <li >
+                      <div class="form-group row">
+                        <span class="col-sm-3 col-form-label" style="color: #8e3cdb;">Tipo de cuenta:</span>
+                        <div class="col-sm-3">
+                          <select id="inputState" class="form-control">
+                            <option selected>Ahorro</option>
+                            <option>Corriente</option>
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li >
+                      <div class="form-group row">
+                        <span class="col-sm-3 col-form-label" style="color: #8e3cdb;">Número de cuenta:</span>
+                        <div class="col-sm-3">
+                          <input type="text" class="form-control"  placeholder="Número de cuenta" />
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group row">
+                        <span class="col-sm-3 col-form-label" style="color: #8e3cdb;">Logo de cuenta:</span>
+                        <div class="col-sm-3">
+                          <input type="file" class="form-control" placeholder="Número de cuenta" />
+                        </div>
+                        <div class="col-sm-6">
+                          <img src="./../../../../assets/images/gallery-grid/tarjetaedit.png" alt="Logo" style="max-width: 100px; max-height: 100px; margin-left: 10px;" />
+                        </div>
+                      </div>
+                    </li>
+                  </ul> -->
+
+                  <div class="container">
+                    <div class="row">
+                      <!-- Columna izquierda -->
+                      <div class="col-md-8">
+                        <!-- Primer input -->
+                        <div class="form-group row">
+                          <span class="col-sm-4 col-form-label" style="color: #8e3cdb;">Nombre del Banco:</span>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control"  placeholder="Nombre del Banco" />
+                          </div>
+                        </div>
+                        
+                        <!-- Segundo input -->
+                        <div class="form-group row">
+                          <span class="col-sm-4 col-form-label" style="color: #8e3cdb;">Tipo de cuenta:</span>
+                          <div class="col-sm-8">
+                            <select id="inputState" class="form-control">
+                              <option selected>Ahorro</option>
+                              <option>Corriente</option>
+                            </select>
+                          </div>
+                        </div>
+                  
+                        <!-- Tercer input -->
+                        <div class="form-group row">
+                          <span class="col-sm-4 col-form-label" style="color: #8e3cdb;">Número de cuenta:</span>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control"  placeholder="Número de cuenta" />
+                          </div>
+                        </div>
+                  
+                        <!-- Cuarto input -->
+                        <div class="form-group row">
+                          <span class="col-sm-4 col-form-label" style="color: #8e3cdb;">Logo de cuenta:</span>
+                          <div class="col-sm-8">
+                            <input type="file" [(ngModel)]="nombreInput" (change)="onFileChange($event)"   class="form-control" placeholder="Número de cuenta" />
+                          </div>
+                        </div>
+                        
+                      </div>
+                  
+                      <!-- Columna derecha (imagen) -->
+                      <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <img *ngIf="!error" [src]="imagePath" alt="Logo" class="img-fluid" />
+                        <alert *ngIf="error" type="danger">
+                          <strong>Error!</strong> Solo se acepta archivos .png - .jpeg - .webp
+                        </alert>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="text-center" style="margin-top: 2%;">
+                    <a class="btn btn-link-success" role="button" type="button" (click)="aggBanco = false"
+                      *ngIf="editar"  style="font-size: 18px;"><i class="feather icon-edit"> Guardar</i></a>
+                  </div>
+          </div>
+                  
+        </div>
+      </div>
+    </div>
+
+</ng-template>
+
+
+
+<!-- <ng-template #template2 class="modal-lg">
+  <div class="modal-header">
+    <h6 class="modal-title pull-left" style="color: rgb(39, 38, 41);">Ttiulo </h6>
+    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="openModalListBanc(template)">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12">
+      <div class="row">
+        <p style="color: #8e3cdb;">Indicaciones para recarga de saldo por transferencias</p>
+       
+        <div style="margin-top: 10px !important; width: 100%;" class="text-center">
+          <button (click)="openModalListBanc(template)" type="button" class="btn btn-icon btn-success d-inline-flex">
+            <i class="feather icon-edit"> Agregar nuevo metodo de transferencia</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</ng-template> -->
