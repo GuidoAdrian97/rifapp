@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('type_tansacciones', function (Blueprint $table) {
+        Schema::create('referral_codes', function (Blueprint $table) {
             $table->id();
-            $table->string('type_tansacciones');
+            $table->string('code')->unique();
             $table->timestamps();
+        
+            $table->foreignId('user_id')->references('id')->on('users');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_tansacciones');
+        Schema::dropIfExists('referral_codes');
     }
 };

@@ -11,6 +11,12 @@ use Illuminate\Support\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Billetera\Wallet;
+use App\Models\Billetera\Tiposcuenta;
+use App\Models\Billetera\Cuenta;
+use App\Models\Referido\ReferralCode;
+use App\Models\Referido\level_user_referrals;
+use NumberFormatter;
 use Google_Client;
 
 class LoginController extends Controller
@@ -33,15 +39,14 @@ class LoginController extends Controller
 
         
             $user = User::firstOrNew(['google_id' => $payload['sub']]);
-$user->email = $payload['email'];
+            $user->email = $payload['email'];
 
-if (!$user->exists) {
-    // Si el usuario no existe por 'google_id', intenta buscarlo por 'email'
-    $user = User::firstOrNew(['email' => $payload['email']]);
-    $user->google_id = $payload['sub'];
-}
+            if (!$user->exists) {
+            $user = User::firstOrNew(['email' => $payload['email']]);
+            $user->google_id = $payload['sub'];
+            }
 
-$user->save();
+            $user->save();
 
 
             $value = true;
@@ -72,19 +77,70 @@ $user->save();
     public function Register(Request $request){
 
         
-        $user= new User();
-        
-        User::create([
+
+        $user=  User::create([
             'name' =>$request->name ,
             'email' =>$request->email,
             'identificacion'=> $request->identificacion,
             'telefono' => $request->telefono,
             'fecha_nacimiento'=> $request->fecha_nacimiento,
             'password' =>Hash::make($request->password)
-        ]); 
+        ]);
+        
+        $wallet= $user->wallet()->create([
+            'wallets_name' =>str_replace(' ', '-', $request->name).'_'.$request->identificacion,
+            'ganancias' =>0,
+            'transaccitions'=>0,
+        ]);
 
 
-        return response()->json(['menssage'=>'registro correcto']);
+        for ($i = 0; $i < 3; $i++) {
+
+           $wallet->cuentas()->create([
+            'cuenta' => $request->identificacion . "00" . ($i + 1),
+            'tiposcuenta_id' => 1+$i,
+        ]);
+        }
+
+
+        $user->referralcode()->create([
+            "code"=>str_replace(' ', '', $request->name).'_'.$request->identificacion
+        ]);
+
+        $referralCode = ReferralCode::where('code', $request->referrerCode)->first();
+
+        if (!$referralCode) {
+            $referralCode = ReferralCode::where('code', 'MasterCode_1311883845')->first();
+        }
+
+        $nivel_user=$referralCode->user->referredBy->level_referral;
+        if($nivel_user->level <= level_user_referrals::latest()->first()->level ){
+
+            $level;
+            $nivel = level_user_referrals::where('level', $nivel_user->level+1)->first();
+            if($nivel==null){
+
+                $formatter = new NumberFormatter('es', NumberFormatter::SPELLOUT);
+                $sluglevel = $formatter->format($nivel_user->level+1);
+                $level= level_user_referrals::create([
+                    'level'=>$nivel_user->level+1,
+                    'slug'=>$sluglevel,
+                 ]);
+                 
+            }else{
+
+                $level=$nivel;
+            }
+
+            $referral = $user->referrals()->create([
+                'referred_user_id' => $referralCode->user_id,
+                'level_user_referral_id' => $level->id, // Nivel inicial.
+            ]);
+
+        }
+
+        
+        return response()->json(['menssage'=>'registro correcto','code'=>'200']);
     }
 
     public function Login(Request $request){
@@ -156,6 +212,7 @@ $user->save();
 
 
     public function UpdateRegisterSocialite(Request $request){
+
         
         $client = new Google_Client(['client_id' => env('GOOGLE_TOKEN')]); 
         $payload = $client->verifyIdToken($request->accessToken);
@@ -170,9 +227,60 @@ $user->save();
             'password' =>Hash::make($request->password)
         ]);
 
-        
+        $wallet= $user->wallet()->create([
+            'wallets_name' =>str_replace(' ', '-', $request->name).'_'.$request->identificacion,
+            'ganancias' =>0,
+            'transaccitions'=>0,
+        ]);
 
-        return response()->json(['menssage'=>'registro correcto','code'=>'200']);
+
+        for ($i = 0; $i < 3; $i++) {
+
+            $wallet->cuentas()->create([
+             'cuenta' => $request->identificacion . "00" . ($i + 1),
+             'tiposcuenta_id' => 1+$i,
+         ]);
+         }
+ 
+ 
+         $user->referralcode()->create([
+             "code"=>str_replace(' ', '', $request->name).'_'.$request->identificacion
+         ]);
+ 
+         $referralCode = ReferralCode::where('code', $request->referrerCode)->first();
+ 
+         if (!$referralCode) {
+             $referralCode = ReferralCode::where('code', 'MasterCode_1311883845')->first();
+         }
+ 
+         $nivel_user=$referralCode->user->referredBy->level_referral;
+         if($nivel_user->level <= level_user_referrals::latest()->first()->level ){
+ 
+             $level;
+             $nivel = level_user_referrals::where('level', $nivel_user->level+1)->first();
+             if($nivel==null){
+ 
+                 $formatter = new NumberFormatter('es', NumberFormatter::SPELLOUT);
+                 $sluglevel = $formatter->format($nivel_user->level+1);
+                 $level= level_user_referrals::create([
+                     'level'=>$nivel_user->level+1,
+                     'slug'=>$sluglevel,
+                  ]);
+                  
+             }else{
+ 
+                 $level=$nivel;
+             }
+ 
+             $referral = $user->referrals()->create([
+                 'referred_user_id' => $referralCode->user_id,
+                 'level_user_referral_id' => $level->id, // Nivel inicial.
+             ]);
+ 
+         }
+ 
+         
+         return response()->json(['menssage'=>'registro correcto','code'=>'200']);
 
 
     }

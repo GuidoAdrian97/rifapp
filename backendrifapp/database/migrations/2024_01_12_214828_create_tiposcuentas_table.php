@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tansacciones', function (Blueprint $table) {
+        Schema::create('tiposcuentas', function (Blueprint $table) {
             $table->id();
-            $table->decimal('saldo_consumible', 14, 4)->default(0);
-            $table->string('stado_transaccion');
-            $table->dateTime('fecha_transaccion');
-            $table->foreignId('cuentas_id')->references('id')->on('cuentas');
-            $table->foreignId('type_tansacciones_id')->references('id')->on('type_tansacciones');
+            $table->string('type_cuenta')->unique();
+            $table->string('descripcion_type_cuenta');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tansacciones');
+        Schema::dropIfExists('tiposcuentas');
     }
 };

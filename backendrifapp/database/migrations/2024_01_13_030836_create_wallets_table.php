@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
-            $table->string('cuenta')->unique();
-            $table->decimal('saldo_consumible', 14, 4);
-            $table->decimal('saldo_retiro', 14, 4);
+            $table->string('wallets_name')->unique();
+            $table->decimal('ganancias', 14, 4)->default(0);
+            $table->integer('transaccitions')->default(0);
+            $table->decimal('saldo_retirado', 14, 4)->default(0);
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });

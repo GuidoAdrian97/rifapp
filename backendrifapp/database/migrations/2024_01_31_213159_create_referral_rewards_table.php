@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tansacciones', function (Blueprint $table) {
+        Schema::create('referral_rewards', function (Blueprint $table) {
             $table->id();
-            $table->decimal('saldo_consumible', 14, 4)->default(0);
-            $table->string('stado_transaccion');
-            $table->dateTime('fecha_transaccion');
-            $table->foreignId('cuentas_id')->references('id')->on('cuentas');
-            $table->foreignId('type_tansacciones_id')->references('id')->on('type_tansacciones');
+            $table->decimal('amount', 8, 2);
+            $table->string('status')->default('pendiente');
             $table->timestamps();
+        
+            $table->foreignId('referral_id')->references('id')->on('referrals');
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tansacciones');
+        Schema::dropIfExists('referral_rewards');
     }
 };

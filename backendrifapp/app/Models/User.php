@@ -45,4 +45,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function wallet()
+    {
+        return $this->hasOne(Billetera\Wallet::class);
+    }
+
+    public function referralcode()
+    {
+        return $this->hasOne(Referido\ReferralCode::class);
+    }
+
+    public function referrals()
+    {
+        return $this->hasMany(Referido\Referral::class, 'user_id');
+    }
+
+    public function referredBy()
+    {
+        return $this->hasOne(Referido\Referral::class, 'referred_user_id');
+    }
+
+    public function rewards()
+    {
+        return $this->hasMany(Referido\ReferralReward::class, 'referral_id');
+    }
 }
