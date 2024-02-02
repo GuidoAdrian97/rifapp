@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Install;
-
+use App\Http\Controllers\Referido\ReferidosController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,5 +31,7 @@ Route::post('validarcedula', [LoginController::class,'ValidarCedula']);
 Route::post('updateregistersocialite', [LoginController::class,'UpdateRegisterSocialite']);
 
 Route::get('isntall', [Install::class,'Install']);
+
+Route::get('ValidateCodeReferral', [ReferidosController::class,'ValidateCodeReferral']);
 
 Route::post('login/google/callback', [LoginController::class,'handleGoogleCallback']);
