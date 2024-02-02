@@ -20,7 +20,8 @@ export class AuthService {
       .set('telefono',datos.telefono)
       .set('fecha_nacimiento',datos.fecha_nacimiento)
       .set('email',datos.email)
-      .set('password',datos.password);
+      .set('password',datos.password)
+      .set('referrerCode',datos.referrerCode);
     const url = this.api + 'register';
     return this.httpClient.post<any>(url, body);
   }
@@ -69,6 +70,14 @@ export class AuthService {
     body.append('password', datos.password);
     const url = this.api + 'login';
     return this.httpClient.post<any>(url,body);
+  }
+
+  validarCodigoReferencia(referrerCode:any):Observable<any>{
+     // Utiliza el objeto HttpParams para incluir el parámetro
+     const params = new HttpParams().set('referrerCode', referrerCode);
+
+     // Realiza la solicitud GET con los parámetros y devuelve el observable
+     return this.httpClient.get(`${this.api}ValidateCodeReferral`, { params });
   }
   
 
