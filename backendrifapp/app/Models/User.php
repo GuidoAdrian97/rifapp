@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function referredBy()
     {
-        return $this->hasOne(Referido\Referral::class, 'referred_user_id');
+        return $this->hasOne(Referido\Referral::class, 'user_id');
     }
 
     public function rewards()

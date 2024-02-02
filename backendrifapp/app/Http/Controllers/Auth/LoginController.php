@@ -77,7 +77,6 @@ class LoginController extends Controller
     public function Register(Request $request){
 
         
-
         $user=  User::create([
             'name' =>$request->name ,
             'email' =>$request->email,
@@ -102,18 +101,14 @@ class LoginController extends Controller
         ]);
         }
 
-
-        $user->referralcode()->create([
-            "code"=>str_replace(' ', '', $request->name).'_'.$request->identificacion
-        ]);
-
         $referralCode = ReferralCode::where('code', $request->referrerCode)->first();
 
-        if (!$referralCode) {
+        if ($referralCode==null) {
             $referralCode = ReferralCode::where('code', 'MasterCode_1311883845')->first();
         }
 
         $nivel_user=$referralCode->user->referredBy->level_referral;
+
         if($nivel_user->level <= level_user_referrals::latest()->first()->level ){
 
             $level;
@@ -139,7 +134,9 @@ class LoginController extends Controller
 
         }
 
-        
+        $user->referralcode()->create([
+            "code"=>str_replace(' ', '', $request->name).'_'.$request->identificacion
+        ]);
         return response()->json(['menssage'=>'registro correcto','code'=>'200']);
     }
 
@@ -233,7 +230,6 @@ class LoginController extends Controller
             'transaccitions'=>0,
         ]);
 
-
         for ($i = 0; $i < 3; $i++) {
 
             $wallet->cuentas()->create([
@@ -242,18 +238,14 @@ class LoginController extends Controller
          ]);
          }
  
- 
-         $user->referralcode()->create([
-             "code"=>str_replace(' ', '', $request->name).'_'.$request->identificacion
-         ]);
- 
          $referralCode = ReferralCode::where('code', $request->referrerCode)->first();
  
-         if (!$referralCode) {
+         if ($referralCode==null) {
              $referralCode = ReferralCode::where('code', 'MasterCode_1311883845')->first();
          }
  
          $nivel_user=$referralCode->user->referredBy->level_referral;
+ 
          if($nivel_user->level <= level_user_referrals::latest()->first()->level ){
  
              $level;
@@ -279,15 +271,12 @@ class LoginController extends Controller
  
          }
  
-         
+         $user->referralcode()->create([
+             "code"=>str_replace(' ', '', $request->name).'_'.$request->identificacion
+         ]);
          return response()->json(['menssage'=>'registro correcto','code'=>'200']);
 
-
     }
-    
-
-    
-
 
 
 
