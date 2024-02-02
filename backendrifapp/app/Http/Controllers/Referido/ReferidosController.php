@@ -17,12 +17,12 @@ class ReferidosController extends Controller
 
         return response()->json([
             'message' => 'Código de referido válido',
-        ], 200);
+        ]);
     } else {
         // El código de referido no es válido
         return response()->json([
             'error' => 'Código de referido no válido',
-        ], 404);
+        ]);
     }
     }
 }
