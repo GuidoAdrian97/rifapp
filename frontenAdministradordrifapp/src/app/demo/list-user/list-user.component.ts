@@ -4,8 +4,6 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 
 @Component({
   selector: 'app-list-user',
-  standalone: true,
-  imports: [CommonModule, SharedModule],
   templateUrl: './list-user.component.html',
   styleUrls: ['./list-user.component.scss']
 })

@@ -35,6 +35,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ListUserComponent } from './demo/list-user/list-user.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,12 +60,12 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ConsignacionRechazadaComponent,
     ConsignacionTipoComponent,
     ConsignacionEsperaComponent,
-  
+    ListUserComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,MatSliderModule,
     MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,
-    ModalModule.forRoot()],
+    ModalModule.forRoot(),AlertModule],
   providers: [],
   
   bootstrap: [AppComponent]
