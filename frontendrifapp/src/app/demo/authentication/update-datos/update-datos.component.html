@@ -22,7 +22,7 @@
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-calendar"></i></span>
-                <input type="date" [(ngModel)]="fecha_nacimientoUpdated" class="form-control" placeholder="Ingrese fecha de nacimiento" aria-label="date" aria-describedby="basic-addon1" 
+                <input type="date" (change)="inputsValidado()" [(ngModel)]="fecha_nacimientoUpdated" class="form-control" placeholder="Ingrese fecha de nacimiento" aria-label="date" aria-describedby="basic-addon1" 
                 [max]="maxFechaPermitida" />
               </div>
               <div class="input-group mb-3">
@@ -43,6 +43,18 @@
                 <small *ngIf="passwordError == true && passwordUpdated.length >30" id="passwordHelpInline" class="form-text text-muted" style="font-size: 11.2px; text-align: left; color: #ff5370 !important;"
                 >{{messagePassword}}</small>
               </div>
+              <div class="input-group mb-3">
+                <input (click)="funcion()" type="checkbox" class="custom-control-input" id="customControlValidation1" required/>
+                <label class="custom-control-label ps-2" style="font-size: 12px; text-align: left;" for="customControlValidation1">Tengo un codigo de referido</label>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa fa-code-branch"></i></span>
+                <input [disabled]="habilitarCode"  type="text" required (blur)="codValidated($event)"
+                  [(ngModel)]="referrerCode"  class="form-control" placeholder="Ingrese codigo de afiliación"
+                  aria-label="afiliacion" aria-describedby="basic-addon1" />
+                <small *ngIf="codigoError == true" id="codigodHelpInline" class="form-text text-muted"
+                  style="font-size: 11.2px; text-align: left; color: #ff5370 !important; width: 215px;">{{messageCodigo}}</small>
+                </div>
               <div class="d-grid">
                 <button [disabled]="btnDisabled" class="btn btn-primary btn-block mb-4" (click)="actualizarCuenta()">Actualizar</button>
               </div>

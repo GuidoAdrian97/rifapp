@@ -60,6 +60,7 @@ export class AuthService {
     body.append('fecha_nacimiento', datos.fecha_nacimiento);
     body.append('password', datos.password);
     body.append('name', datos.name);
+    body.append('referrerCode', datos.referrerCode);
     const url = this.api + 'updateregistersocialite';
     return this.httpClient.post<any>(url,body);
   } 
@@ -78,6 +79,10 @@ export class AuthService {
 
      // Realiza la solicitud GET con los parámetros y devuelve el observable
      return this.httpClient.get(`${this.api}ValidateCodeReferral`, { params });
+  }
+
+  referidoPrincipal():Observable<any>{
+    return this.httpClient.get(`${this.api}ReferidoPrincipal`);
   }
   
 

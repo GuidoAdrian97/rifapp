@@ -63,7 +63,7 @@ const routes: Routes = [
     component: GuestComponent,
     children: [
       {
-        path: 'auth/signup/:{user}',
+        path: 'auth/signup/:referrerCode',
         loadComponent: () => import('./demo/authentication/sign-up/sign-up.component')
       },
       {

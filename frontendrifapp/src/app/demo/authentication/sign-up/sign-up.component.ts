@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,10 +20,25 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 export default class SignUpComponent {
 
-  constructor(private authService:AuthService, private router: Router,private spinner: NgxSpinnerService){
+  constructor(private authService:AuthService,private route:ActivatedRoute, private router: Router,private spinner: NgxSpinnerService){
     const fechaActual = new Date();
     const fechaMinima = new Date(fechaActual.getFullYear() - 18, fechaActual.getMonth(), fechaActual.getDate() + 1);
     this.maxFechaPermitida = fechaMinima.toISOString().split('T')[0];
+    const parametroId = this.route.snapshot.params['referrerCode'];
+    if(parametroId){
+      this.referrerCode = parametroId;
+      this.validarCodigo(parametroId)
+    }else{
+      this.authService.referidoPrincipal().subscribe({
+        next:rest =>{
+          this.referidoPrincipal = rest.ReferidoCode;
+          this.referrerCode = this.referidoPrincipal;
+        },error:error =>{
+          this.onError();
+        }
+      })
+    }
+    
     sessionStorage.clear();
     localStorage.clear();
   }
@@ -48,6 +64,7 @@ export default class SignUpComponent {
 
 
   limitarLongitud(event: any,typeDato:any) {
+    debugger
     const valorIngresado: string = event.target.value;
     if(typeDato == 'dni'){
       if(valorIngresado.length == 10){
@@ -56,11 +73,18 @@ export default class SignUpComponent {
       }else{
         this.name = "";
         this.nameRegister = false;
+        this.dniError = true;
+        this.messageDni = "Ingrese un número de cédula valido porfavor"
+        this.inputsValidado();
       }
     }
     if(typeDato=='tlf'){
       if(valorIngresado.length == 10){
         this.validarDatos(typeDato);
+      }else{
+        this.tlfError = true;
+        this.messageTlf = "Ingrese un número de teléfono valido porfavor"
+        this.inputsValidado();
       }
     }
   }
@@ -81,6 +105,7 @@ export default class SignUpComponent {
       } else {
         this.tlfError = false
       }
+      this.inputsValidado()
     }
   
 
@@ -100,7 +125,24 @@ export default class SignUpComponent {
   }
 
   name:string=""; identificacion:string=""; telefono:string=""; fecha_nacimiento:string=""; email:string=""; password:string="";
-  referrerCode:string = "MasterCode_1311883845";
+  referrerCode:string = ""; referidoPrincipal:string = "";
+  onSuccess() {
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Tu cuenta se ha credado correctamente',
+      showConfirmButton: false,
+      timer: 1000
+    });
+  }
+
+  onError() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Algo salío mal. Reintentalo más tarde!',
+    });
+  }
   crearCuenta(){
     this.spinner.show();
     let data = {
@@ -115,10 +157,12 @@ export default class SignUpComponent {
     this.authService.authUser(data).subscribe({
       next: rest => {
         console.log(rest);
+
           this.spinner.hide();
+          this.onSuccess();
         this.router.navigate(['/auth/signin']);
       },error:error =>{
-        console.log(error);
+        this.onError();
         this.spinner.hide();  
       }
     })
@@ -136,6 +180,7 @@ export default class SignUpComponent {
         }else{
           this.dniError = true;
         this.messageDni="Ingrese un número de cédula valido porfavor";
+        debugger
         this.loader = false;
         }
 
@@ -204,6 +249,7 @@ export default class SignUpComponent {
       debugger
       this.btnDisabled = false;
     }else{
+      debugger
       this.btnDisabled = true;
     }
   }
@@ -214,38 +260,44 @@ export default class SignUpComponent {
       this.codigoError = true;
       this.messageCodigo = "Ingrese un codigo de referido";
     }else {
-      this.authService.validarCodigoReferencia(referrerCode).subscribe({
-        next:rest =>{
-          if(rest.error){
-            debugger
-            this.codigoError = true
-            this.messageCodigo = rest.error;
-          }else{
-            this.codigoError = false;
-          }
-          this.inputsValidado();
-        },error : error => {
-          console.log(error)
-        }
-      })
+      this.validarCodigo(referrerCode);
     }
     debugger
+  }
+
+  validarCodigo(referrerCode:any){
+    this.authService.validarCodigoReferencia(referrerCode).subscribe({
+      next:rest =>{
+        if(rest.error){
+          debugger
+          this.codigoError = true
+          this.messageCodigo = rest.error;
+        }else{
+          this.codigoError = false;
+        }
+        this.inputsValidado();
+      },error : error => {
+        this.onError();
+      }
+    })
   }
 
   funcion(){
     this.referrerCode = "";
     this.inputsValidado();
     if(this.habilitarCode == false){
-      this.referrerCode = "MasterCode_1311883845"
+      this.referrerCode = this.referidoPrincipal;
       this.codigoError = false
       this.inputsValidado();
+    }
+    const parametroId = this.route.snapshot.params['referrerCode'];
+    if(parametroId && !this.habilitarCode){
+      this.referrerCode = parametroId;
+      this.validarCodigo(parametroId);
     }
     this.habilitarCode = !this.habilitarCode 
   }
 
-  desabilitarBoton(){
-    this.btnDisabled = true
-  }
 
 
  
