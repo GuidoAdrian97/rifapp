@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Referido;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Referido\ReferralCode;
+use App\Models\Referido\Principalreferral;
 class ReferidosController extends Controller
 {
     public function ValidateCodeReferral(Request $request){
@@ -25,4 +26,19 @@ class ReferidosController extends Controller
         ]);
     }
     }
+
+    public function ActivarReferidoPrincipal(Request $request){
+
+
+     }
+
+     public function ReferidoPrincipal(Request $request){
+        $referralPrincipal = Principalreferral::where('estado', true)->latest()->first();
+
+        return response()->json(['ReferidoCode'=> $referralPrincipal->referralcode->code]);
+
+    }
+
+
+
 }

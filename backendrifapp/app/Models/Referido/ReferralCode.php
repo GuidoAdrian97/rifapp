@@ -15,4 +15,11 @@ class ReferralCode extends Model
     {
         return $this->belongsTo(\App\Models\User::class);
     }
+
+    public function principalreferral()
+    {
+        return $this->hasOne(Principalreferral::class);
+    }
+
+
 }

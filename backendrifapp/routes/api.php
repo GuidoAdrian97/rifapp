@@ -33,5 +33,6 @@ Route::post('updateregistersocialite', [LoginController::class,'UpdateRegisterSo
 Route::get('isntall', [Install::class,'Install']);
 
 Route::get('ValidateCodeReferral', [ReferidosController::class,'ValidateCodeReferral']);
+Route::get('ReferidoPrincipal', [ReferidosController::class,'ReferidoPrincipal']);
 
 Route::post('login/google/callback', [LoginController::class,'handleGoogleCallback']);

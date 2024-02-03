@@ -16,6 +16,7 @@ use App\Models\Billetera\Tiposcuenta;
 use App\Models\Billetera\Cuenta;
 use App\Models\Referido\ReferralCode;
 use App\Models\Referido\level_user_referrals;
+use App\Models\Referido\Principalreferral;
 use Google_Client;
 
 class Install extends Controller
@@ -62,15 +63,17 @@ class Install extends Controller
             'slug'=>'cero',
          ]);
 
-
-
         $user->referrals()->create([
             'referred_user_id' => $user->id,
             'level_user_referral_id' => $level->id, // Nivel inicial.
         ]);
 
-         $user->referralcode()->create([
+        $CodeReferido= $user->referralcode()->create([
             "code"=>'MasterCode_1311883845'
+        ]);
+
+        $CodeReferido->principalreferral()->create([
+            "estado"=>true,
         ]);
 
      }
