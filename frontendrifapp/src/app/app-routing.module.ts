@@ -63,6 +63,10 @@ const routes: Routes = [
     component: GuestComponent,
     children: [
       {
+        path: 'auth/signup/:{user}',
+        loadComponent: () => import('./demo/authentication/sign-up/sign-up.component')
+      },
+      {
         path: 'auth/signup',
         loadComponent: () => import('./demo/authentication/sign-up/sign-up.component')
       },

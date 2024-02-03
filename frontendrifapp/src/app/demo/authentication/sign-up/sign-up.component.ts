@@ -16,6 +16,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
+
 export default class SignUpComponent {
 
   constructor(private authService:AuthService, private router: Router,private spinner: NgxSpinnerService){
@@ -41,6 +42,9 @@ export default class SignUpComponent {
   passwordError:boolean = false;
   maxFechaPermitida: string;
   btnDisabled:boolean = true;
+  messageCodigo:string="";
+  codigoError:boolean = false;
+  habilitarCode:boolean = true
 
 
   limitarLongitud(event: any,typeDato:any) {
@@ -96,6 +100,7 @@ export default class SignUpComponent {
   }
 
   name:string=""; identificacion:string=""; telefono:string=""; fecha_nacimiento:string=""; email:string=""; password:string="";
+  referrerCode:string = "MasterCode_1311883845";
   crearCuenta(){
     this.spinner.show();
     let data = {
@@ -104,7 +109,8 @@ export default class SignUpComponent {
       telefono:this.telefono,
       fecha_nacimiento:this.fecha_nacimiento,
       email:this.email,
-      password:this.password
+      password:this.password,
+      referrerCode:this.referrerCode
     }
     this.authService.authUser(data).subscribe({
       next: rest => {
@@ -194,11 +200,51 @@ export default class SignUpComponent {
     if(this.identificacion != '' && this.dniError == false && this.name != '' 
     && this.fecha_nacimiento != ''  && this.telefono != ''
     && this.tlfError == false && this.email != '' && this.emailError ==false 
-    && this.password != '' && this.passwordError == false){
+    && this.password != '' && this.passwordError == false && this.codigoError == false && this.referrerCode != ''){
+      debugger
       this.btnDisabled = false;
     }else{
       this.btnDisabled = true;
     }
+  }
+
+  codValidated(event:any){
+    const referrerCode = event.target.value;
+    if(referrerCode == ""){
+      this.codigoError = true;
+      this.messageCodigo = "Ingrese un codigo de referido";
+    }else {
+      this.authService.validarCodigoReferencia(referrerCode).subscribe({
+        next:rest =>{
+          if(rest.error){
+            debugger
+            this.codigoError = true
+            this.messageCodigo = rest.error;
+          }else{
+            this.codigoError = false;
+          }
+          this.inputsValidado();
+        },error : error => {
+          console.log(error)
+        }
+      })
+    }
+    debugger
+  }
+
+  funcion(){
+    this.referrerCode = "";
+    this.inputsValidado();
+    if(this.habilitarCode == false){
+      this.referrerCode = "MasterCode_1311883845"
+      this.codigoError = false
+      this.inputsValidado();
+    }
+    this.habilitarCode = !this.habilitarCode 
+  }
+
+  desabilitarBoton(){
+    this.btnDisabled = true
   }
 
 
