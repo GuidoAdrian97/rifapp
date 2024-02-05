@@ -12,6 +12,7 @@ interface RecargaSaldo {
   tipoCuenta:string;
   tipoRecarga:string;
   indicaciones:string;
+  logo:string;
 }
 
 @Component({
@@ -25,9 +26,9 @@ export class ConfigurationComponent {
     { id:1,entidad:'Banco Pichincha',nombre: 'Juan', numero: 25 ,tipoCuenta:'Corriente',tipoRecarga:'Transferencia',indicaciones:' Acercate a cualquier punto Banco Pichincha e indica que haras una transferencia. '+
     'Da los datos correspondientes al tipo de cuenta, número y valor de consignación.'+
    'Una vez realizado el pago por favor sube una foto del comprobante a través del botón reportar consignación.'+
-   'Tu consignación será procesada en horario laboral de lunes a domingo de 9:00 am a 9:00 pm, consignación mínima de 2 USD.'},
-    { id:2,entidad:'Banco Guayaquil',nombre: 'Maria', numero: 45 ,tipoCuenta:'Corriente',tipoRecarga:'Transferencia',indicaciones:'prueba1'},
-    { id:3,entidad:'Banco BanEcuador',nombre: 'Adam', numero: 611 ,tipoCuenta:'Ahorro',tipoRecarga:'Transferencia',indicaciones:'prueba2'},
+   'Tu consignación será procesada en horario laboral de lunes a domingo de 9:00 am a 9:00 pm, consignación mínima de 2 USD.',logo:'assets/images/gallery-grid/logobp2.png'},
+    { id:2,entidad:'Banco Guayaquil',nombre: 'Maria', numero: 45 ,tipoCuenta:'Corriente',tipoRecarga:'Transferencia',indicaciones:'prueba1',logo:'assets/images/gallery-grid/logobg.png'},
+    { id:3,entidad:'Banco BanEcuador',nombre: 'Adam', numero: 611 ,tipoCuenta:'Ahorro',tipoRecarga:'Transferencia',indicaciones:'prueba2',logo:'assets/images/gallery-grid/logobe.png'},
 
     // Puedes agregar más datos según sea necesario
   ];

@@ -36,6 +36,7 @@ import { UserProfileComponent } from './demo/user-profile/user-profile.component
 import { Page403Component } from './pageError/page403/page403.component';
 import { CreateRifasComponent } from './demo/create-rifas/create-rifas.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxFileDropModule } from 'ngx-file-drop';
 // import {
 //   SocialLoginModule,
 //   SocialAuthServiceConfig
@@ -71,7 +72,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,
-    NgbCarouselModule,ModalModule.forRoot(), OAuthModule.forRoot(),NgxSpinnerModule
+    NgxFileDropModule,NgbCarouselModule,ModalModule.forRoot(), OAuthModule.forRoot(),NgxSpinnerModule
   ],
   providers: [
     

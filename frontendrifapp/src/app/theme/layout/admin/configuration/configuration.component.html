@@ -95,7 +95,9 @@
               <ngb-accordion [closeOthers]="true" *ngFor="let count of data">
                 <ngb-panel id='static-count.id'>
                   <ng-template ngbPanelTitle>
-                    <a href="javascript:">{{count.entidad}}</a>
+                    <a href="javascript:">
+                      <img class=" img-radius" src={{count.logo}} alt="Generic placeholder image" style="width: 50px; height: 50px;" />
+                      {{count.entidad}}</a>
                   </ng-template>
                   <ng-template ngbPanelContent>
                     <p class="text-justify">{{count.indicaciones}}</p>

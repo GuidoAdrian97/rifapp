@@ -15,3 +15,15 @@
     cursor: pointer;
     font-size: 16px; /* Ajusta el tamaño del texto según tus necesidades */
   }
+
+  .bag-step-active{
+   background-color: rgb(47, 100, 170);
+    border-radius:35px 35px 35px 35px;
+
+  }
+
+  .bag-step-desactive{
+    background-color: rgb(131, 132, 136);
+    border-radius:35px 35px 35px 35px;
+
+  }
