@@ -20,7 +20,7 @@
                     <hr style="size: 100%; background-color: #c0c0c7;">
                     </div>
                   </div>
-                 
+                
                 </div>
                 <div class="col-md-3">
                   <div class="row">
@@ -83,7 +83,7 @@
    
     <div class="form-group">
       <label for="exampleInputEmail1" style="color: #868cd4;">Seleccione tipo de sorteo</label>
-      <select class="form-control" id="exampleFormControlSelect1">
+      <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="opcSorteo">
         <option value="0">Seleccione una opción...</option>
         <option value="1">Mediante Loteria Nacional</option>
         <option value="2">Mediante esta plataforma</option>
@@ -93,21 +93,22 @@
       <label for="exampleInputEmail1" style="color: #868cd4;">Ingrese el total de precio de premio/s</label>
       <div class="input-group mb-3">
       <span class="input-group-text">$</span>
-      <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"  [(ngModel)]="precioTotalpremio" />
-      <span class="input-group-text">.00</span></div>
+      <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"  [(ngModel)]="precioTotalpremio" name="totalPremio" />
+     </div>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1" style="color: #868cd4;">Ingrese precio de rifa por boleto</label>
       <div class="input-group mb-3">
       <span class="input-group-text">$</span>
-      <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"  [(ngModel)]="precioRifaboleto"/>
-      <span class="input-group-text">.00</span></div>
+      <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"   [(ngModel)]="precioRifaboleto" name="precioBoleto"/>
+
+    </div>
     </div>
 
     <div class="text-center">
       <span class="badge m-r-5 badge-light-light " style="font-size: small; color: #9297e9;">Número mínimo de boletos a vender</span>
    
-      <span class="badge m-r-5 badge-light-light " style="font-size: medium; color: #7c80c9;">{{numBoletos}}</span>
+      <span class="badge m-r-5 badge-light-light " style="font-size: medium; color: #7c80c9;">{{minBoletos}}</span>
   </div>
 
 
@@ -185,7 +186,7 @@
   
           <div class="row">
             <div class="col-md-8">
-              <span class="badge m-r-5 badge-light text-secondary" style="font-size: small;">Ganancia % de la plataforma</span>
+              <span class="badge m-r-5 badge-light text-secondary" style="font-size: small;">Costo por uso de plataforma</span>
             </div>
             <div class="col-md-4">
               <div class="text-end">
@@ -194,27 +195,9 @@
             </div>
           </div>
   
-          <div class="row">
-            <div class="col-md-8">
-              <span class="badge m-r-5 badge-light text-secondary" style="font-size: small;">Ganancia % de usuario</span>
-            </div>
-            <div class="col-md-4">
-              <div class="text-end">
-                <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-primary" style="font-size: medium;">$ {{gananciaPorcentajeUsuario}}</span></span>
-              </div>
-            </div>
-          </div>
+         
   
-          <div class="row">
-            <div class="col-md-8">
-              <span class="badge m-r-5 badge-light text-secondary" style="font-size: small;">Total de porcentajes</span>
-            </div>
-            <div class="col-md-4">
-              <div class="text-end">
-                <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-primary" style="font-size: medium;">$ {{totalPorcentajes}}</span></span>
-              </div>
-            </div>
-          </div>
+       
   
           <div class="row">
             <div class="col-md-8">
@@ -238,16 +221,7 @@
             </div>
           </div>
   
-          <div class="row">
-            <div class="col-md-8">
-              <span class="badge m-r-5 badge-light text-secondary" style="font-size: small;">Ganancia total de usuario</span>
-            </div>
-            <div class="col-md-4">
-              <div class="text-end">
-                <span class="text-muted ms-2"><span class="badge m-r-5 badge-light-primary" style="font-size: medium;">$ {{gananciaFinalconCostoPremio}}</span></span>
-              </div>
-            </div>
-          </div>
+       
   
   
         </div>
@@ -265,57 +239,91 @@
                <div class="form-group">
                  <div class="col-md-12">
                    <div class="row">
+                    <div class="col-md-6">
+                      <img alt="imgSrc" src="assets/images/gallery-grid/Cap3.png" width="80%" class="contenedor-imagen">
+                    </div>
                      <div class="col-md-6">
+
                        <label for="exampleInputEmail1" style="color: #868cd4;">Tipo de sorteo</label>
-                       <select class="form-control" id="exampleFormControlSelect1">
+                       <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo1" [(ngModel)]="opcSorteo" >
                          <option value="0">Seleccione una opción...</option>
                          <option value="1">Mediante Loteria Nacional</option>
                          <option value="2">Mediante esta plataforma</option>
                        </select>
-                     </div>
-                     <div class="col-md-6">
-                       <label for="exampleInputEmail1" style="color: #868cd4;">Fecha y hora de sorteo</label>
-                       <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                     </div>
-                   </div>
-                   <div class="row" style="margin-top: 2%;">
-                     <div class="col-md-6">
+                     
+                       <label for="exampleInputEmail1" style="color: #868cd4;">Fecha de sorteo</label>
+                       <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fechaSorteo" [(ngModel)]="fechaSorteo" />
+                    
+                  
+                   
+                 
                        <label for="exampleInputEmail1" style="color: #868cd4;">Título de rifa</label>
-                       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Título de rifa..."></textarea>
-                     </div>
-                     <div class="col-md-6">
+                       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Título de rifa..." name="tituloRifa" [(ngModel)]="tituloRifa"></textarea>
+                   
+                
                        <label for="exampleInputPassword1" style="color: #868cd4;">Descripción de rifa</label>
-                       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de rifa..."></textarea>
-                     </div>
-                   </div>
+                       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de rifa..." name="descripRifa" [(ngModel)]="descripRifa"></textarea>
+                   
+                 
 
-                   <div class="row" style="margin-top: 2%;">
-                     <div class="col-md-4">
-                       <label for="exampleInputEmail1" style="color: #868cd4;">Cantidad de boletos</label>
-                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 100" />
+                   
+                     <div class="col-md-4" *ngIf="opcSorteo==2">
+                       <label for="exampleInputEmail1" style="color: #868cd4;">Cantidad de boletos a vender</label>
+                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 100" name="numBoletos" [(ngModel)]="numBoletos" />
                      </div>
-                     <div class="col-md-4">
+                    
+                     <div class="col-md-4" *ngIf="opcSorteo==1">
+                      <label for="exampleInputEmail1" style="color: #868cd4;">Intervalo de boletos</label>
+                      <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="numBoletos">
+                        <option value="0">Seleccione una opción...</option>
+                        <option value="100">00 - 99</option>
+                        <option value="1000">000 - 999</option>
+                        <option value="10000">0000 - 9999</option>
+                        <option value="100000">000000 - 999999</option>
+                      </select>
+                     </div>
+
+
+                     
                       <label for="exampleInputEmail1" style="color: #868cd4;">Costo boleto</label>
                        <div class="input-group mb-3">
                          <span class="input-group-text">$</span>
-                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ej: 1" />
-                         <span class="input-group-text">.00</span>
+                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ej: 1" [(ngModel)]="precioRifaboleto" name="precioBoleto" />
                        </div>
                        
-                     </div>
-                     <div class="col-md-4">
+                   
+                  
                       <label for="exampleInputEmail1" style="color: #868cd4;">Número de premios</label>
-                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 1" />
-                     </div>
+                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 1" name="numTotalPremios" [(ngModel)]="premiosCantidad"/>
+                     
 
 
 
-                   </div>
+               
+            
 
-                 </div>
+               
+                      <label for="exampleInputEmail1" style="color: #868cd4;">Porcentaje mínimo de boletos por persona</label>
+                    
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ej: 1" name="porcentajeBoletosMin"  [(ngModel)]="porcentajeMinBoletos" />
+                        <span class="input-group-text">%</span>
+              
+                        <span class="input-group-text" type="button" (click)="ConsultarMinBoletosxPersona(numBoletos)"><i class="fa fa-refresh" aria-hidden="true"> Consultar mínimo de boletos</i></span>
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ej: 1" name="minBoletosPersona"  [(ngModel)]="minBoletosxPersona" disabled="" />
+                       
+                      </div>
+                   
+                   
+                 
+                 
+                   
+
+                    </div>
                 
                </div>
-               
+              </div>
+            </div>
                <div class="text-center" style="margin-top: 2%;">
                  <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="CrearRifa()" style="background-color: #505488;">
                    <i class="feather icon-save"> Guardar</i>
@@ -350,36 +358,69 @@
                     <div class="row" style="margin-top: 2%;">
                       <div class="col-md-6">
                         <label for="exampleInputEmail1" style="color: #868cd4;">Estado de premio</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                          <option value="0">Seleccione una opción...</option>
-                          <option value="1">Excelente</option>
-                          <option value="2">Bueno</option>
-                          <option value="3">Regular</option>
-                          <option value="4">Malo</option>
-                        </select>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                          <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">3
+                            <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                          </span></label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                          <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">3.5
+                            <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                          </span></label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                          <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">4
+                            <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                          </span></label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                          <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">4.5
+                            <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                          </span></label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" />
+                          <label class="custom-control-label ps-2" for="customRadio2"><span class="badge m-r-5 badge-light-warning">5
+                            <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                          </span></label>
+                        </div>
+                        
                       </div>
                       <div class="col-md-6">
-                        <label for="exampleInputEmail1" style="color: #868cd4;">Categoría de premio</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: Tecnología" />
+                        <label for="exampleInputEmail1" style="color: #868cd4;">Categorías de premio</label>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                          <label class="custom-control-label ps-2" for="customCheck1">Hogar</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                          <label class="custom-control-label ps-2" for="customCheck1">Efectivo</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                          <label class="custom-control-label ps-2" for="customCheck1">Vehículos</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                          <label class="custom-control-label ps-2" for="customCheck1">Tecnología</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                         <span class="badge m-r-5 badge-success text-muted" style="font-size: medium;" type="button" (click)="AgregarCategoria()">
+                            <i name="star" class="fa fa-plus" style="color: rgb(36, 133, 60);" ></i>Agregar otra
+                          </span>
+                          <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                          <label class="custom-control-label ps-2" for="customCheck1">Otra</label>
+                          <input  *ngIf="opcOtraCategoria==true" type="text" class="custom-control-input" id="customCheck1" placeholder="Ingrese categoría..." />
+                        </div>
                       </div>
                     </div>
                     <div class="row" style="margin-top: 5%;">
-                    <!--sección para agregar imágenes"
-                    <div>
-                      <ngx-file-drop
-                      (onFileDrop)="dropped($event)"
-                        (onFileOver)="fileOver($event)"
-                        (onFileLeave)="fileLeave($event)"
-                        accept="image/*"
-                        [multiple]="true"
-                       
-                        
-                      
-                      >
-                        Arrastra y suelta las imágenes aquí o haz clic para seleccionar.
-                      </ngx-file-drop>
-                    </div>  (onFileOver)="fileOver($event)"
-                      (onFileLeave)="fileLeave($event)"-->
+                    <!--sección para agregar imágenes"-->
+               
 
 
                     <div class="center">
@@ -398,8 +439,12 @@
                       <div>
                         <p>Archivos agregados:</p>
                         <p>{{ archivosEnLista }}</p>
-                      </div>
 
+                       <!--- <div *ngFor="let item of archivosAgregados2">
+                          <img [src]="imagePath" alt="Logo" class="img-fluid" width="25%" height="25%" />
+                        </div>-->
+                      </div>
+                     
                      <!--- <div class="upload-table">
                           <table class="table">
                               <thead>

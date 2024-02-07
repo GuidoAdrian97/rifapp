@@ -19,6 +19,7 @@ export class CreateRifasComponent {
 
   precioTotalpremio:number=0;
   precioRifaboleto:number=0;
+  minBoletos:number=0;
   numBoletos:number=0;
   porcentajeUsuario:number=0.20;
   porcentajeEmpresa:number=0.15;
@@ -27,12 +28,11 @@ export class CreateRifasComponent {
   MRGE:number=0; //Mínimo rifas ganancia empresa
   MRT:number=0; //Mínimo rifas total
   AUX:number=0;
+
   btnConsult:boolean=true;
   divInformation:boolean=true;
   divCreate:boolean=false;
   opcPublicar:boolean=false;
-  
-
   divUpdated:boolean=false;
 
   
@@ -40,36 +40,67 @@ export class CreateRifasComponent {
   gananciaVenta:number=0;
   gananciamenosPP:number=0;
   gananciaPorcentajeEmpresa:number=0;
-  gananciaPorcentajeUsuario:number=0;
   gananciaUsuario:number=0;
-  totalPorcentajes:number=0;
   gananciaFinalUsuario:number=0;
-  gananciaFinalconCostoPremio:number=0;
 
+
+  opcSorteo:number=0;
+  fechaSorteo:string="";
+  tituloRifa:string="";
+  descripRifa:string="";
+  intervaloBoletos:number=0;
+  premiosCantidad:number=0;
+  porcentajeMinBoletos:number=10;
+  minBoletosxPersona:number=0;
+  AUX2:number=0;
  
+
+  opcOtraCategoria:boolean=false;
 
 
   consultar(){
 
     this.costoSorteo=(this.precioTotalpremio+(this.precioTotalpremio*this.porcentajeUsuario));
-    this.MRCS=Math.round((this.costoSorteo/this.precioRifaboleto));
-    this.MRGE=Math.round(((this.MRCS*this.porcentajeEmpresa)+1));
-    this.MRT=Math.round((this.MRCS+this.MRGE));
-    this.AUX=Math.round(((this.MRT*this.precioRifaboleto)-((this.MRT*this.precioRifaboleto)*this.porcentajeEmpresa)));
+    this.MRCS=(this.costoSorteo/this.precioRifaboleto);
+    this.MRGE=((this.MRCS*this.porcentajeEmpresa)+1);
+    this.MRT=(this.MRCS+this.MRGE);
+    this.AUX=((this.MRT*this.precioRifaboleto)-((this.MRT*this.precioRifaboleto)*this.porcentajeEmpresa));
 
     if(this.AUX<this.costoSorteo){
       this.MRT++;
     }
-    this.numBoletos=this.MRT;
+ 
+    this.minBoletos = this.redondearArribaValor(this.MRT);
+
    
     
-    this.CalcularGanancias(this.numBoletos);
-
-
+  this.CalcularGanancias(this.minBoletos);
+  //this.ConsultarMinBoletosxPersona(this.minBoletos);
+  
   }
 
 
+
+  ConsultarMinBoletosxPersona(num:number){
+    this.AUX2=this.porcentajeMinBoletos/100;
+    this.minBoletosxPersona=num*this.AUX2;
+    this.minBoletosxPersona=this.redondearArribaValor(this.minBoletosxPersona);
+
+   //this.boletosVender=num;
   
+  }
+
+
+
+   redondearArribaValor(Num:number) {
+    var redondeado = Math.floor(Num);
+    if (Num - redondeado >= 0.2) {
+        redondeado += 1;
+    }
+    return redondeado;
+    }
+
+
 
 
   CalcularGanancias(boletosNum:number){
@@ -78,24 +109,26 @@ export class CreateRifasComponent {
     this.gananciaVenta=Math.round((this.boletosVender*this.precioRifaboleto)*100)/100;
     //Ganancia de venta menos precio premio
     this.gananciamenosPP=Math.round((this.gananciaVenta-this.precioTotalpremio)*100)/100;
-    //Porcentaje de ganancia empresa
-    this.gananciaPorcentajeEmpresa=Math.round((this.gananciamenosPP*this.porcentajeEmpresa)*100)/100;
-    //Porcentaje de ganancia usuario (saldo )
-    this.gananciaPorcentajeUsuario=Math.round((this.gananciamenosPP*this.porcentajeUsuario)*100)/100;
-    //total de procentajes de ganancias
-    this.totalPorcentajes=Math.round((this.gananciaPorcentajeEmpresa+this.gananciaPorcentajeUsuario)*100)/100;
+    //Ganancia empresa
+    this.gananciaPorcentajeEmpresa=Math.round((this.gananciaVenta*this.porcentajeEmpresa)*100)/100;
+   
     //Ganancia usuario (saldo de retiro)
-    this.gananciaUsuario=Math.round((this.gananciamenosPP-this.totalPorcentajes)*100)/100;
+    this.gananciaUsuario=Math.round((this.gananciaVenta-this.gananciaPorcentajeEmpresa)*100)/100;
     //Ganancia final de usuario
-    this.gananciaFinalUsuario=Math.round((this.gananciaUsuario+this.gananciaPorcentajeUsuario)*100)/100;
+    this.gananciaFinalUsuario=Math.round((this.gananciaUsuario-this.precioTotalpremio)*100)/100;
   
-    //Ganancia dinal para usuario sumando el costo del premio
-    this.gananciaFinalconCostoPremio=this.gananciaFinalUsuario+this.precioTotalpremio;
+    //agrege esto
+    this.numBoletos=this.boletosVender;
+
+    //llamar funcion de calcular minimo x persona 
+    this.ConsultarMinBoletosxPersona(this.numBoletos);
 
   }
 
 
- 
+  AgregarCategoria(){
+    this.opcOtraCategoria=true;
+  }
 
 
   CrearRifa(){
@@ -135,9 +168,11 @@ export class CreateRifasComponent {
     this.divInformation=false;
     this.divUpdated=false;
   }
+
+
   public archivos: NgxFileDropEntry[] = [];
   public archivosAgregados: string[] = [];
-
+  public archivosAgregados2: any[] = [];
   public archivosEnLista: string = '';
  
   
@@ -158,47 +193,15 @@ export class CreateRifasComponent {
     }
    
    
-   // this.files= files;
-    this.previewImages();
+   this.files= files;
+   //this.previewImages();
   }
   
   private actualizarLista() {
     this.archivosEnLista = this.archivosAgregados.join(' - ');
+   
   }
-  /* for (const droppedFile of files) {
 
-      // Is it a file?
-      if (droppedFile.fileEntry.isFile) {
-        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file((file: File) => {
-
-          // Here you can access the real file
-          console.log(droppedFile.relativePath, file);
-
-          /**
-          // You could upload it like this:
-          const formData = new FormData()
-          formData.append('logo', file, relativePath)
-
-          // Headers
-          const headers = new HttpHeaders({
-            'security-token': 'mytoken'
-          })
-
-          this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
-          .subscribe(data => {
-            // Sanitized logo returned from backend
-          })
-      
-
-        });
-      } else {
-        // It was a directory (empty directories are added, otherwise only files)
-        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-        console.log(droppedFile.relativePath, fileEntry);
-      }
-    }
-  }*****/
 
   public fileOver(event: any){
     console.log(event);
@@ -209,30 +212,9 @@ export class CreateRifasComponent {
   }
 
 
+  
 
-
-  private previewImages() {
-    console.log(this.files)
-    for (const droppedFile of this.files) {
-      if (droppedFile.fileEntry.isFile) {
-        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file((file: File) => {
-          const reader = new FileReader();
-          reader.onload = (e: any) => {
-            const imgSrc = e.target.result;
-            console.log(imgSrc);
-
-            // Aquí puedes mostrar la vista previa en la interfaz de usuario
-          };
-          reader.readAsDataURL(file);
-        });
-      } else {
-        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-        console.log(fileEntry);
-      }
-    }
-  }
-
+  
   
 }
 
