@@ -39,6 +39,4 @@ class ReferidosController extends Controller
 
     }
 
-
-
 }

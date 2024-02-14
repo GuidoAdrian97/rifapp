@@ -19,6 +19,11 @@ use App\Models\Referido\level_user_referrals;
 use NumberFormatter;
 use Google_Client;
 
+
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
+
 class LoginController extends Controller
 {
     public function redirectToGoogle()
@@ -76,6 +81,18 @@ class LoginController extends Controller
 
     public function Register(Request $request){
 
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users|max:255',
+            'identificacion' => 'required|string|unique:users|max:13',
+            'telefono' => 'required|string|unique:users|max:10',
+            'fecha_nacimiento' => 'required|date',
+            'password' => 'required|string|min:8|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 'code'=>'422']);
+        }
         
         $user=  User::create([
             'name' =>$request->name ,
@@ -192,6 +209,20 @@ class LoginController extends Controller
     }
 
     public function ValidarCedula(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'cedula' => 'required|numeric|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            throw new HttpResponseException(response()->json(['errors' => $validator->errors(),'code'=> '422']));
+        }
+
+        // Resto de la lógica aquí...
+
+        // Si la validación pasa, continúa con el resto de la lógica del controlador...
+
+
         $response = Http::get("https://srienlinea.sri.gob.ec/movil-servicios/api/v1.0/deudas/porIdentificacion/{$request->cedula}");
 
         if ($response->successful()) {
@@ -200,10 +231,10 @@ class LoginController extends Controller
                 $nombreComercial = $response['contribuyente']['nombreComercial'] ?? null;
                 return response()->json(['nombre' => $nombreComercial]);
             }else{
-                return response()->json(['message' => 'Cédula incorrecta']);
+                return response()->json(['message' => 'Cédula incorrecta','code'=> '422']);
             }
         } else {
-            return response()->json(['message' => 'Cédula incorrecta']);
+            return response()->json(['message' => 'Cédula incorrecta','code'=> '200']);
         }
     }
 
