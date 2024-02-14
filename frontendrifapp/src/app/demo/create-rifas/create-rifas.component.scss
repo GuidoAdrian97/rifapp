@@ -6,7 +6,7 @@
   .boton-con-icono {
     position: absolute;
     top: 10px; /* Ajusta la posición vertical según tus necesidades */
-    right: 10px; /* Ajusta la posición horizontal según tus necesidades */
+    right: 5px; /* Ajusta la posición horizontal según tus necesidades */
     /*background-color: transparent;  Puedes cambiar el color de fondo según tus necesidades */
     background-color: rgb(231, 241, 245);
     border: none;
@@ -26,4 +26,22 @@
     background-color: rgb(131, 132, 136);
     border-radius:35px 35px 35px 35px;
 
+  }
+
+  .p-carrousel {
+    position:absolute;
+    top: 10px; /* Ajusta la posición vertical según tus necesidades */
+    left: 5px; /* Ajusta la posición horizontal según tus necesidades */
+    /*background-color: transparent;  Puedes cambiar el color de fondo según tus necesidades */
+    background-color: rgb(231, 241, 245);
+    border: none;
+    border-radius:50px 50px 50px 50px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  font: bold;
+  size: 40px;
+    cursor: pointer;
+    font-size: 14px; /* Ajusta el tamaño del texto según tus necesidades */
   }

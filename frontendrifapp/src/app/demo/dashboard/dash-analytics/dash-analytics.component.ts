@@ -1,5 +1,5 @@
 // angular import
-import { Component, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // project import
@@ -23,7 +23,8 @@ import {
   ApexGrid,
   ApexPlotOptions,
   ApexTooltip,
-  ApexMarkers
+  ApexMarkers,
+ 
 } from 'ng-apexcharts';
 
 export type ChartOptions = {
@@ -58,7 +59,9 @@ export default class DashAnalyticsComponent {
   chartOptions_2!: Partial<ChartOptions>;
   chartOptions_3!: Partial<ChartOptions>;
  
+  isMobile: boolean=false;
 
+ 
 
   // constructor
   constructor(private spinner: NgxSpinnerService) {
@@ -300,4 +303,7 @@ export default class DashAnalyticsComponent {
       size: 'PNG-150KB'
     }
   ];
+
+ 
+
 }
