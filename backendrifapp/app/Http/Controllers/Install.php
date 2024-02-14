@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Rifas\MetodoSorteo;
 use App\Models\Billetera\Wallet;
 use App\Models\Billetera\Tiposcuenta;
 use App\Models\Billetera\Cuenta;
@@ -29,6 +30,10 @@ class Install extends Controller
             ['type_cuenta' => 'ganancias', 'descripcion_type_cuenta' => 'Cuenta de ganancias'],
             ['type_cuenta' => 'master_fondos', 'descripcion_type_cuenta' => 'Cuenta de fondos donde llegara todo el dinero para recargar mas cuentas '],
             ['type_cuenta' => 'master_ganancias', 'descripcion_type_cuenta' => 'Cuenta de ganancias master aqui se encontrara la ganancia del %5 de cada recarga'],
+        ]);
+        MetodoSorteo::insert([
+        ['nombre_sorteo' => 'Loteria Nacional','estado_tipo_sorteo' => 1, 'descripcion_sorteo' => 'Este sorteo solo se puede utilizar para sorteos que se realicen los dias lunes miercoles y viernes, y los responsables de los resultados de los numeros es la Loteria Nacional'],
+        ['nombre_sorteo' => 'Rifalo Ya','estado_tipo_sorteo' => 1, 'descripcion_sorteo' => 'Este sorteo se realiza mediante un porceso logico, matematico seguro que genera numeros aleatorios donde NO se puede predecir los resultados.'],
         ]);
 
 // Usuario y Wallet

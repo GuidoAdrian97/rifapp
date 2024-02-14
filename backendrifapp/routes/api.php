@@ -6,6 +6,8 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Install;
 use App\Http\Controllers\Referido\ReferidosController;
+use App\Http\Controllers\Sorteo\RaffleController;
+use App\Http\Controllers\Sorteo\MetodoSorteoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,11 +18,15 @@ use App\Http\Controllers\Referido\ReferidosController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['middleware'=>['auth:sanctum']],function(){
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::post('createraffle', [RaffleController::class,'CreateRaffle']);
+
+    Route::get('listarmetodosorteo', [MetodoSorteoController::class,'listarmetodosorteo']);
+
 });
-//Route::post('Login',[AuthController::class, 'Login']);
+
+//Route::post('createraffle', [RaffleController::class,'CreateRaffle'])->middleware('api');
 
 Route::post('login',[LoginController::class, 'Login']);
 
@@ -36,3 +42,4 @@ Route::get('ValidateCodeReferral', [ReferidosController::class,'ValidateCodeRefe
 Route::get('ReferidoPrincipal', [ReferidosController::class,'ReferidoPrincipal']);
 
 Route::post('login/google/callback', [LoginController::class,'handleGoogleCallback']);
+

@@ -61,6 +61,11 @@ class User extends Authenticatable
         return $this->hasMany(Referido\Referral::class, 'user_id');
     }
 
+    public function raffle()
+    {
+        return $this->hasMany(Rifas\Raffle::class);
+    }
+
     public function referredBy()
     {
         return $this->hasOne(Referido\Referral::class, 'user_id');

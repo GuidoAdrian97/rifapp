@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class RaffleNumber extends Model
 {
     use HasFactory;
+
+    protected $table = ['number','es_ganador'];
+
+    public function rifa()
+    {
+        return $this->belongsTo(Raffle::class);
+    }
+
+    public function compras()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }
