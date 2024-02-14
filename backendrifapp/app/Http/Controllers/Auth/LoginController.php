@@ -211,7 +211,7 @@ class LoginController extends Controller
     public function ValidarCedula(Request $request){
 
         $validator = Validator::make($request->all(), [
-            'cedula' => 'required|numeric|max:255'
+            'cedula' => 'required|string|max:255'
         ]);
 
         if ($validator->fails()) {
