@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Observable } from 'rxjs';
 export class RifasService {
   api:string="";
   constructor(private httpClient:HttpClient) { 
-    this.api = 'http://rifapp.com:8000/api/';
+    this.api = environment.apiBaseDatosUrl
   }
 
   createSorte():Observable<any>{

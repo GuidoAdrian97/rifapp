@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ export class AuthGoogleService {
   authUserGoogle(): Observable<any> {
     
     const tokenid = sessionStorage.getItem('id_token');
-    return this.httpCliente.post('http://rifapp.com:8000/api/login/google/callback',{accessToken:tokenid});
+    return this.httpCliente.post(environment.apiBaseDatosUrl+'login/google/callback',{accessToken:tokenid});
   }
 
 }
