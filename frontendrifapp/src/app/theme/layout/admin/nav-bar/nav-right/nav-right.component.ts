@@ -59,7 +59,6 @@ export class NavRightComponent implements DoCheck, OnInit {
           sessionStorage.setItem('update_true','true');
           this.router.navigate(['/updateDatos'])
         }
-        console.log(`OK`,res)
         this.spinner.hide();
       },
       error:error => {

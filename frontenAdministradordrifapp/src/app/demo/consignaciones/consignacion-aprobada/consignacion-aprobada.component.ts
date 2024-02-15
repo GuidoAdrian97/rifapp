@@ -1,98 +1,100 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
+import { Component, Directive, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
+
+
+interface Country {
+	id: number;
+	name: string;
+	flag: string;
+	area: number;
+	population: number;
 }
 
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
+const COUNTRIES: Country[] = [
+	{
+		id: 1,
+		name: 'Russia',
+		flag: 'f/f3/Flag_of_Russia.svg',
+		area: 17075200,
+		population: 146989754,
+	},
+	{
+		id: 2,
+		name: 'Canada',
+		flag: 'c/cf/Flag_of_Canada.svg',
+		area: 9976140,
+		population: 36624199,
+	},
+	{
+		id: 3,
+		name: 'United States',
+		flag: 'a/a4/Flag_of_the_United_States.svg',
+		area: 9629091,
+		population: 324459463,
+	},
+	{
+		id: 4,
+		name: 'China',
+		flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
+		area: 9596960,
+		population: 1409517397,
+	},
 ];
 
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
+export type SortColumn = keyof Country | '';
+export type SortDirection = 'asc' | 'desc' | '';
+const rotate: { [key: string]: SortDirection } = { asc: 'desc', desc: '', '': 'asc' };
+
+const compare = (v1: string | number, v2: string | number) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
+
+export interface SortEvent {
+	column: SortColumn;
+	direction: SortDirection;
+}
+
+@Directive({
+	selector: 'th[sortable]',
+	standalone: true,
+	host: {
+		'[class.asc]': 'direction === "asc"',
+		'[class.desc]': 'direction === "desc"',
+		'(click)': 'rotate()',
+	},
+})
+export class NgbdSortableHeader {
+	@Input() sortable: SortColumn = '';
+	@Input() direction: SortDirection = '';
+	@Output() sort = new EventEmitter<SortEvent>();
+
+	rotate() {
+		this.direction = rotate[this.direction];
+		this.sort.emit({ column: this.sortable, direction: this.direction });
+	}
+}
 @Component({
   selector: 'app-consignacion-aprobada',
   templateUrl: './consignacion-aprobada.component.html',
   styleUrls: ['./consignacion-aprobada.component.scss']
 })
 export class ConsignacionAprobadaComponent {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+	countries = COUNTRIES;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+	@ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader> = new QueryList<NgbdSortableHeader>();
+	onSort({ column, direction }: SortEvent) {
+		// resetting other headers
+		this.headers.forEach((header) => {
+			if (header.sortable !== column) {
+				header.direction = '';
+			}
+		});
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-}
-
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
+		// sorting countries
+		if (direction === '' || column === '') {
+			this.countries = COUNTRIES;
+		} else {
+			this.countries = [...COUNTRIES].sort((a, b) => {
+				const res = compare(a[column], b[column]);
+				return direction === 'asc' ? res : -res;
+			});
+		}
+	}
 }

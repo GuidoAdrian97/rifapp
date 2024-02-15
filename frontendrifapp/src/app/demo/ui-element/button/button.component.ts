@@ -12,6 +12,6 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 export default class ButtonComponent {
 
   constructor(){
-    debugger
+    
   }
 }

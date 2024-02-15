@@ -3,8 +3,8 @@
       <div class="card-body">
         <h5 class="mb-3">Lista de Consiganciones</h5>
         <ul class="nav nav-pills mb-3" ngbNav #nav1="ngbNav">
-          <li class="nav-item" [ngbNavItem]="1">
-            <a class="nav-link" style="margin-bottom: 10px !important;" ngbNavLink aria-controls="pills-home" aria-selected="true">En Espera</a>
+          <li class="nav-item"  style="margin-bottom: 25px !important;" [ngbNavItem]="1">
+            <a class="nav-link" ngbNavLink aria-controls="pills-home" aria-selected="true">En Espera</a>
             <ng-template ngbNavContent >
               <app-consignacion-espera></app-consignacion-espera>
             </ng-template>

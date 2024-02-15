@@ -24,7 +24,7 @@ import { NavGroupComponent } from './theme/layout/admin/navigation/nav-content/n
 import { NavItemComponent } from './theme/layout/admin/navigation/nav-content/nav-item/nav-item.component';
 import { SharedModule } from './theme/shared/shared.module';
 import { OpcConsignacionComponent } from './demo/consignaciones/opc-consignacion/opc-consignacion.component';
-import { ConsignacionAprobadaComponent } from './demo/consignaciones/consignacion-aprobada/consignacion-aprobada.component';
+import { ConsignacionAprobadaComponent, NgbdSortableHeader } from './demo/consignaciones/consignacion-aprobada/consignacion-aprobada.component';
 import { ConsignacionRechazadaComponent } from './demo/consignaciones/consignacion-rechazada/consignacion-rechazada.component';
 import { ConsignacionEsperaComponent } from './demo/consignaciones/consignacion-espera/consignacion-espera.component';
 import { ConsignacionTipoComponent } from './demo/consignaciones/consignacion-tipo/consignacion-tipo.component';
@@ -37,6 +37,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ListUserComponent } from './demo/list-user/list-user.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { DecimalPipe, NgFor } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,MatSliderModule,
     MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,
-    ModalModule.forRoot(),AlertModule],
+    ModalModule.forRoot(),AlertModule,DecimalPipe, NgFor, NgbdSortableHeader],
   providers: [],
   
   bootstrap: [AppComponent]

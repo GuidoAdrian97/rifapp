@@ -42,8 +42,7 @@
       <div class="col-sm-7">
         <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="opcSorteo" style="border-color: #a8acfd;">
           <option value="0">Seleccione una opción...</option>
-          <option value="1">Mediante Loteria Nacional</option>
-          <option value="2">Mediante esta plataforma</option>
+          <option *ngFor="let tipoSorteo of typeRifa" [ngValue]="tipoSorteo.id">{{tipoSorteo.nombre_sorteo}}</option>
         </select>
       </div>
     </div>

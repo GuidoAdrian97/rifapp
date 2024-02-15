@@ -60,12 +60,11 @@ if (jsonString) {
   this.emailError = true;
   this.emailUpdated = "";
   this.inputsValidado();
-  console.log('No se encontró nada en sessionStorage para "id_token_claims_obj".');
 }
   }
 
   limitarLongitud(event: any,typeDato:any) {
-    debugger
+    
     const valorIngresado: string = event.target.value;
     if(typeDato == 'dni'){
       if(valorIngresado.length == 10){
@@ -112,11 +111,9 @@ if (jsonString) {
   verificarEstructEmail(typeDato: any) {
     const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!regexCorreo.test(this.emailUpdated) && this.emailUpdated.length != 0) {
-      console.log('Correo electrónico no válido');
       this.emailError = true
       this.messageEmail = 'Correo electrónico no válido'
     } else {
-      console.log('Correo electrónico válido');
       this.emailError = false
       this.validarDatos(typeDato);
     }
@@ -162,7 +159,6 @@ if (jsonString) {
   updateNombre() {
     this.authService.validarNombre(this.identificacionUpdated).subscribe({
       next: rest => {
-        console.log(rest)
         if (rest.nombre) {
           this.nameUpdated = rest.nombre
           this.dniError = false
@@ -185,7 +181,6 @@ if (jsonString) {
   validarDatos(input: any) {
     this.authService.validarDatos(this.identificacionUpdated, this.telefonoUpdated).subscribe({
       next: rest => {
-        console.log(rest)
         if (input == 'dni' && rest.menssage) {
           this.dniError = true;
           this.loader = false;
@@ -194,7 +189,7 @@ if (jsonString) {
           this.updateNombre();
         }
 
-        debugger
+        
         if (input == 'tlf' && rest.menssage) {
           this.tlfError = true;
           this.messageTlf = "El número que ingresó ya se encuentra registrado."
@@ -227,7 +222,6 @@ if (jsonString) {
       this.messagePassword = 'La contraseña debe tener al menos 8 caracteres.';
     } else {
       this.passwordError = false
-      console.log('Contraseña válida');
       this.inputsValidado();
     }
   }
@@ -285,7 +279,7 @@ if (jsonString) {
     this.authService.validarCodigoReferencia(referrerCode).subscribe({
       next: rest => {
         if (rest.error) {
-          debugger
+          
           this.codigoError = true
           this.messageCodigo = rest.error;
         } else {
@@ -306,7 +300,7 @@ if (jsonString) {
     } else {
       this.validarCodigo(referrerCode);
     }
-    debugger
+    
   }
 
 }

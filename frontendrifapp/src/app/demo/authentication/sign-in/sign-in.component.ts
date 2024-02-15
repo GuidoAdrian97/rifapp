@@ -40,11 +40,9 @@ export default class SignInComponent implements OnInit{
   verificarEstructEmail(){
     const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!regexCorreo.test(this.email) && this.email.length !=0) {
-      console.log('Correo electrónico no válido');
       this.emailError = true
       this.messageEmail = 'Correo electrónico no válido'
     } else {
-      console.log('Correo electrónico válido');
       this.emailError = false
     }
   }
@@ -72,12 +70,10 @@ export default class SignInComponent implements OnInit{
     }
     this.authService.login(data).subscribe({
       next:rest =>{
-        console.log('Login:',rest)
         localStorage.setItem('access_token',rest.token)
         
         this.router.navigate(['/Inicio'])
       },error:error=>{
-        console.log(error)
         this.spinner.hide();
       }
     })

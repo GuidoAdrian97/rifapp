@@ -64,7 +64,7 @@ export default class SignUpComponent {
 
 
   limitarLongitud(event: any,typeDato:any) {
-    debugger
+    
     const valorIngresado: string = event.target.value;
     if(typeDato == 'dni'){
       if(valorIngresado.length == 10){
@@ -114,11 +114,9 @@ export default class SignUpComponent {
     const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if (!regexCorreo.test(this.email) && this.email.length !=0) {
-      console.log('Correo electrónico no válido');
       this.emailError = true
       this.messageEmail = 'Correo electrónico no válido'
     } else {
-      console.log('Correo electrónico válido');
       this.emailError = false
       this.validarDatos(typeDato);
     }
@@ -156,8 +154,6 @@ export default class SignUpComponent {
     }
     this.authService.authUser(data).subscribe({
       next: rest => {
-        console.log(rest);
-
           this.spinner.hide();
           this.onSuccess();
         this.router.navigate(['/auth/signin']);
@@ -171,7 +167,6 @@ export default class SignUpComponent {
   updateNombre(){
     this.authService.validarNombre(this.identificacion).subscribe({
       next:rest=>{
-        console.log(rest)
         if(rest.nombre){
         this.name = rest.nombre
         this.dniError = false
@@ -180,7 +175,7 @@ export default class SignUpComponent {
         }else{
           this.dniError = true;
         this.messageDni="Ingrese un número de cédula valido porfavor";
-        debugger
+        
         this.loader = false;
         }
 
@@ -195,7 +190,6 @@ export default class SignUpComponent {
   validarDatos(input:any){
     this.authService.validarDatos(this.identificacion,this.telefono,this.email).subscribe({
       next:rest =>{
-        console.log(rest)
         if(input == 'dni' && rest.menssage){
           this.dniError = true;
           this.loader = false;
@@ -236,7 +230,6 @@ export default class SignUpComponent {
       this.messagePassword = 'La contraseña debe tener al menos 8 caracteres.';
     } else {
       this.passwordError=false
-      console.log('Contraseña válida');
       this.inputsValidado();
     }
   }
@@ -246,10 +239,10 @@ export default class SignUpComponent {
     && this.fecha_nacimiento != ''  && this.telefono != ''
     && this.tlfError == false && this.email != '' && this.emailError ==false 
     && this.password != '' && this.passwordError == false && this.codigoError == false && this.referrerCode != ''){
-      debugger
+      
       this.btnDisabled = false;
     }else{
-      debugger
+      
       this.btnDisabled = true;
     }
   }
@@ -262,14 +255,14 @@ export default class SignUpComponent {
     }else {
       this.validarCodigo(referrerCode);
     }
-    debugger
+    
   }
 
   validarCodigo(referrerCode:any){
     this.authService.validarCodigoReferencia(referrerCode).subscribe({
       next:rest =>{
         if(rest.error){
-          debugger
+          
           this.codigoError = true
           this.messageCodigo = rest.error;
         }else{
