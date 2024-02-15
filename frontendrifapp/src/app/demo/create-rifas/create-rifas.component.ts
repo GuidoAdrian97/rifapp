@@ -25,6 +25,18 @@ interface Rifa {
 })
 export class CreateRifasComponent implements OnInit {
 
+  opcSorteo: number = 0;
+  fechaSorteo: string = "";
+  tituloRifa: string = "";
+  descripRifa: string = "";
+  intervaloBoletos: number = 0;
+  premiosCantidad: number = 0;
+  porcentajeMinBoletos: number = 10;
+  minBoletosxPersona: number = 0;
+  AUX2: number = 0;
+  rangoInicial:number=0;
+  rangoFinal:number=0;
+
   typeRifa:any;
   constructor(private serviceRifa: RifasService) {
     this.serviceRifa.tipoSorteo().subscribe({
@@ -44,13 +56,13 @@ export class CreateRifasComponent implements OnInit {
   guardarDatos(){
     let datos:Rifa = {
       'title':this.tituloRifa,
-      'rango_inicial_boletos':1,
-      'rango_final_boletos':2,
-      'metodo_sorteo_id':1,
-      'fecha_sorteo_rifa':'dasda',
-      'description':'dasdas',
-      'costo_boleto':1,
-      'cantidad_boletos':2
+      'rango_inicial_boletos':this.rangoInicial,
+      'rango_final_boletos':this.rangoFinal,
+      'metodo_sorteo_id':this.opcSorteo,
+      'fecha_sorteo_rifa':this.fechaSorteo,
+      'description':this.descripRifa,
+      'costo_boleto':this.precioRifaboleto,
+      'cantidad_boletos':this.numBoletos
     }
     this.serviceRifa.guardarRifa(datos).subscribe({
       next:rest=>{
@@ -88,15 +100,7 @@ export class CreateRifasComponent implements OnInit {
   gananciaFinalUsuario: number = 0;
 
 
-  opcSorteo: number = 0;
-  fechaSorteo: string = "";
-  tituloRifa: string = "";
-  descripRifa: string = "";
-  intervaloBoletos: number = 0;
-  premiosCantidad: number = 0;
-  porcentajeMinBoletos: number = 10;
-  minBoletosxPersona: number = 0;
-  AUX2: number = 0;
+  
 
 
   opcOtraCategoria: boolean = false;

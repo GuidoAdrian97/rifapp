@@ -266,11 +266,11 @@
 
     <div class="form-group row">
       <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Seleccione tipo de sorteo</small>
+    
       <div class="col-sm-7">
         <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="opcSorteo" style="border-color: #a8acfd;">
           <option value="0">Seleccione una opción...</option>
-          <option value="1">Mediante Loteria Nacional</option>
-          <option value="2">Mediante esta plataforma</option>
+          <option *ngFor="let tipoSorteo of typeRifa" [ngValue]="tipoSorteo.id">{{tipoSorteo.nombre_sorteo}}</option>
         </select>
       </div>
     </div>
@@ -306,12 +306,24 @@
         
       </div>
     </div>
-   
+
+    <div class="form-group row" >
+      <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese rango de boletos</small>
+      <div class="col-sm-7">
+        <div class="input-group mb-3">
+          <span class="input-group-text text-light" style="background-color: #a8acfd; border-color: #a8acfd;">Desde</span>
+          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 100" name="numBoletos" [(ngModel)]="rangoInicial"  style="border-color: #a8acfd;" />               
+          <span class="input-group-text text-light" style="background-color: #a8acfd; border-color: #a8acfd;">Hasta</span>
+          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 100" name="numBoletos" [(ngModel)]="rangoFinal"  style="border-color: #a8acfd;" />               
+        </div>
+        
+      </div>
+    </div>
     <div class="form-group row" *ngIf="opcSorteo==1">
       <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Seleccione cantidad de boletos a vender</small>
       <div class="col-sm-7">
         <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="numBoletos" style="border-color: #a8acfd;">
-          <option value="0">Seleccione una opción...</option>
+          <option >Seleccione una opción...</option>
           <option value="100">[00 - 99]</option>
           <option value="1000">[000 - 999]</option>
           <option value="10000">[0000 - 9999]</option>
@@ -348,7 +360,7 @@
   <div class="row">
     <hr style="color: #9297e9;" style="margin-top:1%">
     <div class="text-center" style="margin-top: 6%;">
-    <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="CrearRifa()" style="background-color: #9297e9;">
+    <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="guardarDatos()" style="background-color: #9297e9;">
       <i class="feather icon-save" style="font-size: medium;"> Guardar</i>
     </button>
     </div>
