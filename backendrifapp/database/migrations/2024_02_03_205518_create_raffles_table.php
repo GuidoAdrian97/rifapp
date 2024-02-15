@@ -20,10 +20,10 @@ return new class extends Migration
             $table->integer('cantidad_boletos')->unique();
             $table->integer('rango_inicial_boletos')->unique();
             $table->integer('rango_final_boletos')->unique();
-            $table->decimal('costo_bololeto', 8, 2);
+            $table->decimal('costo_boleto', 8, 2);
             $table->date('fecha_sorteo_rifa');
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('metodo_sorteos')->references('id')->on('metodo_sorteos');
+            $table->foreignId('metodo_sorteo_id')->references('id')->on('metodo_sorteos');
             $table->timestamps();
         });
     }

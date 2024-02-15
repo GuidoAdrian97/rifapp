@@ -9,7 +9,7 @@ class Raffle extends Model
 {
     use HasFactory;
 
-    protected $table = ['title','description','cantidad_boletos','rango_inicial_boletos','rango_final_boletos','costo_bololeto','fecha_sorteo_rifa','metodo_sorteos'];
+    protected $fillable = ['title','description','cantidad_boletos','rango_inicial_boletos','rango_final_boletos','costo_bololeto','fecha_sorteo_rifa','metodo_sorteo_id'];
 
     public function user()
     {
