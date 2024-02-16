@@ -31,8 +31,14 @@ export class RifasService {
   guardarRifa(datos:any):Observable<any>{
 
     const body = new FormData();
-    body.append('email', datos.email);
-    body.append('password', datos.password);
+    body.append('title', datos.title);
+    body.append('description', datos.description);
+    body.append('cantidad_boletos', datos.cantidad_boletos);
+    body.append('rango_inicial_boletos', datos.rango_inicial_boletos);
+    body.append('rango_final_boletos', datos.rango_final_boletos);
+    body.append('costo_boleto', datos.costo_boleto);
+    body.append('fecha_sorteo_rifa', datos.fecha_sorteo_rifa);
+    body.append('metodo_sorteo_id', datos.metodo_sorteo_id);
     
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('access_token')}`,

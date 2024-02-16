@@ -64,6 +64,7 @@ export class CreateRifasComponent implements OnInit {
       'costo_boleto':this.precioRifaboleto,
       'cantidad_boletos':this.numBoletos
     }
+    debugger
     this.serviceRifa.guardarRifa(datos).subscribe({
       next:rest=>{
         debugger
