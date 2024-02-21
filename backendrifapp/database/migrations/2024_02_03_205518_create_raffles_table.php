@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->integer('cantidad_boletos')->unique();
-            $table->integer('rango_inicial_boletos')->unique();
-            $table->integer('rango_final_boletos')->unique();
+            $table->integer('cantidad_boletos');
+            $table->integer('rango_inicial_boletos');
+            $table->integer('rango_final_boletos');
             $table->decimal('costo_boleto', 8, 2);
             $table->date('fecha_sorteo_rifa');
             $table->enum('estado', ['vendido', 'en_progreso', 'finalizado', 'cancelado', 'pausado', 'en_espera_de_aprobacion', 'caducado'])->default('en_espera_de_aprobacion');
