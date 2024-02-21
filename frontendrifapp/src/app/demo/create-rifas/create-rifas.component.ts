@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
+import { NgSelectConfig } from '@ng-select/ng-select';
+
+
 
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { relative } from 'path';
@@ -38,7 +41,13 @@ export class CreateRifasComponent implements OnInit {
   rangoFinal:number=0;
 
   typeRifa:any;
+  showButton: any;
+premios:boolean=true;
+
+
+
   constructor(private serviceRifa: RifasService) {
+  
     this.serviceRifa.tipoSorteo().subscribe({
       next:rest =>{
         this.typeRifa = rest['Metodos de Sorteo'];
@@ -50,6 +59,8 @@ export class CreateRifasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.screenWidth = window.innerWidth;
+    this.screenHeight = window.innerHeight;
 
   }
 
@@ -147,7 +158,37 @@ export class CreateRifasComponent implements OnInit {
   }
 
 
+  scrollToBottom() {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.body.scrollHeight;
+    const scrollY = window.scrollY;
 
+    // Calcular la posición para desplazarse hacia abajo
+    const targetScroll = Math.min(scrollY + windowHeight, documentHeight);
+
+    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+  }
+
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+
+  //prueba de verificación de dimensiones de pantalla de dispósitivo
+  screenHeight:number=0;
+  screenWidth:number=0;
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.screenWidth = window.innerWidth;
+    this.screenHeight = window.innerHeight;
+ 
+
+  }
+
+  
 
   CalcularGanancias(boletosNum: number) {
     //Ganancia por boletos vendidos
@@ -163,8 +204,11 @@ export class CreateRifasComponent implements OnInit {
     //Ganancia final de usuario
     this.gananciaFinalUsuario = Math.round((this.gananciaUsuario - this.precioTotalpremio) * 100) / 100;
 
-    //agrege esto
-    this.numBoletos = this.boletosVender;
+    //agregé esto
+   
+      this.numBoletos = this.boletosVender;
+    
+    
 
     //llamar funcion de calcular minimo x persona 
     this.ConsultarMinBoletosxPersona(this.numBoletos);
@@ -182,6 +226,7 @@ export class CreateRifasComponent implements OnInit {
     this.divInformation = false;
     this.divUpdated = false;
     this.opcPublicar = false;
+    this.scrollToTop();
 
   }
 
@@ -207,6 +252,38 @@ export class CreateRifasComponent implements OnInit {
 
 
 
+  options = [
+    { id: 1, name: 'Hogar' },
+    { id: 2, name: 'Efectivo' },
+    { id: 3, name: 'Vehículos' },
+    { id: 4, name: 'Tecnología' },
+    { id: 5, name: 'Otra' },
+  
+  ];
+
+  selectedOptions: any[] = [];
+ 
+
+  onItemSelected(option: any) {
+    if (this.isSelected(option)) {
+      // Si ya está seleccionado, eliminarlo del arreglo
+      //this.selectedOptions = this.selectedOptions.filter(item => item.id !== option.id);
+      this.selectedOptions.push(option);
+    } else {
+      // Si no está seleccionado, agregarlo al arreglo
+      //this.selectedOptions.push(option);
+      this.selectedOptions = this.selectedOptions.filter(item => item.id !== option.id);
+    }
+  }
+
+  isSelected(option: any): boolean {
+    // Verificar si la opción está en el arreglo de opciones seleccionadas
+    return this.selectedOptions.some(item => item.id === option.id);
+  }
+
+
+
+
 
   PublicarRifa() {
     this.opcPublicar = true;
@@ -216,48 +293,53 @@ export class CreateRifasComponent implements OnInit {
   }
 
 
-  public archivos: NgxFileDropEntry[] = [];
-  public archivosAgregados: string[] = [];
-  public archivosAgregados2: any[] = [];
-  public archivosEnLista: string = '';
 
-
+  //prueba de agregar archivos y visualizar las imágenes
   public files: NgxFileDropEntry[] = [];
-
+  public imagePreviews: string[] = [];
 
   public dropped(files: NgxFileDropEntry[]) {
-    this.archivos = files;
+    this.files = files;
 
-    for (const droppedFile of this.archivos) {
+    for (const droppedFile of files) {
+
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
-          this.archivosAgregados.push(file.name);
-          this.actualizarLista();
+          // Lee el contenido de la imagen y muestra la vista previa
+          const reader = new FileReader();
+          reader.onload = (e:any) => {
+            this.imagePreviews.push(e.target.result as string);
+          };
+          reader.readAsDataURL(file);
         });
+      } else {
+        // Es un directorio (puedes manejarlo si es necesario)
+        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+        console.log(fileEntry);
       }
     }
-
-
-    this.files = files;
-    //this.previewImages();
   }
-
-  private actualizarLista() {
-    this.archivosEnLista = this.archivosAgregados.join(' - ');
-
-  }
-
 
   public fileOver(event: any) {
+    console.log(event);
   }
 
   public fileLeave(event: any) {
+    console.log(event);
+  }
+
+  EliminarImagen(index:number){
+    this.imagePreviews.splice(index, 1);
   }
 
 
 
+ 
+ 
 
+ 
+   
 
 
 }

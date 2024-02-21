@@ -16,6 +16,22 @@
     font-size: 16px; /* Ajusta el tamaño del texto según tus necesidades */
   }
 
+  .boton-con-icono2 {
+    position: absolute;
+    top: 5px; /* Ajusta la posición vertical según tus necesidades */
+    right: 5px; /* Ajusta la posición horizontal según tus necesidades */
+    /*background-color: transparent;  Puedes cambiar el color de fondo según tus necesidades */
+    background-color: rgb(231, 241, 245);
+    border: none;
+    border-radius:20px 20px 20px 20px;
+    
+    padding-left: -20px;
+    padding-right: -10px;
+    cursor: pointer;
+    font-size: 16px; /* Ajusta el tamaño del texto según tus necesidades */
+  }
+
+
   .bag-step-active{
    background-color: rgb(47, 100, 170);
     border-radius:35px 35px 35px 35px;
@@ -27,6 +43,16 @@
     border-radius:35px 35px 35px 35px;
 
   }
+
+  .hr-step-active{
+    background-color: #9297e9;
+   }
+
+
+   .hr-step-desactive{
+    background-color: #e5e5eb;
+   }
+
 
   .p-carrousel {
     position:absolute;
@@ -45,3 +71,5 @@
     cursor: pointer;
     font-size: 14px; /* Ajusta el tamaño del texto según tus necesidades */
   }
+
+

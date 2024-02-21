@@ -31,20 +31,22 @@ export class RifasService {
   guardarRifa(datos:any):Observable<any>{
 
     const body = new FormData();
-    body.append('title', datos.title);
-    body.append('description', datos.description);
-    body.append('cantidad_boletos', datos.cantidad_boletos);
-    body.append('rango_inicial_boletos', datos.rango_inicial_boletos);
-    body.append('rango_final_boletos', datos.rango_final_boletos);
-    body.append('costo_boleto', datos.costo_boleto);
-    body.append('fecha_sorteo_rifa', datos.fecha_sorteo_rifa);
-    body.append('metodo_sorteo_id', datos.metodo_sorteo_id);
+    body.append('title', 'rifa de balon');
+    body.append('description', 'balon del mundial');
+    body.append('cantidad_boletos', '100');
+    body.append('rango_inicial_boletos', '1');
+    body.append('rango_final_boletos', '100');
+    body.append('costo_boleto', '1.00');
+    body.append('fecha_sorteo_rifa', '2024-02-29');
+    body.append('metodo_sorteo_id', '1');
     
+    
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
       'Content-Type': 'application/json',
     });
-
+debugger
     return this.httpClient.post<any>(this.api + 'createraffle', body, { headers: headers });
   }
 

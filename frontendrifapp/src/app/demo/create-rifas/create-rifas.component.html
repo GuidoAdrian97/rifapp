@@ -1,13 +1,58 @@
 <div class="row">     
     <div class="container-fluid">     
 
-  
- <div class="row">
+    
+
+
+ <div class="row" style="margin-top: -2%;">
   <div class="col-md-12">
+
     <div class="card">
       <div class="card-body ">  
 
-
+        <!--encabezado opciones botones-->
+        <div class="row">
+          <div class="col-md-12">
+        
+          
+            <nav aria-label="..." >
+              <ul class="pagination justify-content-center">
+                <li class="page-item " style="margin-right: 2%;">
+                  <small style="font-size: small;"><span type="button" class="badge m-r-5 text-center" (click)="VerInfoGanancias()" style="font-size: medium;padding-left: 14px; padding-right: 14px; "
+                    [ngClass]="{'bag-step-active': divInformation, 'bag-step-desactive': !divInformation}"
+                    >1</span><small *ngIf="screenWidth>1280" class="text-muted" style="font-size: small;">Consulta ganancias a obtener</small>
+                    <hr [ngClass]="{'hr-step-active': divInformation, 'hr-step-desactive': !divInformation}">
+                </small>
+                </li>
+                <li class="page-item " style="margin-right: 2%;">
+                  <small style="font-size: small;"><span type="button" class="badge m-r-5 text-center" (click)="CrearRifa()" style="font-size: medium;padding-left: 12px; padding-right: 12px; "
+                    [ngClass]="{'bag-step-active': divCreate, 'bag-step-desactive': !divCreate}"
+                    >2</span><small *ngIf="screenWidth>1280" class="text-muted" style="font-size: small;">Registra los datos de la rifa</small>
+                    <hr [ngClass]="{'hr-step-active': divCreate, 'hr-step-desactive': !divCreate}">
+                </small>
+                </li>
+                <li class="page-item " style="margin-right: 2%;">
+                  <small style="font-size: small;"><span type="button" class="badge m-r-5 text-center" (click)="VerSeccionPremios()" style="font-size: medium;padding-left: 12px; padding-right: 12px; "
+                    [ngClass]="{'bag-step-active': divUpdated, 'bag-step-desactive': !divUpdated}"
+                    >3</span><small *ngIf="screenWidth>1280" class="text-muted" style="font-size: small;">Registra premio(s) para la rifa</small>
+                    <hr [ngClass]="{'hr-step-active': divUpdated, 'hr-step-desactive': !divUpdated}">
+                </small>
+                </li>
+                <li class="page-item ">
+                  <small style="font-size: small;"><span type="button" class="badge m-r-5 text-center" (click)="PublicarRifa()" style="font-size: medium;padding-left: 12px; padding-right: 12px; "
+                    [ngClass]="{'bag-step-active': opcPublicar, 'bag-step-desactive': !opcPublicar}"
+                    >4</span><small *ngIf="screenWidth>1280" class="text-muted" style="font-size: small;">Publica la rifa y empieza a ganar</small>
+                    <hr [ngClass]="{'hr-step-active': opcPublicar, 'hr-step-desactive': !opcPublicar}">
+                </small>
+                </li>
+          
+               
+              </ul>
+            </nav>
+      
+          
+          </div>
+        </div>
 
 
  <!--1 consulta ganancias-->
@@ -16,12 +61,23 @@
 
 
 <!--encabezado 1#-->
-<div class="row">
- <small style="font-size: small;"><span type="button" class="badge m-r-5 text-center" (click)="VerInfoGanancias()" style="font-size: medium;padding-left: 12px; padding-right: 12px; "
-            [ngClass]="{'bag-step-active': divInformation, 'bag-step-desactive': !divInformation}"
-            >1</span>Consulta ganancias a obtener
- </small>   
-</div>
+
+<div class="row" style="margin-bottom: -3%;">
+ 
+  <div class="col-md-12 text-center">
+    <small style="font-size: small;"><span type="button" class="badge bag-light m-r-5 text-center" (click)="VerInfoGanancias()" style="font-size: medium; color: #9297e9; "
+      ></span><b style="color: #99999e;" >CONSULTA GANANCIAS A OBTENER</b>
+       </small>  
+    
+  </div> 
+  
+ </div>
+
+ <div class="row" style="margin-top: 1%;">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"><hr ></div>
+  <div class="col-md-4"></div>
+ </div>
 
 
 
@@ -29,6 +85,7 @@
 
   <!--imagen lateral-->
   <div class="col-md-6 text-center" style="margin-top:5%">
+
     <img alt="imgSrc" src="assets/images/gallery-grid/e.png" width="100%" class="contenedor-imagen">
    
   </div>
@@ -36,7 +93,9 @@
     
  <!--21bb36-->
  <!--formulario consulta num minimo de boletos a vender-->
+
   <div class="col-md-6" style="margin-top:5%">
+  
     <div class="form-group row">
       <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Seleccione tipo de sorteo</small>
       <div class="col-sm-7">
@@ -90,9 +149,9 @@
 
 
 <div class="row">
-  <div class="col-md-5"><hr style="color: #9297e9;" style="margin-top:10%"></div>
+  <div class="col-md-5"><hr style="color: #9297e9;" style="margin-top:5%"></div>
   <div class="col-md-2"></div>
-  <div class="col-md-5"><hr style="color: #9297e9;" style="margin-top:10%"></div>
+  <div class="col-md-5"><hr style="color: #9297e9;" style="margin-top:5%"></div>
 </div>
 
 
@@ -100,7 +159,7 @@
 <div class="row">
   <div class="col-md-5"></div>
   <div class="col-md-2 text-center">
-    <span class="badge-light-primary" style="font-size: xx-large; padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px; border-radius: 50px; ">
+    <span class="badge-light-primary" type="button" (click)="scrollToBottom()" style="font-size: xx-large; padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px; border-radius: 50px; ">
     <i class="fa fa-arrow-circle-down" aria-hidden="true" style="font-size:xx-large; color: #9297e9;"></i></span></div>
   <div class="col-md-5"></div>
 </div>
@@ -108,7 +167,7 @@
    
 
   <!--logos y consulta ganancias-->
-  <div class="row" >
+  <div class="row" id="seccion2">
    
         <div class="col-md-12" style="margin-top:5%">
 
@@ -180,19 +239,31 @@
           </div>
 
 
-          
-        </div>
+         
 
-       
+      </div>
   </div>
      
       
-    
+  
  
+  <div class="row">
+    <div class="col-md-5"><hr style="color: #9297e9;" style="margin-top:10%"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5"><hr style="color: #9297e9;" style="margin-top:10%"></div>
+  </div>
+  
+  
+  
+  <div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-2 text-center">
+      <span class="badge-light-primary" type="button" (click)="scrollToTop()" style="font-size: xx-large; padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px; border-radius: 50px; ">
+      <i class="fa fa-arrow-circle-up" aria-hidden="true" style="font-size:xx-large; color: #9297e9;"></i></span></div>
+    <div class="col-md-5"></div>
+  </div>
 
-
-<hr style="color: #9297e9;" style="margin-top:10%">
-<!--pagintation-->
+<!--pagintation-
 <div class="row " style="margin-top: 5%;">
 
   <nav aria-label="..." >
@@ -213,7 +284,7 @@
     </ul>
   </nav>
 
-</div>
+</div>-->
 
 
  
@@ -227,40 +298,36 @@
 <div class="row"  *ngIf="divCreate">
 
 <!--encabezado 2#-->
-<div class="row">
+<div class="row" style="margin-bottom: -3%;">
+
+  <div class="col-md-12 text-center">
+    <small style="font-size: small;"><span type="button" class="badge bag-light m-r-5 text-center" (click)="VerInfoGanancias()" style="font-size: medium; color: #9297e9; "
+      ></span><b style="color: #99999e;" >REGISTRA LOS DATOS DE LA RIFA</b>
+       </small>  
+      
+  </div>
+  
+ </div>
+
+ <div class="row" style="margin-top: 1%;">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"><hr ></div>
+  <div class="col-md-4"></div>
+ </div>
+
+
+<!--<div class="row">
     <small style="font-size: small;"><span type="button" class="badge m-r-5 text-center" (click)="CrearRifa()"  style="font-size: medium;padding-left: 12px; padding-right: 12px; "
       [ngClass]="{'bag-step-active': divCreate, 'bag-step-desactive': !divCreate}"
       >2</span>Registra los datos de la rifa
 </small>
-</div>
+</div>-->
 
 
 
 <div class="row">
 
-  <!--imagen lateral 2-->
-<div class="col-md-5 text-center" style="margin-top: 3%;">
-
-<div class="row">
-  <img alt="imgSrc" src="assets/images/gallery-grid/Cap3.png" width="100%" height="100%" class="contenedor-imagen">
-</div>
-
-<div class="row" style="margin-top: 2%;">
-  
-  <small  class="col-form-label text-justify" style="color: #808083; font-size: small;  line-height: 1.5;">La cantidad mínima de boletos que podrá comprar una persona para esta rifa será de {{minBoletosxPersona}} boleto(s).</small>
-</div>
-
-<!--<div class="text-center" style="margin-top: 6%;">
-  <button type="button" class="btn btn-icon btn d-inline-flex text-secondary" type="button" (click)="ConsultarMinBoletosxPersona(numBoletos)" style="background-color: #d5d5db;">
-    <i class="fa fa-refresh" aria-hidden="true"> Volver a consultar mínimo de boletos por persona</i>
-  </button>
-  </div>-->
-
-</div>
-
-
-
-<!--formulario 2-->
+  <!--formulario 2-->
 <div class="col-md-7" style="margin-top: 3%;">
   <div class="row">
 
@@ -296,7 +363,7 @@
       </div>
     </div>
 
-    <div class="form-group row" *ngIf="opcSorteo==2">
+    <div class="form-group row" *ngIf="opcSorteo==2" >
       <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese cantidad de boletos a vender</small>
       <div class="col-sm-7">
         <div class="input-group mb-3">
@@ -307,23 +374,25 @@
       </div>
     </div>
 
-    <div class="form-group row" >
-      <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese rango de boletos</small>
-      <div class="col-sm-7">
+    <div class="form-group row" *ngIf="opcSorteo==2">
+      <small  class="col-md-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese rango de boletos</small>
+      <div class="col-md-7">
         <div class="input-group mb-3">
-          <span class="input-group-text text-light" style="background-color: #a8acfd; border-color: #a8acfd;">Desde</span>
-          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 100" name="numBoletos" [(ngModel)]="rangoInicial"  style="border-color: #a8acfd;" />               
-          <span class="input-group-text text-light" style="background-color: #a8acfd; border-color: #a8acfd;">Hasta</span>
-          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 100" name="numBoletos" [(ngModel)]="rangoFinal"  style="border-color: #a8acfd;" />               
-        </div>
+        
+          <span class="input-group-text text-light" style="background-color: #a8acfd; border-color: #a8acfd; font-size: small;">De</span>
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 100" name="numBoletos" [(ngModel)]="rangoInicial"  style="border-color: #a8acfd;" />               
+            <span class="input-group-text text-light" style="background-color: #a8acfd; border-color: #a8acfd; font-size: small;">Hasta</span>
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej: 100" name="numBoletos" [(ngModel)]="rangoFinal"  style="border-color: #a8acfd;" />   
+          </div>
         
       </div>
+      
     </div>
     <div class="form-group row" *ngIf="opcSorteo==1">
       <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Seleccione cantidad de boletos a vender</small>
       <div class="col-sm-7">
         <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="numBoletos" style="border-color: #a8acfd;">
-          <option >Seleccione una opción...</option>
+          <option value={{numBoletos}}>Seleccione una opción...</option>
           <option value="100">[00 - 99]</option>
           <option value="1000">[000 - 999]</option>
           <option value="10000">[0000 - 9999]</option>
@@ -354,49 +423,52 @@
       </div>
     </div>
 
+    <!--<div class="form-group row">
+      <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;"></small>
+      <div class="col-sm-7">
+        <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="guardarDatos()" style="background-color: #5fb66a;">
+          <i class="fa fa-arrow-circle-o-right" style="font-size: medium;"> Siguiente</i>
+        </button>
+      </div>
+    </div>-->
   </div>
 
 
-  <div class="row">
-    <hr style="color: #9297e9;" style="margin-top:1%">
-    <div class="text-center" style="margin-top: 6%;">
-    <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="guardarDatos()" style="background-color: #9297e9;">
-      <i class="feather icon-save" style="font-size: medium;"> Guardar</i>
-    </button>
-    </div>
-  </div> 
-
-</div>
-
-
 </div>
 
 
 
-<hr style="color: #9297e9;" style="margin-top:10%">
-<!--pagination-->
+  <!--imagen lateral 2-->
+<div class="col-md-5 text-center" style="margin-top: 3%;">
 
-<div class="row " style="margin-top:5%">
-  
-    <nav aria-label="..." >
-      <ul class="pagination justify-content-center">
-        <li class="page-item" type="button" (click)="VerInfoGanancias()">
-          <span class="page-link" >Anterior</span>
-        </li>
-      
-        <li class="page-item" [ngClass]="{'active': divInformation, '': !divInformation}">
-          <a class="page-link" title="Consulta ganancias a obtener" type="button" (click)="VerInfoGanancias()">1</a></li>
-        <li class="page-item " [ngClass]="{'active': divCreate, '': !divCreate}">
-          <a class="page-link" title="Registra los datos de la rifa" type="button" (click)="CrearRifa()">2</a></li>
-  
-        <li class="page-item"  [ngClass]="{'active': divUpdated, '': !divUpdated}">
-          <a class="page-link" type="button" title="Registra premio(s) para la rifa" (click)="VerSeccionPremios()">3</a></li>
-        <li class="page-item" [ngClass]="{'active': opcPublicar, '': !opcPublicar}">
-          <a class="page-link" type="button" (click)="PublicarRifa()" title="Publica la rifa y empieza a ganar" >4</a></li>
-        <li class="page-item " ><a class="page-link" type="button" (click)="VerSeccionPremios()">Siguiente</a></li>
-      </ul>
-    </nav>
- 
+<div class="row">
+  <!--<img alt="imgSrc" src="assets/images/gallery-grid/Cap3.png" width="100%" height="80%" class="contenedor-imagen">-->
+  <small  class="col-form-label text-justify" style="color: #808083; font-size: small;  line-height: 1.5;">La cantidad mínima de boletos que podrá comprar una persona para esta rifa será de {{minBoletosxPersona}} boleto(s).</small>
+</div>
+
+<div class="row" style="margin-top: 2%;">
+  <div class="col-md-3"></div>
+  <div class="col-md-6 text-center">
+    <img alt="imgSrc" src="assets/images/gallery-grid/Cap3.png" width="100%" height="80%" class="contenedor-imagen">
+  <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="guardarDatos()" style="background-color: #5fb66a; margin-top:5%">
+    <i class="fa fa-arrow-circle-o-right" style="font-size: medium;"> Siguiente</i>
+  </button>
+</div>
+<div class="col-md-3"></div>
+</div>
+
+<!--<div class="text-center" style="margin-top: 6%;">
+  <button type="button" class="btn btn-icon btn d-inline-flex text-secondary" type="button" (click)="ConsultarMinBoletosxPersona(numBoletos)" style="background-color: #d5d5db;">
+    <i class="fa fa-refresh" aria-hidden="true"> Volver a consultar mínimo de boletos por persona</i>
+  </button>
+  </div>-->
+
+</div>
+
+
+
+
+
 </div>
 
 
@@ -412,370 +484,281 @@
 <div class="row"  *ngIf="divUpdated">
 
   <!--encabezado 3#-->
-<div class="row">
-  <small style="font-size: small;"><span type="button" class="badge m-r-5 text-center" (click)="VerSeccionPremios()"  style="font-size: medium;padding-left: 12px; padding-right: 12px; "
-    [ngClass]="{'bag-step-active': divUpdated, 'bag-step-desactive': !divUpdated}"
-    >3</span>Registra premio(s) para la rifa 
-</small>
-</div>
-
-
-
- <!--imagen lateral 3-->
- <div class="col-md-5 text-center" style="margin-top: 3%;">
-
-  <div class="row">
-    <img alt="imgSrc" src="assets/images/gallery-grid/Cap4.png" width="100%" height="100%" class="contenedor-imagen">
-  </div>
-
-  <!--<hr style="color: #9297e9;" style="margin-top:1%">-->
-  </div>
-  
-
-
-<!--formulario 3-->
-<div class="col-md-7" style="margin-top: 3%;">
-
-  <div class="row">
-
-    <div class="form-group row">
-      <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese nombre de premio</small>
-      <div class="col-sm-7">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nombre de premio..." name="nombrePremio"  style="border-color: #a8acfd;"></textarea>   
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese descripción de premio</small>
-      <div class="col-sm-7">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de premio..." name="descripPremio"  style="border-color: #a8acfd;"></textarea>   
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Marque estado del premio</small>
-      <div class="col-sm-7">
-        <div class=" row">
-        <div class="col-sm-6">
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
-            <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">1
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-            </span></label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
-            <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">2
-              <i name="star" class="fa fa-star" style="color: gold;"></i> <i name="star" class="fa fa-star" style="color: gold;" ></i>
-            </span></label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
-            <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">3
-              <i name="star" class="fa fa-star" style="color: gold;" ></i> <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-            </span></label>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
-            <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">4
-              <i name="star" class="fa fa-star" style="color: gold;" ></i> <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-            </span></label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
-            <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">4.5
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star-half" style="color: gold;" ></i>
-            </span></label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
-            <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">5
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-              <i name="star" class="fa fa-star" style="color: gold;" ></i>
-            </span></label>
-          </div>
-
-
-        </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Seleccione categoría(s) de premio</small>
-      <div class="col-sm-7">
-        <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="numBoletos" style="border-color: #a8acfd;">
-          <option value="0">Buscar...</option>
-          <option value="1">Hogar</option>
-          <option value="2">Efectivo</option>
-          <option value="3">Vehículos</option>
-          <option value="4">Tecnología</option>
-          <option value="5">Otra</option>
-        </select>
-      </div>
-    </div>
+  <div class="row" style="margin-bottom: -3%;">
+ 
+    <div class="col-md-12 text-center">
+      <small style="font-size: small;"><span type="button" class="badge bag-light m-r-5 text-center" (click)="VerInfoGanancias()" style="font-size: medium; color: #9297e9; "
+        ></span><b style="color: #99999e;" >REGISTRA PREMIO(S) PARA LA RIFA</b>
+         </small>  
+        
+    </div> 
     
-    <div class="form-group row">
-      <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Agregue imágenes de premio</small>
-      <div class="col-sm-7">
-        <input type="file" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ej: 1"  name="imagenPremio" style="border-color: #a8acfd;" />
-      </div>
-    </div>
+   </div>
 
-
-
-  </div>
-
-
-  <div class="row" style="margin-bottom: 5%;">
-    <hr style="color: #9297e9;" style="margin-top:1%">
-    <div class="text-center" style="margin-top: 2%;">
-    <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="CrearRifa()" style="background-color: #9297e9;">
-      <i class="feather icon-save" style="font-size: medium;"> Guardar</i>
-    </button>
-    </div>
-  </div> 
-
-</div>
-
-
-  <div class="row">
- <!--sección para agregar imágenes"-->
-               
- <div class="col-md-12  center">
-                      <ngx-file-drop [multiple]="true" 
-                      dropZoneLabel="Arraste las imágenes aquí"
-                      (onFileDrop)="dropped($event)" 
-                      (onFileOver)="fileOver($event)"
-                      (onFileLeave)="fileLeave($event)"
-                      accept="image/*"
-                     >
-                      <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                        <span class="badge m-r-5 badge-light-secondary" type="button" (click)="openFileSelector()" style="font-size: small;"><i class="feather icon-image"></i>Arraste o agregue las imágenes aquí</span>
-
-                      </ng-template>
-                      </ngx-file-drop>
-
-                      <div class="text-center" style="margin-top: 5%;">
-                            <div class="row">
-                              <div class="col-sm-4">
-                                <p class="text-muted" style="color: #7379b1;">Imágenes agregadas</p>
-                              </div>
-                            <div class="col-sm-8">
-                                <img class=" img-radius" src="assets/images/gallery-grid/s4.jpg" alt="Generic placeholder image" style="width: 50px; height: 50px;" />
-                                <img class=" img-radius" src="assets/images/gallery-grid/s4.jpg" alt="Generic placeholder image" style="width: 50px; height: 50px;" />
-                                <img class=" img-radius" src="assets/images/gallery-grid/s4.jpg" alt="Generic placeholder image" style="width: 50px; height: 50px;" />
-                                <img class=" img-radius" src="assets/images/gallery-grid/s4.jpg" alt="Generic placeholder image" style="width: 50px; height: 50px;" />
-                                <img class=" img-radius" src="assets/images/gallery-grid/s4.jpg" alt="Generic placeholder image" style="width: 50px; height: 50px;" />
-                            </div>
-                          </div>
-                           <!--- <p class="text-muted text-justify">{{ archivosEnLista }}</p>-->
-                        
-                     
-                        
-
-                       <!--- <div *ngFor="let item of archivosAgregados2">
-                          <img [src]="imagePath" alt="Logo" class="img-fluid" width="25%" height="25%" />
-                        </div>-->
-                      </div>
-                     
-                     <!--- <div class="upload-table">
-                          <table class="table">
-                              <thead>
-                                  <tr>
-                                      <th>Name</th>
-                                  </tr>
-                              </thead>
-                              <tbody class="upload-name-style">
-                                  <tr *ngFor="let item of files">
-                                      <td ><strong>{{item.relativePath}}</strong></td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>-->
- </div>
-</div>
-
-<div class="row" style="margin-top:5%">
-  <hr style="color: #9297e9;" >
-</div>
-
-<div class="row" style="margin-top:5%">
-  <p class="text-danger text-center"><i class="feather icon-alert-triangle"></i> No hay premios registrados aún!!!</p>
-            
-</div>
-
-
-
-<!--sección premios-->
-<div class="row text-center" style="margin-top:5%; align-items: center; " >
-<div class="col-md-12" >
-  <div class="row">
+   <div class="row" style="margin-top: 1%;">
     <div class="col-md-4"></div>
-    <div class="col-md-4" style="align-items: center; ">
- 
-    <div class="card-body" style="align-items: center; ">
-   
- 
- 
-         
-           <ngb-carousel>
-             <ng-template ngbSlide>
-            
-             <a type="button" title="Editar premio">
-           <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%"  class="contenedor-imagen"></a>
-           <button class="boton-con-icono" title="Eliminar premio">
-             <i class="fa fa-times-circle text-danger"></i> 
-           </button>
+    <div class="col-md-4"><hr ></div>
+    <div class="col-md-4"></div>
+   </div>
+
+
+   <!--sección de premios-->
+   <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-2"></div> <div class="col-md-8 text-center">
+        <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="lgModal.show()" style="background-color: #5fb66a;">
+          <i class="feather icon-plus" style="font-size: medium;"> Agregar premio</i>
+        </button></div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div><div class="col-md-8 text-center">
+  <p class="text-danger text-center" *ngIf="!premios" style="margin-top: 3%;"><i class="feather icon-alert-triangle"></i> No hay premios registrados aún!!!</p>
+  <div class="card-body" style="align-items: center; " *ngIf="premios">
      
-            <small class="p-carrousel" style="color: #7c80c9;"> Premio #1 </small>
-          
+             <ngb-carousel>
+               <ng-template ngbSlide>
+              
+               <a type="button" title="Editar premio">
+             <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%"  class="contenedor-imagen"></a>
+             <button class="boton-con-icono" title="Eliminar premio">
+               <i class="fa fa-times-circle text-primary"></i> 
+             </button>
+       
+              <small class="p-carrousel" style="color: #7c80c9;"> Premio #1 </small>
+            
+             </ng-template>
+             <ng-template ngbSlide>
+              
+                 <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%"  class="contenedor-imagen">
+                 <button class="boton-con-icono" title="Eliminar imagen">
+                   <i class="fa fa-times-circle text-primary"></i> 
+                 </button>
+                 <small class="p-carrousel" style="color: #7c80c9;"> Premio #2 </small>
            </ng-template>
            <ng-template ngbSlide>
-            
-               <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%"  class="contenedor-imagen">
-               <button class="boton-con-icono" title="Eliminar imagen">
-                 <i class="fa fa-times-circle text-danger"></i> 
-               </button>
-               <small class="p-carrousel" style="color: #7c80c9;"> Premio #2 </small>
+  
+         <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg"  width="100%"    class="contenedor-imagen">
+         <button class="boton-con-icono" title="Eliminar imagen">
+           <i class="fa fa-times-circle text-primary"></i> 
+         </button>
+         <small class="p-carrousel" style="color: #7c80c9;"> Premio #3 </small>
          </ng-template>
          <ng-template ngbSlide>
-
-       <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg"  width="100%"    class="contenedor-imagen">
-       <button class="boton-con-icono" title="Eliminar imagen">
-         <i class="fa fa-times-circle text-danger"></i> 
-       </button>
-       <small class="p-carrousel" style="color: #7c80c9;"> Premio #3 </small>
+       
+           <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
+           <button class="boton-con-icono" title="Eliminar imagen">
+             <i class="fa fa-times-circle text-primary" ></i> 
+           </button>
+           <small class="p-carrousel" style="color: #7c80c9;"> Premio #4 </small>
        </ng-template>
        <ng-template ngbSlide>
-     
-         <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
-         <button class="boton-con-icono" title="Eliminar imagen">
-           <i class="fa fa-times-circle text-danger" ></i> 
-         </button>
-         <small class="p-carrousel" style="color: #7c80c9;"> Premio #4 </small>
-     </ng-template>
-     <ng-template ngbSlide>
-    
-       <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%"  class="contenedor-imagen">
-       <button class="boton-con-icono" title="Eliminar imagen">
-         <i class="fa fa-times-circle text-danger"></i> 
-       </button>
-       <small class="p-carrousel" style="color: #7c80c9;"> Premio #5 </small>
-     </ng-template>
-           </ngb-carousel>
- 
- 
-
- </div>
-    </div>
-    <div class="col-md-4"></div>
-  </div>
-
-
-</div>
-            
-</div>
-
-
-
-<div class="row" style="margin-top:5%">
-
-<!--carrusel de imágenes
-<div class="col-sm-6 col-lg-3 ">
-<app-card [hidHeader]="true" blockClass="text-center">
- <p style="font-weight: bold;">Premio 1</p>
-    
-      <ngb-carousel>
-        <ng-template ngbSlide>
-
-      <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
-      <button class="boton-con-icono" title="Eliminar imagen">
-        <i class="fa fa-times-circle text-danger"></i> 
-      </button>
-      </ng-template>
-      <ng-template ngbSlide>
-        
-          <img alt="imgSrc" src="assets/images/gallery-grid/s5.jpg" width="100%" class="contenedor-imagen">
-          <button class="boton-con-icono" title="Eliminar imagen">
-            <i class="fa fa-times-circle text-danger"></i> 
-          </button>
-    </ng-template>
-    <ng-template ngbSlide>
       
-  <img alt="imgSrc" src="assets/images/gallery-grid/s4.jpg" width="100%" class="contenedor-imagen">
-  <button class="boton-con-icono" title="Eliminar imagen">
-    <i class="fa fa-times-circle text-danger"></i> 
-  </button>
-  </ng-template>
-  <ng-template ngbSlide>
-    
-    <img alt="imgSrc" src="assets/images/gallery-grid/s11.jpg" width="100%" class="contenedor-imagen">
-    <button class="boton-con-icono" title="Eliminar imagen">
-      <i class="fa fa-times-circle text-danger" ></i> 
-    </button>
-</ng-template>
-<ng-template ngbSlide>
+         <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%"  class="contenedor-imagen">
+         <button class="boton-con-icono" title="Eliminar imagen">
+           <i class="fa fa-times-circle text-primary"></i> 
+         </button>
+         <small class="p-carrousel" style="color: #7c80c9;"> Premio #5 </small>
+       </ng-template>
+             </ngb-carousel>
+   
+   
   
-  <img alt="imgSrc" src="assets/images/gallery-grid/masonry-6.jpg" width="100%" class="contenedor-imagen">
-  <button class="boton-con-icono" title="Eliminar imagen">
-    <i class="fa fa-times-circle text-danger"></i> 
-  </button>
-</ng-template>
-      </ngb-carousel>
-<div style="margin-top: 5%;">
-<p class="text-muted">Boat Headphone</p>
-
-</div>
-</app-card>
-</div>
--->
+   </div></div>
+   <div class="col-md-2"></div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+   </div>
 
 
-</div>
-       
-        
-<!--pagination-->
- <div class="row " style="margin-top:5%">
-              
-              
-                <nav aria-label="..." >
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item" type="button"  (click)="CrearRifa()">
-                      <span class="page-link" >Anterior</span>
-                    </li>
-                  
-                    <li class="page-item" [ngClass]="{'active': divInformation, '': !divInformation}">
-                      <a class="page-link" title="Consulta ganancias a obtener" type="button" (click)="VerInfoGanancias()">1</a></li>
-                    <li class="page-item " [ngClass]="{'active': divCreate, '': !divCreate}">
-                      <a class="page-link" title="Registra los datos de la rifa" type="button" (click)="CrearRifa()">2</a></li>
-              
-                    <li class="page-item"  [ngClass]="{'active': divUpdated, '': !divUpdated}">
-                      <a class="page-link" type="button" title="Registra premio/s para la rifa" (click)="VerSeccionPremios()">3</a></li>
-                    <li class="page-item" [ngClass]="{'active': opcPublicar, '': !opcPublicar}">
-                      <a class="page-link" type="button" (click)="PublicarRifa()" title="Publica la rifa y empieza a ganar" >4</a></li>
-                    <li class="page-item " ><a class="page-link" type="button" (click)="PublicarRifa()">Siguiente</a></li>
-                  </ul>
-                </nav>
-             
-              
-</div>
+
+ 
+
+  <!---imagen 3
+    <img alt="imgSrc" src="assets/images/gallery-grid/Cap4.png" width="100%" height="100%" class="contenedor-imagen">
+  -->
+
+
+  <!--<hr style="color: #9297e9;" style="margin-top:1%">-->
+
+  
+
+
+<!--modal add premio-->
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p id="dialog-sizes-name1" class="modal-title pull-left">Registro de datos del premio</p>
+        <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="form-group row">
+            <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese nombre de premio</small>
+            <div class="col-sm-7">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nombre de premio..." name="nombrePremio"  style="border-color: #a8acfd;"></textarea>   
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese descripción de premio</small>
+            <div class="col-sm-7">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de premio..." name="descripPremio"  style="border-color: #a8acfd;"></textarea>   
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Marque estado del premio</small>
+            <div class="col-sm-7">
+              <div class=" row">
+              <div class="col-sm-6">
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                  <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">1
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                  </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                  <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">2
+                    <i name="star" class="fa fa-star" style="color: gold;"></i> <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                  </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                  <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">3
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i> <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                  </span></label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                  <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">4
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i> <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                  </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                  <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">4.5
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star-half" style="color: gold;" ></i>
+                  </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
+                  <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-warning">5
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                    <i name="star" class="fa fa-star" style="color: gold;" ></i>
+                  </span></label>
+                </div>
+      
+      
+              </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Seleccione categoría(s) de premio</small>
+            <div class="col-sm-7">
          
+      <ng-select 
+      [items]="options"
+      bindLabel="name"
+      [(ngModel)]="selectedOptions"
+      notFoundText="No se encontraron resultados"
+      [virtualScroll]	="true"
+      placeholder="{{ selectedOptions.length > 0 ? '' : 'Busca y selecciona categoría(s)...' }}"
+      [closeOnSelect]="false"
+      [clearSearchOnAdd]="true"
+      
+      [multiple]="true"
+      [searchable]="true"
+      
+      >
+      <ng-template ng-option-tmp let-item="item" let-index="index" >
+        <div class="custom-option" (click)="onItemSelected(item)" style="background-color: #ffffff; padding-left: 5%;padding-bottom: 1%;padding-top: 2%;">
+          <input type="checkbox" [checked]="isSelected(item)" /> {{ item.name }}
+        </div>
+      </ng-template>
+      </ng-select>
+      
+      <!--[hideSelected]="true" oculta los items seleccioandos-->
+             
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Agregue imágenes de premio</small>
+            <div class="col-sm-7">
+             <ngx-file-drop [multiple]="true" 
+                            dropZoneLabel="Arraste las imágenes aquí"
+                            (onFileDrop)="dropped($event)" 
+                            (onFileOver)="fileOver($event)"
+                            (onFileLeave)="fileLeave($event)"
+                            accept="image/*"
+                           >
+                            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                              <span class="badge m-r-5 badge-light-secondary" type="button" (click)="openFileSelector()" style="font-size: small;"><i class="feather icon-image"></i>Arraste o agregue las imágenes aquí</span>
+      
+                            </ng-template>
+              </ngx-file-drop>
+      
+            </div>
+          </div>
+          <div class="form-group row">
+          
+            <div class="col-sm-12 text-center">
+              <small class="contenedor-imagen" *ngFor="let preview of imagePreviews ; let i = index" style="margin-right: 1%;">
+              <img [src]="preview" alt="Preview"  alt="Generic placeholder image" style="width: 80px; height: 80px;" />
+              <button class="boton-con-icono2" title="Eliminar imagen" (click)="EliminarImagen(i)">
+                <i class="fa fa-times-circle text-primary"></i> 
+              </button></small>
+             
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+              <button type="button" class="btn btn-icon btn d-inline-flex text-light"  style="background-color: #5fb66a;">
+                <i class="feather icon-save" style="font-size: medium;"> Guardar</i>
+              </button>
+            </div>
+            <div class="col-md-4"></div>
+           
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
+
+     
   </div>
 
 
@@ -788,12 +771,25 @@
 
 
   <!--encabezado 4#-->
-  <div class="row">
-    <small style="font-size: small;"><span type="button" class="badge m-r-5 text-center" (click)="PublicarRifa()"  style="font-size: medium;padding-left: 12px; padding-right: 12px; "
-      [ngClass]="{'bag-step-active': opcPublicar, 'bag-step-desactive': !opcPublicar}"
-      >4</span>Publica la rifa y empieza a ganar
-  </small>
-  </div>
+  <div class="row" style="margin-bottom: -3%;">
+  
+    <div class="col-md-12 text-center">
+      <small style="font-size: small;"><span type="button" class="badge bag-light m-r-5 text-center" (click)="VerInfoGanancias()" style="font-size: medium; color: #9297e9; "
+        ></span><b style="color: #99999e;" >PUBLICA LA RIFA Y EMPIEZA A GANAR</b>
+         </small>  
+        
+    </div> 
+    
+   </div>
+
+   <div class="row" style="margin-top: 1%;">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"><hr ></div>
+    <div class="col-md-4"></div>
+   </div>
+
+
+ 
 
 
 <!--formulario 4-->
@@ -826,7 +822,7 @@
           <input type="checkbox" class="custom-control-input" id="customCheck1" />
           <label class="custom-control-label ps-2" for="customCheck1">Estoy de acuerdo</label>
         </div>
-        <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="CrearRifa()" style="background-color: #9297e9;">
+        <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="CrearRifa()" style="background-color: #9297e9; margin-top:5%">
           <i class="feather icon-check" style="font-size: medium;"> Aceptar</i>
         </button>
         </div>
@@ -839,7 +835,7 @@
     <div class="row" style="margin-bottom: 5%;">
       <hr style="color: #9297e9;" style="margin-top:1%">
       <div class="text-center" style="margin-top: 6%;">
-      <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="CrearRifa()" style="background-color: #9297e9;">
+      <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="CrearRifa()" style="background-color: #5fb66a;">
         <i class="fa fa-check-square-o" style="font-size: medium;"> Publicar</i>
       </button>
       </div>
@@ -850,29 +846,7 @@
 </div>
 
 
-<!--pagination-->
-<div class="row " style="margin-top:5%">
-  
-  <nav aria-label="..." >
-    <ul class="pagination justify-content-center">
-      <li class="page-item" type="button" (click)="VerSeccionPremios()">
-        <span class="page-link" >Anterior</span>
-      </li>
-    
-      <li class="page-item" [ngClass]="{'active': divInformation, '': !divInformation}">
-        <a class="page-link" title="Consulta ganancias a obtener" type="button" (click)="VerInfoGanancias()">1</a></li>
-      <li class="page-item " [ngClass]="{'active': divCreate, '': !divCreate}">
-        <a class="page-link" title="Registra los datos de la rifa" type="button" (click)="CrearRifa()">2</a></li>
 
-      <li class="page-item"  [ngClass]="{'active': divUpdated, '': !divUpdated}">
-        <a class="page-link" type="button" title="Registra premio/s para la rifa" (click)="VerSeccionPremios()">3</a></li>
-      <li class="page-item" [ngClass]="{'active': opcPublicar, '': !opcPublicar}">
-        <a class="page-link" type="button" (click)="PublicarRifa()" title="Publica la rifa y empieza a ganar" >4</a></li>
-      <li class="page-item disabled" ><a class="page-link" type="button">Siguiente</a></li>
-    </ul>
-  </nav>
-
-</div>
 
 
 
@@ -884,6 +858,9 @@
 </div>
 </div>
 </div>
+
+
+
 </div>      
 </div>
   
