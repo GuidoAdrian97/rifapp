@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('rango_final_boletos')->unique();
             $table->decimal('costo_boleto', 8, 2);
             $table->date('fecha_sorteo_rifa');
+            $table->enum('estado', ['vendido', 'en_progreso', 'finalizado', 'cancelado', 'pausado', 'en_espera_de_aprobacion', 'caducado'])->default('en_espera_de_aprobacion');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('metodo_sorteo_id')->references('id')->on('metodo_sorteos');
             $table->timestamps();
