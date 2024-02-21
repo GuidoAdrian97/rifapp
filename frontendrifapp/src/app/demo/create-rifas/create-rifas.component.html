@@ -391,12 +391,11 @@
     <div class="form-group row" *ngIf="opcSorteo==1">
       <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Seleccione cantidad de boletos a vender</small>
       <div class="col-sm-7">
-        <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="numBoletos" style="border-color: #a8acfd;">
-          <option value={{numBoletos}}>Seleccione una opción...</option>
-          <option value="100">[00 - 99]</option>
-          <option value="1000">[000 - 999]</option>
-          <option value="10000">[0000 - 9999]</option>
-          <option value="100000">[000000 - 999999]</option>
+        <select class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="opcLoteria" style="border-color: #a8acfd;">
+          <option selected [ngValue]="null">Seleccione una opción...</option>
+          <option *ngIf="minBoletos<100" [ngValue]="99">[00 - 99]</option>
+          <option *ngIf="minBoletos<1000" [ngValue]="999">[000 - 999]</option>
+          <option *ngIf="minBoletos<10000" [ngValue]="9999">[0000 - 9999]</option>
         </select>
       </div>
     </div>

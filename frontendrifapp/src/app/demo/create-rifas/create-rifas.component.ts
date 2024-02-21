@@ -39,7 +39,7 @@ export class CreateRifasComponent implements OnInit {
   AUX2: number = 0;
   rangoInicial:number=0;
   rangoFinal:number=0;
-
+  opcLoteria:number = 0
   typeRifa:any;
   showButton: any;
 premios:boolean=true;
@@ -65,6 +65,11 @@ premios:boolean=true;
   }
 
   guardarDatos(){
+    if(this.opcLoteria != 0){
+      this.rangoFinal = this.opcLoteria;
+      this.rangoInicial = 0
+      this.numBoletos = this.opcLoteria + 1;
+    }
     let datos:Rifa = {
       'title':this.tituloRifa,
       'rango_inicial_boletos':this.rangoInicial,
