@@ -59,7 +59,8 @@ class RaffleController extends Controller
         $rifa->metodo_sorteo_id = $request->metodo_sorteo_id;
 
         $user->raffle()->save($rifa);
-        return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $request->all()], 201);
+        $aux = $request->all();
+        return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $aux->premios], 201);
         foreach ($request->premios as $premioData) {
             $premio = new Prize();
             $premio->name_prize = $premioData->name_prize;
