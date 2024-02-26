@@ -61,7 +61,7 @@ class RaffleController extends Controller
         $rifa->metodo_sorteo_id = $request->metodo_sorteo_id;
 
         $user->raffle()->save($rifa);
-
+        dd($request);
         foreach ($request->premios as $premioData) {
             $premio = new Prize();
             $premio->name_prize = $premioData->name_prize;
