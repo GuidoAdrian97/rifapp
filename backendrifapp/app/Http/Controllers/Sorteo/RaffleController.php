@@ -64,17 +64,17 @@ class RaffleController extends Controller
 
         foreach ($request->premios as $premioData) {
             $premio = new Prize();
-            $premio->name_prize = $premioData['name_prize'];
-            $premio->descripcion_prize = $premioData['descripcion_prize'];
-            $premio->calidad = $premioData['calidad'];
-            $premio->categorias = $premioData['categorias'];
-            $premio->posicion_prize = $premioData['posicion_prize'];
+            $premio->name_prize = $premioData->name_prize;
+            $premio->descripcion_prize = $premioData->descripcion_prize;
+            $premio->calidad = $premioData->calidad;
+            $premio->categorias = $premioData->categorias;
+            $premio->posicion_prize = $premioData->posicion_prize;
     
             $rifa->premios()->save($premio);
     
             $urlimagenes = [];
     
-            foreach ($premioData['imagenes'] as $imagen) {
+            foreach ($premioData->imagenes as $imagen) {
                 $nombre = time() . '_' . $imagen->getClientOriginalName();
                 $rutaImagen = $rutaUsuario . '/' . $nombre;
                 $rutaImagenHEIF = $rutaUsuario . '/' . $nombre . '.heic';
