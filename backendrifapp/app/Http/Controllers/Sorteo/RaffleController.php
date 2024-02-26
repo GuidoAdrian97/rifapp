@@ -36,8 +36,6 @@ class RaffleController extends Controller
             return response()->json(['errors' => $validator->errors(), 'code'=>'422']);
         }
 
-            
-
         $user = Auth::user();
         $cedula = $user->identificacion;
 
@@ -61,7 +59,7 @@ class RaffleController extends Controller
         $rifa->metodo_sorteo_id = $request->metodo_sorteo_id;
 
         $user->raffle()->save($rifa);
-        return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $request], 201);
+        return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $request->all()], 201);
         foreach ($request->premios as $premioData) {
             $premio = new Prize();
             $premio->name_prize = $premioData->name_prize;
