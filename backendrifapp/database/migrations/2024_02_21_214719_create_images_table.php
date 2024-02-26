@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prizes', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('name_prize');
-            $table->string('descripcion_prize');
-            $table->decimal('calidad', 8, 1);
-            $table->string('categorias');
-            $table->integer('posicion_prize');
-            $table->foreignId('raffle_id')->references('id')->on('raffles');
+            $table->string('url');
+            $table->morphs('imageable');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prizes');
+        Schema::dropIfExists('images');
     }
 };

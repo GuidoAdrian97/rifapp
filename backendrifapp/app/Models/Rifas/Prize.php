@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Prize extends Model
 {
     use HasFactory;
+    protected $fillable = ['name_prize','descripcion_prize','calidad','categorias','posicion_prize'];
+    public function images(){
+    	return $this->morphMany('App\Image','imageable');
+    }
+
+    public function raffle()
+    {
+        return $this->belongsTo(Raffle::class);
+    }
+
 }

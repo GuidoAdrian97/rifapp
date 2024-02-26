@@ -75,4 +75,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Referido\ReferralReward::class, 'referral_id');
     }
+    public function image(){
+        return $this->morphOne('App\Image','imageable');
+    }
 }
