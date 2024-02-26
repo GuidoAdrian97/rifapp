@@ -28,8 +28,25 @@ export class RifasService {
     return this.httpClient.get<any>(this.api + 'listarmetodosorteo', { headers: headers });
   }
 
-  guardarRifa(datos:any):Observable<any>{
+/*import { HttpClient } from '@angular/common/http';
 
+@Injectable({
+  providedIn: 'root'
+})
+export class FileUploadService {
+
+  constructor(private http: HttpClient) { }
+
+  uploadFile(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('archivo', file, file.name);
+
+    return this.http.post<any>('http://tu-api.com/upload', formData);
+  }
+} */
+
+  guardarRifa(datos:any):Observable<any>{
+    debugger
     const body = new FormData();
     body.append('title', datos.title);
     body.append('description', datos.description);
@@ -39,6 +56,8 @@ export class RifasService {
     body.append('costo_boleto', datos.costo_boleto);
     body.append('fecha_sorteo_rifa', datos.fecha_sorteo_rifa);
     body.append('metodo_sorteo_id', datos.metodo_sorteo_id);
+    body.append('premios', datos.premios);
+
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('access_token')}`,

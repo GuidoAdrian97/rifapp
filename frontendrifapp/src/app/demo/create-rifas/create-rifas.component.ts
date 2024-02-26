@@ -19,16 +19,32 @@ interface Rifa {
   costo_boleto:number;
   fecha_sorteo_rifa:string;
   metodo_sorteo_id:number;
+  premios: any[]; 
 }
 
-interface Premio {
+
+/*interface Premio {
   id:number;
   nombre: string;
   descripcion: string;
   estado: any[];
   categorias: any[]; // Ids de categorías seleccionadas
   imagenes: string[]; // URLs de imágenes
+}*/
+
+
+interface Premio1 {
+name_prize: string,
+descripcion_prize:string,
+calidad:number,
+categorias:string,
+posicion_prize:number,
+imagenes: string[]; // URLs de imágenes
 }
+/*
+
+
+*/
 
 
 @Component({
@@ -57,8 +73,9 @@ export class CreateRifasComponent implements OnInit {
 
 
 // Definir un objeto para almacenar datos
-premiosData: Premio[] = [];
+//premiosData: Premio[] = [];
 
+premiosData1: any[] = [];
 
 
   constructor(private serviceRifa: RifasService,private modalService: BsModalService) {
@@ -80,8 +97,52 @@ premiosData: Premio[] = [];
   
   }
 
-  guardarDatos(){
+  guardarDatos1(){
     if(this.opcLoteria != 0){
+      this.rangoFinal = this.opcLoteria;
+      this.rangoInicial = 0
+      this.numBoletos = this.opcLoteria + 1;
+    }
+    /*
+    let datos:Rifa = {
+      'title':this.tituloRifa,
+      'rango_inicial_boletos':this.rangoInicial,
+      'rango_final_boletos':this.rangoFinal,
+      'metodo_sorteo_id':this.opcSorteo,
+      'fecha_sorteo_rifa':this.fechaSorteo,
+      'description':this.descripRifa,
+      'costo_boleto':this.precioRifaboleto,
+      'cantidad_boletos':this.numBoletos,
+      premios: {
+      'name_prize': this.nombrePremio,
+      'descripcion_prize':this.descripcionPremio,
+      'calidad':this.estadoPremio,
+      'categorias':this.categoriaPremio,
+      'posicion_prize':this.ordenPremio,
+      imagenes: this.imagePreviews,
+      
+        
+      }
+      
+    }
+    debugger
+    this.serviceRifa.guardarRifa(datos).subscribe({
+      next:rest=>{
+        debugger
+      },error:error =>{
+        console.log(error)
+      }
+    })*/
+
+    this.VerSeccionPremios();
+  }
+
+
+
+
+/*
+  guardarDatos(){
+    /*if(this.opcLoteria != 0){
       this.rangoFinal = this.opcLoteria;
       this.rangoInicial = 0
       this.numBoletos = this.opcLoteria + 1;
@@ -95,8 +156,22 @@ premiosData: Premio[] = [];
       'fecha_sorteo_rifa':this.fechaSorteo,
       'description':this.descripRifa,
       'costo_boleto':this.precioRifaboleto,
-      'cantidad_boletos':this.numBoletos
+      'cantidad_boletos':this.numBoletos,
+      premios:this.premiosData1
+      /*premios: {
+      'name_prize': this.premiosData1,
+      'descripcion_prize':this.descripcionPremio,
+      'calidad':this.estadoPremio,
+      'categorias':this.categoriaPremio,
+      'posicion_prize':this.ordenPremio,
+      imagenes: this.imagePreviews,
+      
+        
+      }
+
+      
     }
+    console.log(datos);
     debugger
     this.serviceRifa.guardarRifa(datos).subscribe({
       next:rest=>{
@@ -106,8 +181,42 @@ premiosData: Premio[] = [];
       }
     })
 
-    this.VerSeccionPremios();
-  }
+
+  }*/
+
+
+guardarDatos(){
+  
+    const data = {
+      title: 'Titulo prueba',
+      rango_inicial_boletos: 1,
+      rango_final_boletos: 29,
+      metodo_sorteo_id: 2,
+      fecha_sorteo_rifa: '2024-03-01',
+      description: 'ghjghjg',
+      costo_boleto: 1,
+      cantidad_boletos: 29,
+      premios: [
+        {
+          name_prize: 'gf',
+          descripcion_prize: 'gfhgfh',
+          calidad: 2,
+          categorias: 'hogar',
+          imagenes: [
+            'data:image/jpeg;base64,/9j/'
+          ],
+          posicion_prize: 1
+        }
+      ]
+    };
+    debugger
+    this.serviceRifa.guardarRifa(data).subscribe(response => {
+      console.log(response);
+    });
+  
+}
+
+
 
   precioTotalpremio: number = 0;
   precioRifaboleto: number = 0;
@@ -364,9 +473,20 @@ premiosData: Premio[] = [];
 imgNombres:any[]=[];
 
 
-agregarPremio(premio: Premio): void {
+/*agregarPremio(premio: Premio): void {
   this.premiosData.push(premio);
   console.log(this.premiosData);
+  /*console.log(this.selectedOptions);
+  console.log(this.imagePreviews);
+  console.log(this.files);*/
+ /* this.modalRef?.hide()
+  this.LimpiarDatosPremio();
+}*/
+
+
+agregarPremio(premio: any): void {
+  this.premiosData1.push(premio);
+  console.log(this.premiosData1);
   /*console.log(this.selectedOptions);
   console.log(this.imagePreviews);
   console.log(this.files);*/
@@ -419,7 +539,7 @@ this.selectIconos.push(estado);
 
 
 
-guardarPremio(): void {
+/*guardarPremio(): void {
 
   // Obtener datos del formulario y agregar premio al servicio
   this.idPremio=this.idPremio+1;
@@ -434,7 +554,30 @@ guardarPremio(): void {
 
   this.agregarPremio(nuevoPremio);
  
+}*/
+
+categoriaPremio:string='';
+ordenPremio:number=0;
+
+guardarPremio(): void {
+
+
+  const nuevoPremio: any = {
+
+    name_prize: this.nombrePremio,
+    descripcion_prize: this.descripcionPremio,
+    calidad: this.estadoPremio,
+    categorias: this.categoriaPremio, // [1, 2] IDs de categorías seleccionadas
+    imagenes: this.imagePreviews, // ['url1', 'url2'] URLs de imágenes - relativePath
+    posicion_prize:this.ordenPremio,
+  };
+
+  this.agregarPremio(nuevoPremio);
+ 
 }
+
+
+
  
 modalRef?: BsModalRef | null;
 modalRef1?: BsModalRef ;
@@ -446,7 +589,7 @@ openModal(template: TemplateRef<void>) {
 openModal1(template: TemplateRef<void>,numId:number) {
   this.modalRef1 = this.modalService.show(template, { id: 6, class: 'modal-lg' });
 
- this.obtenerPremioPorId(numId);
+ //this.obtenerPremioPorId(numId);
 
 }
 
@@ -470,9 +613,9 @@ this.selectIconos=[];
 
 
 
- obtenerPremioPorId(id: number): Premio | any {
+ /*obtenerPremioPorId(id: number): Premio | any {
 
-  const premioEncontrado = this.premiosData.find(premio => premio.id === id);
+  const premioEncontrado = this.premiosData1.find(premio => premio.id === id);
   
 
   if (premioEncontrado) {
@@ -490,22 +633,14 @@ this.selectIconos=[];
 
 
   
-}
+}*/
 
 isSelectedIcon(icon: any): boolean {
   return icon.valor === this.valorEstado;
 }
 
 
-/*const idPremioAObtener = 1; // Reemplaza con el ID que estás buscando
-const premioEncontrado = obtenerPremioPorId(idPremioAObtener);
 
-if (premioEncontrado) {
-  // Aquí puedes utilizar premioEncontrado para mostrarlo en tu modal
-  console.log(premioEncontrado);
-} else {
-  console.log(`No se encontró ningún premio con el ID ${idPremioAObtener}`);
-}*/
 
 
 
