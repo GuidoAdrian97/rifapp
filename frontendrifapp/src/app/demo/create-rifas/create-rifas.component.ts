@@ -1,10 +1,13 @@
 import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
 import { NgSelectConfig } from '@ng-select/ng-select';
+import { iteratee } from 'lodash';
 
 
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { relative } from 'path';
+import { elementAt } from 'rxjs';
 import { RifasService } from 'src/app/services/rifas.service';
 
 interface Rifa {
@@ -16,6 +19,15 @@ interface Rifa {
   costo_boleto:number;
   fecha_sorteo_rifa:string;
   metodo_sorteo_id:number;
+}
+
+interface Premio {
+  id:number;
+  nombre: string;
+  descripcion: string;
+  estado: any[];
+  categorias: any[]; // Ids de categorías seleccionadas
+  imagenes: string[]; // URLs de imágenes
 }
 
 
@@ -42,11 +54,14 @@ export class CreateRifasComponent implements OnInit {
   opcLoteria:number = 0
   typeRifa:any;
   showButton: any;
-premios:boolean=true;
+
+
+// Definir un objeto para almacenar datos
+premiosData: Premio[] = [];
 
 
 
-  constructor(private serviceRifa: RifasService) {
+  constructor(private serviceRifa: RifasService,private modalService: BsModalService) {
   
     this.serviceRifa.tipoSorteo().subscribe({
       next:rest =>{
@@ -61,7 +76,8 @@ premios:boolean=true;
   ngOnInit() {
     this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
-
+   
+  
   }
 
   guardarDatos(){
@@ -70,6 +86,7 @@ premios:boolean=true;
       this.rangoInicial = 0
       this.numBoletos = this.opcLoteria + 1;
     }
+    
     let datos:Rifa = {
       'title':this.tituloRifa,
       'rango_inicial_boletos':this.rangoInicial,
@@ -88,6 +105,8 @@ premios:boolean=true;
         console.log(error)
       }
     })
+
+    this.VerSeccionPremios();
   }
 
   precioTotalpremio: number = 0;
@@ -274,6 +293,7 @@ premios:boolean=true;
       // Si ya está seleccionado, eliminarlo del arreglo
       //this.selectedOptions = this.selectedOptions.filter(item => item.id !== option.id);
       this.selectedOptions.push(option);
+      
     } else {
       // Si no está seleccionado, agregarlo al arreglo
       //this.selectedOptions.push(option);
@@ -339,12 +359,154 @@ premios:boolean=true;
   }
 
 
+//prueba de registrar premios
+
+imgNombres:any[]=[];
+
+
+agregarPremio(premio: Premio): void {
+  this.premiosData.push(premio);
+  console.log(this.premiosData);
+  /*console.log(this.selectedOptions);
+  console.log(this.imagePreviews);
+  console.log(this.files);*/
+  this.modalRef?.hide()
+  this.LimpiarDatosPremio();
+}
+
+/*obtenerPremios(): Premio[] {
+  return this.premiosData;
+}*/
+ 
+nombrePremio:string='';
+descripcionPremio:string='';
+estadoPremio:number=0;
+idPremio:number=0;
+
+
+
+//prueba para visualizar iconos de estado
+iconos = [
+  { valor: 1,icon:['fa fa-star']},
+  { valor: 2,icon:['fa fa-star','fa fa-star'] },
+  { valor: 3,icon:['fa fa-star','fa fa-star','fa fa-star'] },
+  { valor: 4,icon:['fa fa-star','fa fa-star','fa fa-star','fa fa-star'] },
+  { valor: 4.5,icon:['fa fa-star','fa fa-star','fa fa-star','fa fa-star','fa fa-star-half'] },
+  { valor: 5,icon:['fa fa-star','fa fa-star','fa fa-star','fa fa-star','fa fa-star'] },
 
  
- 
+];
 
+
+selectIconos: any[] = [];
+
+
+
+agregarIconos(estado: any) {
+
+if(this.selectIconos.length==1){
+//eliminar el registro existente y agregar el nuevo
+this.selectIconos.splice(estado, 1);
+this.selectIconos.push(estado);
+
+  }else{
+    this.selectIconos.push(estado);
+  }
+
+  console.log(this.selectIconos);
+}
+
+
+
+
+guardarPremio(): void {
+
+  // Obtener datos del formulario y agregar premio al servicio
+  this.idPremio=this.idPremio+1;
+  const nuevoPremio: Premio = {
+    id:this.idPremio,
+    nombre: this.nombrePremio,
+    descripcion: this.descripcionPremio,
+    estado: this.selectIconos,
+    categorias: this.selectedOptions, // [1, 2] IDs de categorías seleccionadas
+    imagenes: this.imagePreviews, // ['url1', 'url2'] URLs de imágenes - relativePath
+  };
+
+  this.agregarPremio(nuevoPremio);
  
+}
+ 
+modalRef?: BsModalRef | null;
+modalRef1?: BsModalRef ;
+
+openModal(template: TemplateRef<void>) {
+  this.modalRef = this.modalService.show(template, { id: 5, class: 'modal-lg' });
+}
+
+openModal1(template: TemplateRef<void>,numId:number) {
+  this.modalRef1 = this.modalService.show(template, { id: 6, class: 'modal-lg' });
+
+ this.obtenerPremioPorId(numId);
+
+}
+
+LimpiarDatosPremio(){
+this.nombrePremio='';
+this.descripcionPremio='';
+this.estadoPremio=0;
+this.selectedOptions=[];
+this.imagePreviews=[];
+this.selectIconos=[];
+ }
    
+ valorEstado:number=0;
+ nombrePremio1:string='';
+ descripcionPremio1:string='';
+ estadoPremio1:number=0;
+ idPremio1:number=0;
+ selectIconos1: any[] = [];
+ public imagePreviews1: string[] = [];
+ selectedOptions1: any[] = [];
+
+
+
+ obtenerPremioPorId(id: number): Premio | any {
+
+  const premioEncontrado = this.premiosData.find(premio => premio.id === id);
+  
+
+  if (premioEncontrado) {
+    this.idPremio1 = premioEncontrado.id;
+    this.nombrePremio1 = premioEncontrado.nombre;
+    this.descripcionPremio1 = premioEncontrado.descripcion;
+    this.selectIconos1 = premioEncontrado.estado;
+    this.valorEstado = premioEncontrado.estado[0].valor;
+    this.selectedOptions1 = premioEncontrado.categorias;
+    this.imagePreviews1 = premioEncontrado.imagenes;
+    
+  } else {
+    console.log(`No se encontró ningún premio con el ID ${id}`);
+  }
+
+
+  
+}
+
+isSelectedIcon(icon: any): boolean {
+  return icon.valor === this.valorEstado;
+}
+
+
+/*const idPremioAObtener = 1; // Reemplaza con el ID que estás buscando
+const premioEncontrado = obtenerPremioPorId(idPremioAObtener);
+
+if (premioEncontrado) {
+  // Aquí puedes utilizar premioEncontrado para mostrarlo en tu modal
+  console.log(premioEncontrado);
+} else {
+  console.log(`No se encontró ningún premio con el ID ${idPremioAObtener}`);
+}*/
+
 
 
 }

@@ -56,20 +56,189 @@
 
   .p-carrousel {
     position:absolute;
-    top: 10px; /* Ajusta la posición vertical según tus necesidades */
-    left: 5px; /* Ajusta la posición horizontal según tus necesidades */
+    top: 30px; /* Ajusta la posición vertical según tus necesidades */
+    left: 24.5px; /* Ajusta la posición horizontal según tus necesidades */
     /*background-color: transparent;  Puedes cambiar el color de fondo según tus necesidades */
-    background-color: rgb(231, 241, 245);
+     background-color: rgb(71, 41, 206);
+    //background-color: #162052;
+    color: #ffffff;
     border: none;
-    border-radius:50px 50px 50px 50px;
+    border-radius:10px 50px 50px 10px;
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
-  font: bold;
+  font: italic;
   size: 40px;
-    cursor: pointer;
+    //cursor: pointer;
     font-size: 14px; /* Ajusta el tamaño del texto según tus necesidades */
   }
+
+
+  //prueba de diseño para boton de agregar premio
+  .boton-segmentado {
+    background-color: transparent;
+    border: 2px dashed #3498db;
+    color: #3498db;
+    padding: 10px 20px;
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: 200;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: 0.5s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+
+ border-radius: 25px;
+
+   // transition: background-color 0.3s, color 0.3s;
+}
+.boton-segmentado:hover
+{
+letter-spacing: 0.2em;
+
+}
+
+//prueba 2
+.box{
+  position: relative;
+  width: 400px;
+  height: 400px;
+  background: rgb(0,0,0,0.5);
+  border-radius: 50%;
+  overflow: hidden;
+}
+.box::before
+{
+  content: '';
+  position: absolute;
+  inset: -10px 140px;
+  background: linear-gradient(315deg,#00ccff,#d400d4);
+  transition: 0.5s;
+  animation: animate 4s linear infinite;
+  
+}
+.box:hover::before
+{
+  inset: -20px 0px;
+}
+
+@keyframes animate
+{
+  0%
+  {
+    transform: rotate(0deg);
+  }
+  100%
+  {
+    transform: rotate(360deg);
+  }
+}
+.box::after
+{
+ content: '';
+ position: absolute;
+ inset: 6px;
+ background: #162052;
+ border-radius: 50%;
+ z-index: 1;
+  
+}
+.content{
+  position: absolute;
+  inset:30px;
+  border:6px solid #070a1c;
+  z-index: 3;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.content img
+{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 3;
+
+}
+.box:hover .content img
+{
+opacity: 0;
+}
+.content h2
+{
+  position: relative;
+  font-size: 1.5em;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+
+}
+.content span
+{
+position: relative;
+font-weight: 300;
+font-size: 0.85em;
+text-align: center;
+color: #fff;
+letter-spacing: 0.05em;
+
+}
+.content a
+{
+ position: relative;
+ margin-top: 30px;
+ padding: 10px 20px;
+ background: #fff;
+ color: #070a1c;
+ border-radius: 25px;
+ font-weight: 200;
+ font-size: 1em;
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
+ text-decoration: none;
+ transition: 0.5s;
+}
+.content a:hover
+{
+letter-spacing: 0.2em;
+
+}
+
+.prueba1 a
+{
+ position: relative;
+ margin-top: 30px;
+ padding: 10px 20px;
+ background: #fff;
+ color: #070a1c;
+ border-radius: 25px;
+ font-weight: 200;
+ font-size: 1em;
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
+ text-decoration: none;
+ transition: 0.5s;
+}
+.prueba1 a:hover
+{
+letter-spacing: 0.2em;
+
+}
 
 
