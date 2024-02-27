@@ -140,9 +140,9 @@ premiosData1: any[] = [];
 
 
 
-/*
+
   guardarDatos(){
-    /*if(this.opcLoteria != 0){
+    if(this.opcLoteria != 0){
       this.rangoFinal = this.opcLoteria;
       this.rangoInicial = 0
       this.numBoletos = this.opcLoteria + 1;
@@ -150,24 +150,22 @@ premiosData1: any[] = [];
     
     let datos:Rifa = {
       'title':this.tituloRifa,
-      'rango_inicial_boletos':this.rangoInicial,
-      'rango_final_boletos':this.rangoFinal,
+      'rango_inicial_boletos':2,
+      'rango_final_boletos':102,
       'metodo_sorteo_id':this.opcSorteo,
       'fecha_sorteo_rifa':this.fechaSorteo,
       'description':this.descripRifa,
       'costo_boleto':this.precioRifaboleto,
       'cantidad_boletos':this.numBoletos,
       premios:this.premiosData1
-      /*premios: {
-      'name_prize': this.premiosData1,
-      'descripcion_prize':this.descripcionPremio,
-      'calidad':this.estadoPremio,
-      'categorias':this.categoriaPremio,
-      'posicion_prize':this.ordenPremio,
-      imagenes: this.imagePreviews,
-      
-        
-      }
+      // premios: {
+      // 'name_prize': this.premiosData1,
+      // 'descripcion_prize':this.descripcionPremio,
+      // 'calidad':this.estadoPremio,
+      // 'categorias':this.categoriaPremio,
+      // 'posicion_prize':this.ordenPremio,
+      // imagenes: this.imagePreviews,
+      // }
 
       
     }
@@ -182,40 +180,40 @@ premiosData1: any[] = [];
     })
 
 
-  }*/
+  }
 
 
-guardarDatos(){
+// guardarDatos(){
   
-    const data = {
-      title: 'Titulo prueba',
-      rango_inicial_boletos: 1,
-      rango_final_boletos: 29,
-      metodo_sorteo_id: 2,
-      fecha_sorteo_rifa: '2024-03-01',
-      description: 'ghjghjg',
-      costo_boleto: 1,
-      cantidad_boletos: 29,
-      premios: [
-        {
-          name_prize: 'gf',
-          descripcion_prize: 'gfhgfh',
-          calidad: 2,
-          categorias: 'hogar',
-          imagenes: [
-            'data:image/jpeg;base64,/9j/'
-          ],
-          posicion_prize: 1
-        },
+//     const data = {
+//       title: 'Titulo prueba',
+//       rango_inicial_boletos: 1,
+//       rango_final_boletos: 29,
+//       metodo_sorteo_id: 2,
+//       fecha_sorteo_rifa: '2024-03-01',
+//       description: 'ghjghjg',
+//       costo_boleto: 1,
+//       cantidad_boletos: 29,
+//       premios: [
+//         {
+//           name_prize: 'gf',
+//           descripcion_prize: 'gfhgfh',
+//           calidad: 2,
+//           categorias: 'hogar',
+//           imagenes: [
+//             'data:image/jpeg;base64,/9j/'
+//           ],
+//           posicion_prize: 1
+//         },
         
-      ]
-    };
+//       ]
+//     };
 
-    this.serviceRifa.guardarRifa(data).subscribe(response => {
-      console.log(response);
-    });
+//     this.serviceRifa.guardarRifa(data).subscribe(response => {
+//       console.log(response);
+//     });
   
-}
+// }
 
 
 

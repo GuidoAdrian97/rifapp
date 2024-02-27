@@ -79,22 +79,22 @@ class RaffleController extends Controller
                 // Decodificar la imagen base64 y guardarla como un archivo
                 $imagenDecodificada = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imagen));
                 $nombre = time() . '_' . $user->identificacion;
-                $rutaImagen = $rutaUsuario . '/' . $nombre;
+                $rutaImagen = $rutaUsuario . '/' . $nombre.'.jpg';
                 $rutaImagenHEIF = $rutaUsuario . '/' . $nombre . '.heic';
             
-                // Guardar la imagen decodificada en el sistema de archivos
+                // // Guardar la imagen decodificada en el sistema de archivos
                 file_put_contents($rutaImagen, $imagenDecodificada);
             
                 // Convertir la imagen a formato HEIF si es necesario
                 exec("convert $rutaImagen $rutaImagenHEIF");
             
-                if (File::exists($rutaImagenHEIF)) {
-                    $urlimagenes[] = '/images/' . $cedula . '/' . $nombre . '.heic';
-                    File::delete($rutaImagen);
-                }
+                // if (File::exists($rutaImagenHEIF)) {
+                //     $urlimagenes[] = '/images/' . $cedula . '/' . $nombre . '.heic';
+                //     File::delete($rutaImagen);
+                // }
             }
     
-            $premio->imagenes()->createMany($urlimagenes);
+            // $premio->imagenes()->createMany($urlimagenes);
         }
 
         return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $rifa], 201);
