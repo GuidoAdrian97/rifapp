@@ -18,10 +18,7 @@ class RaffleController extends Controller
 {
     public function CreateRaffle(Request $request){
 
-       $aux=$request->all();
-    //  return $request->premios[0];
-        return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $request->premios[0]], 201);
-
+    
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -66,9 +63,9 @@ class RaffleController extends Controller
         $aux = $request->all();
 
         
-        return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $aux['premios'][0]], 201);
         foreach ($request->premios as $premioData) {
             $premio = new Prize();
+            return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $premioData['name_prize']], 201);
             $premio->name_prize = $premioData->name_prize;
             $premio->descripcion_prize = $premioData->descripcion_prize;
             $premio->calidad = $premioData->calidad;
