@@ -20,7 +20,7 @@ class RaffleController extends Controller
 
        $aux=$request->all();
     //  return $request->premios[0];
-        return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $request->premios[0]['[']], 201);
+        return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $request->premios[0]], 201);
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
