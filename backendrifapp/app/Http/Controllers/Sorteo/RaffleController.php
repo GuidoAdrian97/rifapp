@@ -69,7 +69,7 @@ class RaffleController extends Controller
             $premio->descripcion_prize = $premioData['descripcion_prize'];
             $premio->calidad = $premioData['calidad'];
             $premio->categorias = $premioData['categorias'];
-            $premio->posicion_prize = $premioData['name_pposicion_prizerize'];
+            $premio->posicion_prize = $premioData['posicion_prize'];
     
             $rifa->premios()->save($premio);
     
