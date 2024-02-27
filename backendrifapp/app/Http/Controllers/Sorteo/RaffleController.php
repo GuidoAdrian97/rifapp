@@ -65,12 +65,11 @@ class RaffleController extends Controller
         
         foreach ($request->premios as $premioData) {
             $premio = new Prize();
-            return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $premioData['name_prize']], 201);
-            $premio->name_prize = $premioData->name_prize;
-            $premio->descripcion_prize = $premioData->descripcion_prize;
-            $premio->calidad = $premioData->calidad;
-            $premio->categorias = $premioData->categorias;
-            $premio->posicion_prize = $premioData->posicion_prize;
+            $premio->name_prize = $premioData['name_prize'];
+            $premio->descripcion_prize = $premioData['descripcion_prize'];
+            $premio->calidad = $premioData['calidad'];
+            $premio->categorias = $premioData['categorias'];
+            $premio->posicion_prize = $premioData['name_pposicion_prizerize'];
     
             $rifa->premios()->save($premio);
     
