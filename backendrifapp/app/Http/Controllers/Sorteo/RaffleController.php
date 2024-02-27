@@ -23,7 +23,7 @@ class RaffleController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'cantidad_boletos' => 'required|integer|min:1',
-            'rango_inicial_boletos' => 'required|integer|min:1',
+            'rango_inicial_boletos' => 'required|integer|min:0',
             'rango_final_boletos' => 'required|integer|min:' . $request->input('rango_inicial_boletos'),
             'costo_boleto' => 'required|numeric|min:0',
             'fecha_sorteo_rifa' => 'required|date|after:now',
