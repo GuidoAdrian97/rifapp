@@ -76,7 +76,7 @@ class RaffleController extends Controller
             $urlimagenes = [];
     
             foreach ($premioData['imagenes'] as $imagen) {
-                $nombre = time() . '_' . $imagen->getClientOriginalName();
+                $nombre = time() . '_' . $user->identificacion;
                 $rutaImagen = $rutaUsuario . '/' . $nombre;
                 $rutaImagenHEIF = $rutaUsuario . '/' . $nombre . '.heic';
     
