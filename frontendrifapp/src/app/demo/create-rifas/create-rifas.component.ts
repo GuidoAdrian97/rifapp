@@ -206,10 +206,11 @@ guardarDatos(){
             'data:image/jpeg;base64,/9j/'
           ],
           posicion_prize: 1
-        }
+        },
+        
       ]
     };
-    debugger
+
     this.serviceRifa.guardarRifa(data).subscribe(response => {
       console.log(response);
     });

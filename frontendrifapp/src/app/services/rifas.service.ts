@@ -48,7 +48,8 @@ export class FileUploadService {
   guardarRifa(datos:any):Observable<any>{
     debugger
     const body = new FormData();
-    body.append('title', datos.title);
+
+  body.append('title', datos.title);
     body.append('description', datos.description);
     body.append('cantidad_boletos', datos.cantidad_boletos);
     body.append('rango_inicial_boletos', datos.rango_inicial_boletos);
@@ -61,6 +62,7 @@ export class FileUploadService {
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      //'Content-Type': 'application/json',
     });
     
     return this.httpClient.post<any>(this.api + 'createraffle', body, { headers: headers });
