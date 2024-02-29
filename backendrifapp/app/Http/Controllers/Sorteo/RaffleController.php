@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\Image\Manipulations;
 use Spatie\Image\Image;
 use Imagick;
+use Illuminate\Support\Facades\URL;
 class RaffleController extends Controller
 {
     public function mime_content_type_from_base64($base64) {
@@ -39,8 +40,6 @@ class RaffleController extends Controller
         return $mime_to_type[$mime] ?? false;
     }
     public function CreateRaffle(Request $request){
-
-    
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -67,7 +66,6 @@ class RaffleController extends Controller
         if (!File::exists($rutaUsuario)) {
             File::makeDirectory($rutaUsuario, 0777, true, true);
         }
-
 
         $rifa = new Raffle();
         $rifa->title = $request->title;
@@ -109,7 +107,7 @@ class RaffleController extends Controller
             
                 // Guardar la imagen decodificada en el sistema de archivos
                 file_put_contents($rutaImagenOriginal, $imagenDecodificada);
-            
+                
                 // Ruta para la imagen convertida a JPG
                 $rutaImagenWebP = $rutaUsuario . '/' . $nombre . '.webp';
             
@@ -120,11 +118,12 @@ class RaffleController extends Controller
             
                 // Eliminar la imagen original (temporal)
                 unlink($rutaImagenOriginal);
-            
+                $urlBase = URL::to('/').'/images/'. $cedula. '/' . $nombre . '.webp';
                 // Agregar la URL de la imagen JPG a la lista de URLs
-                $urlimagenes[]['url'] = $rutaImagenWebP;
+                $urlimagenes[]['url'] = $urlBase;
             }
             $premio->images()->createMany($urlimagenes);
+
 
 
         }
