@@ -640,6 +640,13 @@ isSelectedIcon(icon: any): boolean {
 
 
 
+//prueba para seleccionar calidad de premio con estrellas
+stars = Array(5).fill(0).map((_, index) => index + 1);
+selectedRating = 0;
+
+rateProduct(rating: number): void {
+  this.selectedRating = rating;
+}
 
 
 

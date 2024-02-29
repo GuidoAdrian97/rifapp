@@ -714,13 +714,25 @@
         <small  class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Marque estado del premio</small>
         <div class="col-sm-7">
           <div class=" row">
-<div class="col-sm-12">
+            <!--<div class="col-sm-12">
   <div class="custom-control custom-radio" *ngFor="let icon of iconos ; let i = index">
     <input type="radio" id="customRadio1" [(ngModel)]="estadoPremio" name="customRadio" class="custom-control-input" [value]="icon.valor" (click)="agregarIconos(icon)" />
     <label class="custom-control-label ps-2" for="customRadio1"><span class="badge m-r-5 badge-light-light" style="color:goldenrod; font-size: 12px;">{{icon.valor}}
       <i name="star" *ngFor="let class of icon.icon ; let i = index" [class]="class" style="color: gold;" ></i>
     </span></label>
   </div>
+</div>-->
+
+<!--prueba para seleccionar calidad de premio mediante estrellas-->
+<div class="col-sm-12">
+<!-- star-rating.component.html -->
+<!-- star-rating.component.html -->
+<div id="rating-container">
+  <i *ngFor="let star of stars; let i = index" [class]="i < selectedRating ? 'fa fa-star selected' : 'fa fa-star'" (click)="rateProduct(i + 1)"></i>
+</div>
+
+<p id="selected-rating">Calificación seleccionada: <span id="rating-value">{{ selectedRating }}</span> estrellas</p>
+
 </div>
           
           </div>

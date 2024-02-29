@@ -241,4 +241,26 @@ letter-spacing: 0.2em;
 
 }
 
+//estilo de selección de estrellas para calidad de premio
+
+/* star-rating.component.css */
+/* star-rating.component.css */
+#rating-container {
+  margin: 20px;
+}
+
+.fa {
+  font-size: 24px; /* Ajusta el tamaño según tus necesidades */
+  color: #ccc; /* Color de estrella no seleccionada */
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.fa:hover {
+  color: gold; /* Color de estrella al pasar el ratón */
+}
+
+.selected {
+  color: gold; /* Color de estrella seleccionada */
+}
 
