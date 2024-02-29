@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
+import { NgbCalendar, NgbDate, NgbDatepickerConfig, NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectConfig } from '@ng-select/ng-select';
 import { iteratee } from 'lodash';
-
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
@@ -45,16 +45,23 @@ imagenes: string[]; // URLs de imágenes
 
 
 */
-
-
 @Component({
   selector: 'app-create-rifas',
   templateUrl: './create-rifas.component.html',
-  styleUrls: ['./create-rifas.component.scss'],
-
-
+  styleUrls: ['./create-rifas.component.scss']
 })
 export class CreateRifasComponent implements OnInit {
+
+  // fechaSeleccionada: NgbDate | null = null;
+
+  // isDisabled = (date: NgbDate) => {
+  //   const dayOfWeek = this.calendar.getWeekday(date);
+  //   return ![1, 3, 5].includes(dayOfWeek); // Solo habilita lunes, miércoles y viernes
+  // };
+
+  // customDay = (date: NgbDate, current: { month: number }) => {
+  //   return this.isDisabled(date) ? 'custom-day-disabled' : undefined;
+  // };
 
   opcSorteo: number = 0;
   fechaSorteo: string = "";
@@ -76,10 +83,15 @@ export class CreateRifasComponent implements OnInit {
 //premiosData: Premio[] = [];
 
 premiosData1: any[] = [];
+getCurrentDate(): string {
+  const currentDate = new Date();
+  return currentDate.toISOString().split('T')[0];
+}
 
-
-  constructor(private serviceRifa: RifasService,private modalService: BsModalService) {
-  
+  constructor(private serviceRifa: RifasService,private modalService: BsModalService,
+    private calendar: NgbCalendar, private config: NgbDatepickerConfig) {
+    //   this.config.minDate = { year: 1900, month: 1, day: 1 };
+    // this.config.maxDate = { year: 2099, month: 12, day: 31 };
     this.serviceRifa.tipoSorteo().subscribe({
       next:rest =>{
         this.typeRifa = rest['Metodos de Sorteo'];
@@ -346,8 +358,15 @@ premiosData1: any[] = [];
 
 
   validatedFechaSorteo = 'form-control';
+  validatedTituloRifa = 'form-control';
+  validatedDescripcionRifa = 'form-control';
+  validatedSelectCantidadBoleto = 'form-control';
   validatedForm2_1(){
     this.validatedFechaSorteo = 'form-control is-invalid';
+    this.validatedTituloRifa = 'form-control is-invalid';
+    this.validatedDescripcionRifa = 'form-control is-invalid';
+    this.validatedSelectCantidadBoleto = 'form-control is-invalid';
+    
   }
   VerSeccionPremios() {
     if (this.precioTotalpremio > 0 && this.precioRifaboleto > 0 && this.minBoletos > 0 && this.opcSorteo > 0) {
