@@ -115,8 +115,9 @@
                     <small class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Seleccione tipo de
                       sorteo</small>
                     <div class="col-sm-7">
-                      <select required [class]="opcSorteo == 0 ? validatedOpcSorteo1 : 'form-control is-valid'" id="exampleFormControlSelect1" name="opcionesSorteo"
-                        [(ngModel)]="opcSorteo" style="border-color: #a8acfd;">
+                      <select required [class]="opcSorteo == 0 ? validatedOpcSorteo1 : 'form-control is-valid'"
+                        id="exampleFormControlSelect1" name="opcionesSorteo" [(ngModel)]="opcSorteo"
+                        style="border-color: #a8acfd;">
                         <option value="0">Seleccione una opción...</option>
                         <option *ngFor="let tipoSorteo of typeRifa" [ngValue]="tipoSorteo.id">
                           {{tipoSorteo.nombre_sorteo}}</option>
@@ -133,10 +134,12 @@
                       <div class="input-group mb-3">
                         <span class="input-group-text text-light"
                           style="border-color: #a8acfd; background-color: #a8acfd;">$</span>
-                        <input type="number" required min="0" [class]="precioTotalpremio == 0 ? validatedPrecioTotalPremio1 : 'form-control is-valid'" aria-label="Amount (to the nearest dollar)"
-                          [(ngModel)]="precioTotalpremio" name="totalPremio" style="border-color: #a8acfd;" />
-                          <div class="invalid-feedback"> Por favor ingrese precio total de premios </div>
-                        </div>
+                        <input type="number" required min="0"
+                          [class]="precioTotalpremio == 0 ? validatedPrecioTotalPremio1 : 'form-control is-valid'"
+                          aria-label="Amount (to the nearest dollar)" [(ngModel)]="precioTotalpremio" name="totalPremio"
+                          style="border-color: #a8acfd;" />
+                        <div class="invalid-feedback"> Por favor ingrese precio total de premios </div>
+                      </div>
                     </div>
                   </div>
 
@@ -147,10 +150,12 @@
                       <div class="input-group mb-3">
                         <span class="input-group-text text-light"
                           style="border-color: #a8acfd; background-color: #a8acfd;">$</span>
-                        <input type="number" [class]="precioRifaboleto == 0 ? validatedPrecioRifaBoleto1 : 'form-control is-valid'" aria-label="Amount (to the nearest dollar)"
-                          [(ngModel)]="precioRifaboleto" required min="0" name="precioBoleto" style="border-color: #a8acfd;" />
-                          <div class="invalid-feedback"> Por favor ingrese precio del boleto </div>
-                        </div>
+                        <input type="number"
+                          [class]="precioRifaboleto == 0 ? validatedPrecioRifaBoleto1 : 'form-control is-valid'"
+                          aria-label="Amount (to the nearest dollar)" [(ngModel)]="precioRifaboleto" required min="0"
+                          name="precioBoleto" style="border-color: #a8acfd;" />
+                        <div class="invalid-feedback"> Por favor ingrese precio del boleto </div>
+                      </div>
                     </div>
                   </div>
 
@@ -164,9 +169,9 @@
                     <hr style="color: #9297e9;">
 
                     <div class="text-center" style="margin-top:2%;">
-                      <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="consultar();clickConsultar = true"
-                        *ngIf="btnConsult"
-                        [disabled] = "opcSorteo != 0 && precioTotalpremio != 0 && precioRifaboleto != 0 ? false : true"
+                      <button type="button" class="btn btn-icon btn d-inline-flex text-light"
+                        (click)="consultar();clickConsultar = true" *ngIf="btnConsult"
+                        [disabled]="opcSorteo != 0 && precioTotalpremio != 0 && precioRifaboleto != 0 ? false : true"
                         [class.pulse-animation]="opcSorteo != 0 && precioTotalpremio != 0 && precioRifaboleto != 0 && clickConsultar == false ? true : false"
                         style="background-color: #9297e9; font-size: medium; padding-top: 5px; padding-bottom: 5px;">
                         <i class="feather icon-search"> Consultar</i>
@@ -369,8 +374,8 @@
                         de sorteo</small>
 
                       <div class="col-sm-7">
-                        <select disabled="true" class="form-control" id="exampleFormControlSelect1" name="opcionesSorteo"
-                          [(ngModel)]="opcSorteo" style="border-color: #a8acfd;">
+                        <select disabled="true" class="form-control" id="exampleFormControlSelect1"
+                          name="opcionesSorteo" [(ngModel)]="opcSorteo" style="border-color: #a8acfd;">
                           <option value="0">Seleccione una opción...</option>
                           <option *ngFor="let tipoSorteo of typeRifa" [ngValue]="tipoSorteo.id">
                             {{tipoSorteo.nombre_sorteo}}</option>
@@ -382,9 +387,11 @@
                       <small class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese fecha de
                         sorteo</small>
                       <div class="col-sm-7">
-                        <input type="date" required [class]="fechaSorteo == '' ? validatedFechaSorteo : 'form-control is-valid'" id="exampleInputEmail1" aria-describedby="emailHelp"
-                          name="fechaSorteo" [(ngModel)]="fechaSorteo" style="border-color: #a8acfd;" />
-                          <div class="invalid-feedback"> Por favor selecciona una fecha de sorteo </div>
+                        <input type="date" required
+                          [class]="fechaSorteo == '' ? validatedFechaSorteo : 'form-control is-valid'"
+                          id="exampleInputEmail1" aria-describedby="emailHelp" name="fechaSorteo"
+                          [(ngModel)]="fechaSorteo" style="border-color: #a8acfd;" />
+                        <div class="invalid-feedback"> Por favor selecciona una fecha de sorteo </div>
 
                       </div>
                     </div>
@@ -417,8 +424,8 @@
                           <span class="input-group-text text-light"
                             style="background-color: #a8acfd; border-color: #a8acfd;">#</span>
                           <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Ej: 100" name="numBoletos" required [min]="minBoletos" [(ngModel)]="numBoletos" (input)="onInputChange()"
-                            style="border-color: #a8acfd;" />
+                            placeholder="Ej: 100" name="numBoletos" required [min]="minBoletos" [(ngModel)]="numBoletos"
+                            (input)="onInputChange()" style="border-color: #a8acfd;" />
                         </div>
 
                       </div>
@@ -432,14 +439,14 @@
 
                           <span class="input-group-text text-light"
                             style="background-color: #a8acfd; border-color: #a8acfd; font-size: small;">De</span>
-                          <input disabled="true" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Ej: 100" name="numBoletos" [(ngModel)]="rangoInicial"
-                            style="border-color: #a8acfd;" />
+                          <input disabled="true" type="number" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Ej: 100" name="numBoletos"
+                            [(ngModel)]="rangoInicial" style="border-color: #a8acfd;" />
                           <span class="input-group-text text-light"
                             style="background-color: #a8acfd; border-color: #a8acfd; font-size: small;">Hasta</span>
-                          <input disabled="true" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Ej: 100" name="numBoletos" [(ngModel)]="rangoFinal"
-                            style="border-color: #a8acfd;" />
+                          <input disabled="true" type="number" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Ej: 100" name="numBoletos"
+                            [(ngModel)]="rangoFinal" style="border-color: #a8acfd;" />
                         </div>
 
                       </div>
@@ -467,9 +474,9 @@
                         <div class="input-group mb-3">
                           <span class="input-group-text text-light"
                             style="background-color: #a8acfd; border-color: #a8acfd;">$</span>
-                          <input disabled="true" type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
-                            placeholder="Ej: 1" [(ngModel)]="precioRifaboleto" name="precioBoleto"
-                            style="border-color: #a8acfd;" />
+                          <input disabled="true" type="number" class="form-control"
+                            aria-label="Amount (to the nearest dollar)" placeholder="Ej: 1"
+                            [(ngModel)]="precioRifaboleto" name="precioBoleto" style="border-color: #a8acfd;" />
                         </div>
                       </div>
                     </div>
@@ -506,8 +513,8 @@
                     <div class="col-md-6 text-center" style="margin-top:2%;">
                       <img alt="imgSrc" src="assets/images/gallery-grid/Cap3.png" width="100%" height="80%"
                         class="contenedor-imagen">
-                      <button type="button" class="btn btn-icon btn d-inline-flex text-light" (click)="VerSeccionPremios()"
-                        style="background-color: #9297e9; margin-top:10%">
+                      <button type="button" class="btn btn-icon btn d-inline-flex text-light"
+                        (click)="VerSeccionPremios()" style="background-color: #9297e9; margin-top:10%">
                         <i class="fa fa-arrow-circle-o-right" style="font-size: medium;"> Siguiente</i>
                       </button>
                     </div>
@@ -798,11 +805,11 @@
                     </div>
 
                     <div class="form-group row">
-                      <small class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Marque estado del
+                      <small class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Seleccione calidad del
                         premio</small>
                       <div class="col-sm-7">
                         <div class=" row">
-                          <div class="col-sm-12">
+                          <!-- <div class="col-sm-12">
                             <div class="custom-control custom-radio" *ngFor="let icon of iconos ; let i = index">
                               <input type="radio" id="customRadio1" [(ngModel)]="estadoPremio" name="customRadio"
                                 class="custom-control-input" [value]="icon.valor" (click)="agregarIconos(icon)" />
@@ -813,7 +820,20 @@
                                     style="color: gold;"></i>
                                 </span></label>
                             </div>
+                          </div> -->
+                          <div class="col-sm-12">
+                            <!-- star-rating.component.html -->
+                            <div id="rating-container">
+                              <i *ngFor="let star of stars; let i = index"
+                                [class]="i < selectedRating ? 'fa fa-star selected' : 'fa fa-star'"
+                                (click)="rateProduct(i + 1)"></i>
+                            </div>
+
+                            <!--<p id="selected-rating">Calificación seleccionada: <span id="rating-value">{{ selectedRating
+                                }}</span> estrellas</p>-->
+                             
                           </div>
+
 
                         </div>
                       </div>
