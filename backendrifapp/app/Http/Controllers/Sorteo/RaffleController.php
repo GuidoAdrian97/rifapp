@@ -14,8 +14,30 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Image\Manipulations;
+use Spatie\Image\Image;
+use Imagick;
 class RaffleController extends Controller
 {
+    public function mime_content_type_from_base64($base64) {
+        $data = explode(',', $base64, 2);
+        if (count($data) === 2) {
+            $encoding = $data[0];
+            $encodedData = $data[1];
+            return preg_replace('#^data:(.*?);.*$#', '$1', $encoding);
+        }
+        return false;
+    }
+    public static function mime_to_image_type($mime) {
+        $mime_to_type = [
+            'image/jpeg' => IMAGETYPE_JPEG,
+            'image/png' => IMAGETYPE_PNG,
+            'image/gif' => IMAGETYPE_GIF,
+            // Agrega más tipos MIME si es necesario
+        ];
+    
+        return $mime_to_type[$mime] ?? false;
+    }
     public function CreateRaffle(Request $request){
 
     
@@ -46,9 +68,7 @@ class RaffleController extends Controller
             File::makeDirectory($rutaUsuario, 0777, true, true);
         }
 
-        
-        
-        
+
         $rifa = new Raffle();
         $rifa->title = $request->title;
         $rifa->description = $request->description;
@@ -60,8 +80,6 @@ class RaffleController extends Controller
         $rifa->metodo_sorteo_id = $request->metodo_sorteo_id;
 
         $user->raffle()->save($rifa);
-        $aux = $request->all();
-
         
         foreach ($request->premios as $premioData) {
             $premio = new Prize();
@@ -75,29 +93,43 @@ class RaffleController extends Controller
     
             $urlimagenes = [];
     
-            foreach ($premioData['imagenes'] as $imagen) {
-                // Decodificar la imagen base64 y guardarla como un archivo
-                $imagenDecodificada = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imagen));
+            foreach ($premioData['imagenes'] as $imagenBase64) {
+                $imagenDecodificada = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imagenBase64));
+
+                // Crear un nombre único para la imagen
                 $nombre = time() . '_' . $user->identificacion;
-                $rutaImagen = $rutaUsuario . '/' . $nombre.'.jpg';
-                $rutaImagenHEIF = $rutaUsuario . '/' . $nombre . '.heic';
             
-                // // Guardar la imagen decodificada en el sistema de archivos
-                file_put_contents($rutaImagen, $imagenDecodificada);
+                // Obtener la extensión del archivo
+                $extension = self::mime_content_type_from_base64($imagenBase64);
+                $image_type = self::mime_to_image_type($extension);
+                $extension = $image_type ? image_type_to_extension($image_type, false) : 'jpeg';
             
-                // Convertir la imagen a formato HEIF si es necesario
-                exec("convert $rutaImagen $rutaImagenHEIF");
+                // Ruta para la imagen original
+                $rutaImagenOriginal = $rutaUsuario . '/' . $nombre . '_original.' . $extension;
             
-                // if (File::exists($rutaImagenHEIF)) {
-                //     $urlimagenes[] = '/images/' . $cedula . '/' . $nombre . '.heic';
-                //     File::delete($rutaImagen);
-                // }
+                // Guardar la imagen decodificada en el sistema de archivos
+                file_put_contents($rutaImagenOriginal, $imagenDecodificada);
+            
+                // Ruta para la imagen convertida a JPG
+                $rutaImagenWebP = $rutaUsuario . '/' . $nombre . '.webp';
+            
+                // Convertir la imagen a formato JPG
+                $imagen = new Imagick($rutaImagenOriginal);
+                $imagen->setImageFormat('webp');
+                $imagen->writeImage($rutaImagenWebP);
+            
+                // Eliminar la imagen original (temporal)
+                unlink($rutaImagenOriginal);
+            
+                // Agregar la URL de la imagen JPG a la lista de URLs
+                $urlimagenes[]['url'] = $rutaImagenWebP;
             }
     
-            // $premio->imagenes()->createMany($urlimagenes);
+            $premio->images()->createMany($urlimagenes);
         }
 
         return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $rifa], 201);
     }
+    
     
 }
