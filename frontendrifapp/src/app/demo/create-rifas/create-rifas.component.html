@@ -382,8 +382,10 @@
                       <small class="col-sm-5 col-form-label" style="color: #7379b1; font-size: small;">Ingrese fecha de
                         sorteo</small>
                       <div class="col-sm-7">
-                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <input type="date" required [class]="fechaSorteo == '' ? validatedFechaSorteo : 'form-control is-valid'" id="exampleInputEmail1" aria-describedby="emailHelp"
                           name="fechaSorteo" [(ngModel)]="fechaSorteo" style="border-color: #a8acfd;" />
+                          <div class="invalid-feedback"> Por favor selecciona una fecha de sorteo </div>
+
                       </div>
                     </div>
 
@@ -515,23 +517,10 @@
 
 
                 </div>
-
-
-
-
-
               </div>
 
 
-            </div>
-
-
-
-
-
-
-
-            <!--3 registro de premios para rifa-->
+            </div><!--3 registro de premios para rifa-->
             <div class="row" *ngIf="divUpdated">
 
               <!--encabezado 3#-->
