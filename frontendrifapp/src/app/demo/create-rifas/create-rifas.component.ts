@@ -19,7 +19,7 @@ interface Rifa {
   costo_boleto:number;
   fecha_sorteo_rifa:string;
   metodo_sorteo_id:number;
-  premios: any[]; 
+  premios: Premio[]; 
 }
 
 
@@ -33,7 +33,7 @@ interface Rifa {
 }*/
 
 
-interface Premio1 {
+interface Premio {
 name_prize: string,
 descripcion_prize:string,
 calidad:number,
@@ -90,55 +90,19 @@ premiosData1: any[] = [];
     })
   }
 
+  resaltar:any;
   ngOnInit() {
+    this.resaltar = true;
+
+    // Puedes agregar un tiempo de espera para desactivar la animación después de un tiempo
+    setTimeout(() => {
+      this.resaltar = false;
+    }, 10000); // Tiempo en milisegundos (igual a la duración de la animación)
     this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
    
   
   }
-
-  guardarDatos1(){
-    if(this.opcLoteria != 0){
-      this.rangoFinal = this.opcLoteria;
-      this.rangoInicial = 0
-      this.numBoletos = this.opcLoteria + 1;
-    }
-    /*
-    let datos:Rifa = {
-      'title':this.tituloRifa,
-      'rango_inicial_boletos':this.rangoInicial,
-      'rango_final_boletos':this.rangoFinal,
-      'metodo_sorteo_id':this.opcSorteo,
-      'fecha_sorteo_rifa':this.fechaSorteo,
-      'description':this.descripRifa,
-      'costo_boleto':this.precioRifaboleto,
-      'cantidad_boletos':this.numBoletos,
-      premios: {
-      'name_prize': this.nombrePremio,
-      'descripcion_prize':this.descripcionPremio,
-      'calidad':this.estadoPremio,
-      'categorias':this.categoriaPremio,
-      'posicion_prize':this.ordenPremio,
-      imagenes: this.imagePreviews,
-      
-        
-      }
-      
-    }
-    debugger
-    this.serviceRifa.guardarRifa(datos).subscribe({
-      next:rest=>{
-        debugger
-      },error:error =>{
-        console.log(error)
-      }
-    })*/
-
-    this.VerSeccionPremios();
-  }
-
-
-
 
 
   guardarDatos(){
@@ -150,24 +114,14 @@ premiosData1: any[] = [];
     
     let datos:Rifa = {
       'title':this.tituloRifa,
-      'rango_inicial_boletos':2,
-      'rango_final_boletos':102,
+      'rango_inicial_boletos':this.rangoInicial,
+      'rango_final_boletos':this.rangoFinal,
       'metodo_sorteo_id':this.opcSorteo,
       'fecha_sorteo_rifa':this.fechaSorteo,
       'description':this.descripRifa,
       'costo_boleto':this.precioRifaboleto,
       'cantidad_boletos':this.numBoletos,
       premios:this.premiosData1
-      // premios: {
-      // 'name_prize': this.premiosData1,
-      // 'descripcion_prize':this.descripcionPremio,
-      // 'calidad':this.estadoPremio,
-      // 'categorias':this.categoriaPremio,
-      // 'posicion_prize':this.ordenPremio,
-      // imagenes: this.imagePreviews,
-      // }
-
-      
     }
     console.log(datos);
     debugger
@@ -352,14 +306,31 @@ premiosData1: any[] = [];
     this.opcOtraCategoria = true;
   }
 
-
+  validatedOpcSorteo1 = 'form-control';
+  validatedPrecioTotalPremio1 = 'form-control';
+  validatedPrecioRifaBoleto1 = 'form-control';
+  clickConsultar = false;
+  ValidatedForm1(){
+    this.validatedOpcSorteo1 = 'form-control is-invalid';
+      this.validatedPrecioTotalPremio1 = 'form-control is-invalid';
+      this.validatedPrecioRifaBoleto1 = 'form-control is-invalid';
+  }
   CrearRifa() {
-    this.divCreate = true;
+    if(this.precioTotalpremio > 0 && this.precioRifaboleto > 0 && this.minBoletos > 0 && this.opcSorteo > 0 ){
+      this.divCreate = true;
     this.divInformation = false;
     this.divUpdated = false;
     this.opcPublicar = false;
+    this.onInputChange();
     this.scrollToTop();
+    }else{
+      this.ValidatedForm1();
+    }
+  }
 
+  onInputChange() {
+    this.rangoInicial = 1; this.rangoFinal = this.numBoletos;
+    // Aquí puedes realizar acciones adicionales con el nuevo valor del input
   }
 
 
@@ -374,12 +345,32 @@ premiosData1: any[] = [];
 
 
 
-
+  validatedFechaSorteo = 'form-control';
+  validatedForm2_1(){
+    this.validatedFechaSorteo = 'form-control is-invalid';
+  }
   VerSeccionPremios() {
-    this.divCreate = false;
-    this.divInformation = false;
-    this.divUpdated = true;
-    this.opcPublicar = false;
+    if (this.precioTotalpremio > 0 && this.precioRifaboleto > 0 && this.minBoletos > 0 && this.opcSorteo > 0) {
+      if (this.opcSorteo == 1) {
+        if (this.fechaSorteo != '' && this.tituloRifa != '' && this.descripRifa != '' && this.opcLoteria != 0) {
+          this.divCreate = false;
+          this.divInformation = false;
+          this.divUpdated = true;
+          this.opcPublicar = false;
+        }else{
+          this.validatedForm2_1();
+        }
+      }else{
+        if (this.fechaSorteo != '' && this.tituloRifa != '' && this.descripRifa != '' && this.numBoletos != 0 ) {
+          this.divCreate = false;
+          this.divInformation = false;
+          this.divUpdated = true;
+          this.opcPublicar = false;
+        }
+      }
+    }else{
+      this.ValidatedForm1();
+    }
   }
 
 
@@ -419,10 +410,26 @@ premiosData1: any[] = [];
 
 
   PublicarRifa() {
-    this.opcPublicar = true;
-    this.divCreate = false;
-    this.divInformation = false;
-    this.divUpdated = false;
+    if (this.precioTotalpremio > 0 && this.precioRifaboleto > 0 && this.minBoletos > 0 && this.opcSorteo > 0) {
+
+      if (this.opcSorteo == 1) {
+        if (this.fechaSorteo != '' && this.tituloRifa != '' && this.descripRifa != '' && this.opcLoteria != 0) {
+          this.opcPublicar = true;
+          this.divCreate = false;
+          this.divInformation = false;
+          this.divUpdated = false;
+        }
+      } else {
+        if (this.fechaSorteo != '' && this.tituloRifa != '' && this.descripRifa != '' && this.numBoletos != 0) {
+          this.opcPublicar = true;
+          this.divCreate = false;
+          this.divInformation = false;
+          this.divUpdated = false;
+        }
+      }
+    }else{
+      this.ValidatedForm1();
+    }
   }
 
 

@@ -38,6 +38,7 @@ import { CreateRifasComponent } from './demo/create-rifas/create-rifas.component
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import {
 //   SocialLoginModule,
 //   SocialAuthServiceConfig
@@ -73,7 +74,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,HttpClientModule,
-    NgSelectModule, NgxFileDropModule,NgbCarouselModule,ModalModule.forRoot(), OAuthModule.forRoot(),NgxSpinnerModule
+    NgSelectModule, NgxFileDropModule,NgbCarouselModule,ModalModule.forRoot(), OAuthModule.forRoot(),NgxSpinnerModule,NgbModule
   ],
   providers: [
     
