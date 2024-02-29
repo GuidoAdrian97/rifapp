@@ -19,4 +19,11 @@ class Prize extends Model
         return $this->belongsTo(Raffle::class);
     }
 
+    public function categoriaspremio()
+    {
+        return $this->belongsToMany(Prizecate::class);
+    }
+
+    
+
 }

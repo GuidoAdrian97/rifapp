@@ -124,8 +124,9 @@ class RaffleController extends Controller
                 // Agregar la URL de la imagen JPG a la lista de URLs
                 $urlimagenes[]['url'] = $rutaImagenWebP;
             }
-    
             $premio->images()->createMany($urlimagenes);
+
+
         }
 
         return response()->json(['mensaje' => 'Rifa creada exitosamente', 'rifa' => $rifa], 201);

@@ -8,6 +8,7 @@ use App\Http\Controllers\Install;
 use App\Http\Controllers\Referido\ReferidosController;
 use App\Http\Controllers\Sorteo\RaffleController;
 use App\Http\Controllers\Sorteo\MetodoSorteoController;
+use App\Http\Controllers\Sorteo\PrizecateController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,6 +22,7 @@ use App\Http\Controllers\Sorteo\MetodoSorteoController;
 Route::group(['middleware'=>['auth:sanctum']],function(){
 
     Route::post('createraffle', [RaffleController::class,'CreateRaffle']);
+    Route::get('listarprizecate', [PrizecateController::class,'ListarPrizecate']);
 
     Route::get('listarmetodosorteo', [MetodoSorteoController::class,'listarmetodosorteo']);
 
