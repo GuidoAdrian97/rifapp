@@ -241,4 +241,56 @@ letter-spacing: 0.2em;
 
 }
 
+//estilo de selección de estrellas para calidad de premio
+
+/* star-rating.component.css */
+/* star-rating.component.css */
+#rating-container {
+  margin: 20px;
+}
+
+.fa {
+  font-size: 24px; /* Ajusta el tamaño según tus necesidades */
+  color: #ccc; /* Color de estrella no seleccionada */
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.fa:hover {
+  color: gold; /* Color de estrella al pasar el ratón */
+}
+
+.selected {
+  color: gold; /* Color de estrella seleccionada */
+}
+
+
+
+
+// @keyframes resaltar {
+//   0% { background-color: #aaade4; }
+//   50% { background-color: #8990f3; }
+//   100% { background-color: #6268e4; }
+// }
+
+// .resaltar-animation {
+//   animation: resaltar 1s infinite;
+// }
+
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(146, 151, 233, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(146, 151, 233, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(146, 151, 233, 0);
+  }
+}
+
+.pulse-animation {
+  animation: pulse 0.8s infinite;
+}
 
