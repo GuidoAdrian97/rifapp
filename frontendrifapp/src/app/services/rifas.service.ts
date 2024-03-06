@@ -28,6 +28,17 @@ export class RifasService {
     return this.httpClient.get<any>(this.api + 'listarmetodosorteo', { headers: headers });
   }
 
+  tipoCategorias():Observable<any>{ 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.httpClient.get<any>(this.api + 'listarprizecate', { headers: headers });
+  }
+
+
+
 /*import { HttpClient } from '@angular/common/http';
 
 @Injectable({

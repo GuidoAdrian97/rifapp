@@ -243,27 +243,123 @@ letter-spacing: 0.2em;
 
 //estilo de selección de estrellas para calidad de premio
 
-/* star-rating.component.css */
-/* star-rating.component.css */
+/*
 #rating-container {
   margin: 20px;
+ 
 }
 
 .fa {
-  font-size: 20px; /* Ajusta el tamaño según tus necesidades */
-  color: #ccc; /* Color de estrella no seleccionada */
+  font-size: 20px; 
+  color: #ccc; 
   cursor: pointer;
+  border-color: #ffd700;
   margin-right: 5px;
 }
 
-.fa:hover {
-  color: gold; /* Color de estrella al pasar el ratón */
+
+.fa-star:hover {
+  color: #ffd700;
 }
+
+
 
 .selected {
-  color: gold; /* Color de estrella seleccionada */
+  color: #ffd700; 
 }
 
+
+#rating-container i:hover ~ i::before,
+#rating-container i:hover::before,
+#rating-container i:checked ~ i::before,
+#rating-container i:checked::before{
+color: #ffd700;
+
+}
+
+
+
+*/
+
+
+
+
+
+ .skills{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //margin: 10px 0;
+ // padding-right: 10px;
+
+
+}
+
+
+ .skills .rating{
+  position: relative;
+  display: flex;
+  //margin: 10px 0;
+  margin-left: 6%;
+  flex-direction: row-reverse;
+
+}
+
+
+
+
+ .skills .rating input{
+  position: relative;
+  width: 20px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  overflow: hidden;
+
+
+}
+
+
+
+ .skills .rating input::before{
+  content: '\f005';
+  position: absolute;
+  font-family: fontAwesome;
+  font-size: 25px;
+  position: absolute;
+  left: 7px;
+  color: #b9b9bd;
+  transition: 0.5s;
+}
+
+
+
+ .skills .rating input:nth-child(2n+1)::before{
+  right: 4px;
+  left: initial;
+
+}
+
+
+
+ .skills .rating input:hover ~ input::before,
+ .skills .rating input:hover::before,
+ .skills .rating input:checked ~ input::before,
+ .skills .rating input:checked::before{
+color: #ffd700;
+
+}
+
+
+
+.skills .rating input.selected ~ input::before,
+.skills .rating input.selected::before {
+  color: #ffd700;
+}
 
 
 

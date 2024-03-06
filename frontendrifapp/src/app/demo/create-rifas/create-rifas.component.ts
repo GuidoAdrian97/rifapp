@@ -10,6 +10,9 @@ import { relative } from 'path';
 import { elementAt } from 'rxjs';
 import { RifasService } from 'src/app/services/rifas.service';
 
+
+
+
 interface Rifa {
   title:string;
   description:string;
@@ -36,8 +39,10 @@ interface Rifa {
 interface Premio {
 name_prize: string,
 descripcion_prize:string,
-calidad:number,
-categorias:string,
+//calidad:number,
+//categorias:string,
+calidad: any[];
+categorias: any[]; // Ids de categorías seleccionadas
 posicion_prize:number,
 imagenes: string[]; // URLs de imágenes
 }
@@ -77,6 +82,12 @@ export class CreateRifasComponent implements OnInit {
   opcLoteria:number = 0
   typeRifa:any;
   showButton: any;
+  typeCategories:any;
+  valorStar:number=0;
+
+
+
+ 
 
 
 // Definir un objeto para almacenar datos
@@ -94,13 +105,28 @@ getCurrentDate(): string {
     // this.config.maxDate = { year: 2099, month: 12, day: 31 };
     this.serviceRifa.tipoSorteo().subscribe({
       next:rest =>{
+        
         this.typeRifa = rest['Metodos de Sorteo'];
         console.log(this.typeRifa)
       },error:error => {
         console.log(error)
       }
+    });
+
+    this.serviceRifa.tipoCategorias().subscribe({
+      next:rest =>{
+     
+        this.typeCategories = rest['prizecates'];
+      
+        console.log(this.typeCategories)
+      },error:error => {
+        console.log(error)
+      }
     })
+
+
   }
+
 
   resaltar:any;
   ngOnInit() {
@@ -112,6 +138,8 @@ getCurrentDate(): string {
     }, 10000); // Tiempo en milisegundos (igual a la duración de la animación)
     this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
+   
+    
    
   
   }
@@ -149,37 +177,7 @@ getCurrentDate(): string {
   }
 
 
-// guardarDatos(){
-  
-//     const data = {
-//       title: 'Titulo prueba',
-//       rango_inicial_boletos: 1,
-//       rango_final_boletos: 29,
-//       metodo_sorteo_id: 2,
-//       fecha_sorteo_rifa: '2024-03-01',
-//       description: 'ghjghjg',
-//       costo_boleto: 1,
-//       cantidad_boletos: 29,
-//       premios: [
-//         {
-//           name_prize: 'gf',
-//           descripcion_prize: 'gfhgfh',
-//           calidad: 2,
-//           categorias: 'hogar',
-//           imagenes: [
-//             'data:image/jpeg;base64,/9j/'
-//           ],
-//           posicion_prize: 1
-//         },
-        
-//       ]
-//     };
 
-//     this.serviceRifa.guardarRifa(data).subscribe(response => {
-//       console.log(response);
-//     });
-  
-// }
 
 
 
@@ -209,11 +207,6 @@ getCurrentDate(): string {
   gananciaUsuario: number = 0;
   gananciaFinalUsuario: number = 0;
 
-
-  
-
-
-  opcOtraCategoria: boolean = false;
 
 
   consultar() {
@@ -256,6 +249,7 @@ getCurrentDate(): string {
   }
 
 
+
   scrollToBottom() {
     const windowHeight = window.innerHeight;
     const documentHeight = document.body.scrollHeight;
@@ -273,6 +267,8 @@ getCurrentDate(): string {
   }
 
 
+
+
   //prueba de verificación de dimensiones de pantalla de dispósitivo
   screenHeight:number=0;
   screenWidth:number=0;
@@ -287,6 +283,9 @@ getCurrentDate(): string {
   }
 
   
+
+
+
 
   CalcularGanancias(boletosNum: number) {
     //Ganancia por boletos vendidos
@@ -314,19 +313,22 @@ getCurrentDate(): string {
   }
 
 
-  AgregarCategoria() {
-    this.opcOtraCategoria = true;
-  }
+
 
   validatedOpcSorteo1 = 'form-control';
   validatedPrecioTotalPremio1 = 'form-control';
   validatedPrecioRifaBoleto1 = 'form-control';
   clickConsultar = false;
+
+
   ValidatedForm1(){
     this.validatedOpcSorteo1 = 'form-control is-invalid';
       this.validatedPrecioTotalPremio1 = 'form-control is-invalid';
       this.validatedPrecioRifaBoleto1 = 'form-control is-invalid';
   }
+
+
+
   CrearRifa() {
     if(this.precioTotalpremio > 0 && this.precioRifaboleto > 0 && this.minBoletos > 0 && this.opcSorteo > 0 ){
       this.divCreate = true;
@@ -339,6 +341,9 @@ getCurrentDate(): string {
       this.ValidatedForm1();
     }
   }
+
+
+
 
   onInputChange() {
     this.rangoInicial = 1; this.rangoFinal = this.numBoletos;
@@ -361,6 +366,8 @@ getCurrentDate(): string {
   validatedTituloRifa = 'form-control';
   validatedDescripcionRifa = 'form-control';
   validatedSelectCantidadBoleto = 'form-control';
+
+
   validatedForm2_1(){
     this.validatedFechaSorteo = 'form-control is-invalid';
     this.validatedTituloRifa = 'form-control is-invalid';
@@ -368,6 +375,8 @@ getCurrentDate(): string {
     this.validatedSelectCantidadBoleto = 'form-control is-invalid';
     
   }
+
+  
   VerSeccionPremios() {
     if (this.precioTotalpremio > 0 && this.precioRifaboleto > 0 && this.minBoletos > 0 && this.opcSorteo > 0) {
       if (this.opcSorteo == 1) {
@@ -393,7 +402,7 @@ getCurrentDate(): string {
   }
 
 
-
+//elimianr esto
   options = [
     { id: 1, name: 'Hogar' },
     { id: 2, name: 'Efectivo' },
@@ -403,8 +412,11 @@ getCurrentDate(): string {
   
   ];
 
-  selectedOptions: any[] = [];
+
+
+  selectedOptions:any[]=[];
  
+
 
   onItemSelected(option: any) {
     if (this.isSelected(option)) {
@@ -418,6 +430,8 @@ getCurrentDate(): string {
       this.selectedOptions = this.selectedOptions.filter(item => item.id !== option.id);
     }
   }
+
+
 
   isSelected(option: any): boolean {
     // Verificar si la opción está en el arreglo de opciones seleccionadas
@@ -450,6 +464,8 @@ getCurrentDate(): string {
       this.ValidatedForm1();
     }
   }
+
+
 
 
 
@@ -493,9 +509,6 @@ getCurrentDate(): string {
   }
 
 
-//prueba de registrar premios
-
-imgNombres:any[]=[];
 
 
 /*agregarPremio(premio: Premio): void {
@@ -511,35 +524,33 @@ imgNombres:any[]=[];
 
 agregarPremio(premio: any): void {
   this.premiosData1.push(premio);
-  console.log(this.premiosData1);
-  /*console.log(this.selectedOptions);
-  console.log(this.imagePreviews);
-  console.log(this.files);*/
+  //console.log(this.premiosData1);
   this.modalRef?.hide()
   this.LimpiarDatosPremio();
 }
 
-/*obtenerPremios(): Premio[] {
-  return this.premiosData;
-}*/
+
+
  
 nombrePremio:string='';
 descripcionPremio:string='';
-estadoPremio:number=0;
-idPremio:number=0;
 
 
 
-//prueba para visualizar iconos de estado
+
+//prueba para visualizar iconos de calidad de premio
 iconos = [
+  { valor: 0.5,icon:['fa fa-star-half']},
   { valor: 1,icon:['fa fa-star']},
-  { valor: 2,icon:['fa fa-star','fa fa-star'] },
+  { valor: 1.5,icon:['fa fa-star','fa fa-star-half']},
+  { valor: 2,icon:['fa fa-star','fa fa-star']},
+  { valor: 2.5,icon:['fa fa-star','fa fa-star','fa fa-star-half']},
   { valor: 3,icon:['fa fa-star','fa fa-star','fa fa-star'] },
+  { valor: 3.5,icon:['fa fa-star','fa fa-star','fa fa-star','fa fa-star-half']},
   { valor: 4,icon:['fa fa-star','fa fa-star','fa fa-star','fa fa-star'] },
   { valor: 4.5,icon:['fa fa-star','fa fa-star','fa fa-star','fa fa-star','fa fa-star-half'] },
   { valor: 5,icon:['fa fa-star','fa fa-star','fa fa-star','fa fa-star','fa fa-star'] },
 
- 
 ];
 
 
@@ -547,57 +558,46 @@ selectIconos: any[] = [];
 
 
 
-agregarIconos(estado: any) {
+
+//agregarIconos(estado: any) {
+agregarIconos(n: number) {
 
 if(this.selectIconos.length==1){
 //eliminar el registro existente y agregar el nuevo
-this.selectIconos.splice(estado, 1);
-this.selectIconos.push(estado);
+this.selectIconos=[];
+this.selectIconos.push(this.iconos.find(item => item.valor === n));
+//this.selectIconos.splice(estado, 1);
+//this.selectIconos.push(estado);
 
   }else{
-    this.selectIconos.push(estado);
+    //this.selectIconos.push(estado);
+    this.selectIconos.push(this.iconos.find(item => item.valor === n));
   }
 
-  console.log(this.selectIconos);
 }
 
 
 
 
-/*guardarPremio(): void {
-
-  // Obtener datos del formulario y agregar premio al servicio
-  this.idPremio=this.idPremio+1;
-  const nuevoPremio: Premio = {
-    id:this.idPremio,
-    nombre: this.nombrePremio,
-    descripcion: this.descripcionPremio,
-    estado: this.selectIconos,
-    categorias: this.selectedOptions, // [1, 2] IDs de categorías seleccionadas
-    imagenes: this.imagePreviews, // ['url1', 'url2'] URLs de imágenes - relativePath
-  };
-
-  this.agregarPremio(nuevoPremio);
- 
-}*/
-
-categoriaPremio:string='';
 ordenPremio:number=0;
 
 guardarPremio(): void {
 
+  this.ordenPremio=this.ordenPremio+1;
 
   const nuevoPremio: any = {
 
     name_prize: this.nombrePremio,
     descripcion_prize: this.descripcionPremio,
-    calidad: this.estadoPremio,
-    categorias: this.categoriaPremio, // [1, 2] IDs de categorías seleccionadas
+    //calidad: this.estadoPremio,
+    calidad:this.selectIconos,
+    categorias: this.selectedOptions, // [1, 2] IDs de categorías seleccionadas
     imagenes: this.imagePreviews, // ['url1', 'url2'] URLs de imágenes - relativePath
     posicion_prize:this.ordenPremio,
   };
 
   this.agregarPremio(nuevoPremio);
+ 
  
 }
 
@@ -611,44 +611,90 @@ openModal(template: TemplateRef<void>) {
   this.modalRef = this.modalService.show(template, { id: 5, class: 'modal-lg' });
 }
 
+
 openModal1(template: TemplateRef<void>,numId:number) {
   this.modalRef1 = this.modalService.show(template, { id: 6, class: 'modal-lg' });
 
- //this.obtenerPremioPorId(numId);
+ this.obtenerPremioPorId(numId);
 
 }
+
 
 LimpiarDatosPremio(){
 this.nombrePremio='';
 this.descripcionPremio='';
-this.estadoPremio=0;
 this.selectedOptions=[];
 this.imagePreviews=[];
 this.selectIconos=[];
+this.valorStar=0;
+
  }
    
- valorEstado:number=0;
+
+
  nombrePremio1:string='';
  descripcionPremio1:string='';
  estadoPremio1:number=0;
- idPremio1:number=0;
+ ordenPremio1:number=0;
  selectIconos1: any[] = [];
  public imagePreviews1: string[] = [];
+ public files1: NgxFileDropEntry[] = [];
  selectedOptions1: any[] = [];
+ valorStar1:number=0;
+
+
+ public dropped1(files1: NgxFileDropEntry[]) {
+  this.files1 = files1;
+
+  for (const droppedFile of files1) {
+
+    if (droppedFile.fileEntry.isFile) {
+      const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+      fileEntry.file((file: File) => {
+        // Lee el contenido de la imagen y muestra la vista previa
+        const reader = new FileReader();
+        reader.onload = (e:any) => {
+          this.imagePreviews1.push(e.target.result as string);
+        };
+        reader.readAsDataURL(file);
+      });
+    } else {
+      // Es un directorio (puedes manejarlo si es necesario)
+      const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+      console.log(fileEntry);
+    }
+  }
+}
+
+public fileOver1(event: any) {
+  console.log(event);
+}
+
+public fileLeave1(event: any) {
+  console.log(event);
+}
+
+EliminarImagen1(index:number){
+  this.imagePreviews1.splice(index, 1);
+}
 
 
 
- /*obtenerPremioPorId(id: number): Premio | any {
 
-  const premioEncontrado = this.premiosData1.find(premio => premio.id === id);
+
+
+
+
+ obtenerPremioPorId(id: number): Premio | any {
+
+  const premioEncontrado = this.premiosData1.find(premio => premio.posicion_prize === id);
   
 
   if (premioEncontrado) {
-    this.idPremio1 = premioEncontrado.id;
-    this.nombrePremio1 = premioEncontrado.nombre;
-    this.descripcionPremio1 = premioEncontrado.descripcion;
-    this.selectIconos1 = premioEncontrado.estado;
-    this.valorEstado = premioEncontrado.estado[0].valor;
+    this.ordenPremio1 = premioEncontrado.posicion_prize;
+    this.nombrePremio1 = premioEncontrado.name_prize;
+    this.descripcionPremio1 = premioEncontrado.descripcion_prize;
+   this.valorStar1 = premioEncontrado.calidad[0].valor;
     this.selectedOptions1 = premioEncontrado.categorias;
     this.imagePreviews1 = premioEncontrado.imagenes;
     
@@ -657,22 +703,54 @@ this.selectIconos=[];
   }
 
 
-  
-}*/
 
-isSelectedIcon(icon: any): boolean {
-  return icon.valor === this.valorEstado;
+  
 }
 
 
+editarPremio(orden:number){
+  const premioEncontrado = this.premiosData1.find(premio => premio.posicion_prize === orden);
+  
 
-//prueba para seleccionar calidad de premio con estrellas
+  if (premioEncontrado) {
+     premioEncontrado.posicion_prize=this.ordenPremio1;
+     premioEncontrado.name_prize=this.nombrePremio1;
+     premioEncontrado.descripcion_prize=this.descripcionPremio1;
+     premioEncontrado.calidad[0].valor= this.valorStar1;
+     premioEncontrado.categorias= this.selectedOptions1;
+     premioEncontrado.imagenes=this.imagePreviews1;
+    
+  } else {
+    console.log(`No se encontró ningún premio con el ID ${orden}`);
+  }
+
+  
+  this.modalRef1?.hide()
+}
+
+
+eliminarPremio(orden:number){
+  const premioEncontrado = this.premiosData1.find(premio => premio.posicion_prize === orden);
+
+  this.premiosData1.splice(premioEncontrado, 1);
+  console.log(this.premiosData1);
+    
+  this.modalRef1?.hide()
+}
+
+
+/*prueba para seleccionar calidad de premio con estrellas
 stars = Array(5).fill(0).map((_, index) => index + 1);
 selectedRating = 0;
 
 rateProduct(rating: number): void {
   this.selectedRating = rating;
 }
+*/
+
+
+
+
 
 
 
